@@ -6,14 +6,33 @@ gem 'rails', '4.0.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'libnotify'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'factory_girl_rails'
+end
+# Gems used only for assets and not required
+# in production environments by default.
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+group :assets do
+  # Use SCSS for stylesheets
+  gem 'sass-rails'
+  # Use CoffeeScript for .js.coffee assets and views
+  gem 'coffee-rails'
 
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
+
+  # Use Uglifier as compressor for JavaScript assets
+  gem 'uglifier', '>= 1.3.0'
+end
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -33,7 +52,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
