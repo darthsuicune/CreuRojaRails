@@ -26,4 +26,7 @@ CreuRoja::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  #Activate the fast mode for bcrypt in development environment
+  ActiveModel::SecurePassword.min_cost = true;
 end
