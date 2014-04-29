@@ -20,4 +20,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    base_title: "Creu Roja"
+    contact: "Contact"
+    home: "Home"
+    user_list_title: "User list"
+    form_new_user_title: "New user"
+    form_edit_user_title: "Edit user"
+    form_user_name: "Name"
+    form_user_surname: "Last name"
+    form_user_email: "E-mail"
+    form_user_password: "Password"
+    form_user_password_confirmation: "Confirm password"
+    form_user_language: "Language"
+    form_user_role: "Role"
+    form_user_submit: "Submit"
+    form_errors_found: "prevented the form from being processed"
+    
+    resource_show: "Show"
+    resource_edit: "Edit"
+    resource_destroy: "Destroy"
+    resource_destroy_confirm: "Are you sure?"
+    resource_back: "Back"

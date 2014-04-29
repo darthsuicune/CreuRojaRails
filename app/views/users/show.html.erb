@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t(:form_user_name) %>:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong><%= t(:form_user_surname) %>:</strong>
+  <%= @user.surname %>
+</p>
+
+<p>
+  <strong><%= t(:form_user_email) %>:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong><%= t(:form_user_language) %>:</strong>
+  <%= @user.language %>
+</p>
+
+<p>
+  <strong><%= t(:form_user_role) %>:</strong>
+  <%= @user.role %>
+</p>
+
+<%= link_to t(:resource_edit), edit_user_path(@user) %> |
+<%= link_to t(:resource_back), users_path %>

@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-CreuRoja::Application.config.secret_key_base = '6a5ba0af50d1798a27cbcdcfb4a7cb10f54f0f40d891d417146a4053226c406d46f2a053b0657fc4c2e194c534cf36136c1deca89838252543723180789fb591'
+
+require 'securerandom'
+
+def secure_token
+	token_file = Rails.root.join('.secret')
+	if File.exist?(token_file)
+		# Use the existing token.
+		File.read(token_file).chomp
+	else
+		# Generate a new token and store it in token_file.
+		token = SecureRandom.hex(64)
+		File.write(token_file, token)
+		token
+	end
+end
+
+CreuRoja::Application.config.secret_key_base = secure_token

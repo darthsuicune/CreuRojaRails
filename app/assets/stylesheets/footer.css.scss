@@ -1,0 +1,26 @@
+/* Styling for the footer of the page */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #bbb;
+  color: #bbb;
+  height: 40px;
+  a {
+    color: #bbb;
+    &:hover {
+      color: #bbb;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}

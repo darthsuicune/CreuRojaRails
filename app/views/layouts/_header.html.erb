@@ -1,0 +1,12 @@
+<header class="header">
+	<div id="logo">
+		<%= link_to image_tag("logomenu.png"), root_url %>
+	</div>
+	<nav class="nav_menu">
+		<ul>
+			<li> <%= link_to t(:home), root_url %>
+			<li> <%= link_to t(:contact), contact_url %>
+			<li> <%= link_to t(:user_list_title), users_url %>
+		</ul>
+	</nav>
+</header>

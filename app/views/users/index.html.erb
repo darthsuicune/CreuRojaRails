@@ -1,0 +1,37 @@
+<% provide(:title, t(:user_list_title)) %>
+
+<h1><%= t(:user_list_title) %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t(:form_user_name) %></th>
+      <th><%= t(:form_user_surname) %></th>
+      <th><%= t(:form_user_email) %></th>
+      <th><%= t(:form_user_language) %></th>
+      <th><%= t(:form_user_role) %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.surname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.language %></td>
+        <td><%= user.role %></td>
+        <td><%= link_to t(:resource_show), user %></td>
+        <td><%= link_to t(:resource_edit), edit_user_path(user) %></td>
+        <td><%= link_to t(:resource_destroy), user, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t(:form_new_user_title), new_user_path %>

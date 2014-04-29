@@ -1,0 +1,43 @@
+/* Styling for the header of the page */
+
+header {
+	height: 60px;
+	
+	img {
+		float: left;
+		margin-top: 4px;
+		margin-bottom: 4px;
+		height: 50px;
+		
+		&:hover {
+			color: white;
+			text-decoration: none;
+		}
+	}
+	
+	.nav_menu ul {
+		float: right;
+		list-style: none;
+		
+		li {
+			display: inline;
+			padding: 4px;
+			background-color: #a00;
+			border-radius: 5px;
+			float: left;
+			margin-left: 10px;
+			&:hover {
+				background-color: #600;
+			}
+			
+			a {
+				text-decoration: none;
+				padding: .2em 1em;
+				color: white;
+				&:hover {
+					background-color: #600;
+				}
+			}
+		}
+	}
+}
