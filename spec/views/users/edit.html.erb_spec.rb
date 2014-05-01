@@ -22,8 +22,8 @@ describe "users/edit" do
       assert_select "input#user_name[name=?]", "user[name]"
       assert_select "input#user_surname[name=?]", "user[surname]"
       assert_select "input#user_email[name=?]", "user[email]"
-      assert_select "input#user_language[name=?]", "user[language]"
-      assert_select "input#user_role[name=?]", "user[role]"
+      assert_select "select#user_language[name=?]", "user[language]"
+      assert_select "select#user_role[name=?]", "user[role]"
     end
   end
 end

@@ -19,4 +19,10 @@ describe "Static Pages" do
 		let(:content) { I18n.t (:contact) }
 		it_should_behave_like "all static pages"
 	end
+	describe "About page" do
+		before { visit about_url }
+		let(:page_title) { I18n.t (:about) }
+		let(:content) { I18n.t (:about) }
+		it_should_behave_like "all static pages"
+	end
 end

@@ -8,4 +8,8 @@ describe ApplicationHelper do
   it "should contain base title" do
     full_title("").should =~ /Creu Roja/
   end
+  
+  it "should not have a |" do
+    full_title("").should_not =~ /\|/
+  end
 end

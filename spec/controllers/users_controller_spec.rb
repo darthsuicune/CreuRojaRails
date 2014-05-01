@@ -20,15 +20,16 @@ require 'spec_helper'
 
 describe UsersController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # User. As you add validations to User, be sure to
-  # adjust the attributes here as well.
-	let(:valid_attributes) { { "name" => "MyString", "password" => "MyPass", 
+	# This should return the minimal set of attributes required to create a valid
+	# User. As you add validations to User, be sure to
+	# adjust the attributes here as well.
+	let(:valid_attributes) { { "name" => "MyString", "surname" => "MyString2",
+	                           "email" => "email1@something.com", "password" => "MyPass", 
 	                           "password_confirmation" => "MyPass" } }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # UsersController. Be sure to keep this updated too.
+	# This should return the minimal set of values that should be in the session
+	# in order to pass any filters (e.g. authentication) defined in
+	# UsersController. Be sure to keep this updated too.
 	let(:valid_session) { {} }
 
 	describe "GET index" do
@@ -41,16 +42,16 @@ describe UsersController do
 
 	describe "GET show" do
 		describe "existing user" do
+			let(:user) { User.create! valid_attributes }
+			before { get :show, {:id => user.to_param}, valid_session }
 			it "assigns the requested user as @user" do
-				user = User.create! valid_attributes
-				get :show, {:id => user.to_param}, valid_session
 				assigns(:user).should eq(user)
 			end
 		end
 		describe "non-existing user" do
 			it "redirects to user list" do
 				get :show, {:id => 15 }, valid_session
-				response.should redirect_to(users_url)
+				response.should redirect_to(root_url)
 			end
 		end
 	end
@@ -110,8 +111,8 @@ describe UsersController do
 
 	describe "PUT update" do
 		let(:user) { FactoryGirl.create(:user) }
-		describe "with valid params" do
 
+		describe "with valid params" do
 			it "updates the requested user" do
 				# Assuming there are no other users in the database, this
 				# specifies that the User created on the previous line
@@ -133,19 +134,18 @@ describe UsersController do
 		end
 
 		describe "with invalid params" do
-
-			it "assigns the user as @user" do
-				# Trigger the behavior that occurs when invalid params are submitted
+			before do
 				User.any_instance.stub(:save).and_return(false)
 				put :update, {:id => user.to_param, :user => { "name" => "invalid value" }}, valid_session
+			end
+			it "assigns the user as @user" do
+				# Trigger the behavior that occurs when invalid params are submitted
 				assigns(:user).should eq(user)
 			end
 
 			it "re-renders the 'edit' template" do
 				user = User.create! valid_attributes
 				# Trigger the behavior that occurs when invalid params are submitted
-				User.any_instance.stub(:save).and_return(false)
-				put :update, {:id => user.to_param, :user => { "name" => "invalid value" }}, valid_session
 				response.should render_template("edit")
 			end
 		end
@@ -164,5 +164,4 @@ describe UsersController do
 			response.should redirect_to(users_url)
 		end
 	end
-
 end
