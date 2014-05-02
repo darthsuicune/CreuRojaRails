@@ -11,11 +11,14 @@ class User < ActiveRecord::Base
 
 	def allowed_to?(action)
 		return true if role == "admin"
+		return false if blocked == true
 		case action
 		when "manage technician users"
 			role == "technician"
 		when "manage admin users"
 			false
+		when "see own profile"
+			role == "volunteer" || role == "technician"
 		else
 			false
 		end

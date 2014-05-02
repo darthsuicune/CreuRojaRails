@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-	before { @user = User.new(name: "Example", email: "user@example.com",
+	before { @user = User.new(name: "Example", email: "user@example.com", role: "volunteer",
 	                          password: "foobar", password_confirmation: "foobar") }
 	subject { @user }
 
@@ -14,6 +14,7 @@ describe User do
 	it { should respond_to(:password) }
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:authenticate) }
+	it { should respond_to(:blocked) }
 	it { should respond_to(:allowed_to?) }
 
 	it { should be_valid }
@@ -107,18 +108,27 @@ describe User do
 			before { @user.role = "admin"
 			         @user.save }
 			it { should be_allowed_to("manage admin users") }
+			it { should be_allowed_to("see own profile") }
 		end
 		describe "for technicians" do
 			before { @user.role = "technician"
 			         @user.save }
 			it { should be_allowed_to("manage technician users") }
 			it { should_not be_allowed_to("manage admin users") }
+			it { should be_allowed_to("see own profile") }
 		end
 		describe "for volunteers" do
 			before { @user.role = "volunteer"
 			         @user.save }
 			it { should_not be_allowed_to("manage technician users") }
 			it { should_not be_allowed_to("manage admin users") }
+			it { should be_allowed_to("see own profile") }
 		end
+	end
+
+	describe "blocked user" do
+		before { @user.blocked = true
+		         @user.save }
+		it { should_not be_allowed_to("see own profile") }
 	end
 end
