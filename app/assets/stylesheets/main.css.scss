@@ -1,16 +1,84 @@
 /* Styling for the main content */
-
 html {
 	height: 100%;
 }
 
-body {
+body { 
 	height: 100%;
+	background-color: #fff; 
+	color: #333; 
+}
+
+body, p, ol, ul, td {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size:   13px;
+	line-height: 18px;
+}
+
+.container {
 	margin-left: 10%;
 	margin-right: 10%;
 }
-.container {
-	margin-top: 30px;
-	margin-left: 10%;
-	margin-right: 10%;
+
+pre {
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
+}
+
+a { 
+	color: #000; 
+	&:visited { 
+		color: #666; 
+	}
+	&:hover { 
+		color: #fff; 
+		background-color:#000; 
+	}
+}
+
+div.field, div.actions {
+	margin-bottom: 10px;
+}
+
+.field_with_errors {
+	padding: 2px;
+	background-color: red;
+	display: table;
+}
+
+#notice {
+	margin-left: 20%;
+	margin-right: 20%;
+	background-color: #88ff88;
+	border-radius: 10px;
+	border: 1px solid #00ff00;
+	color: black;
+	padding: 15px;
+}
+
+#error_explanation {
+	margin-left: 20%;
+	margin-right: 20%;
+	background-color: #ff8888;
+	border-radius: 10px;
+	border: 1px solid #ff0000;
+	color: black;
+	padding: 15px;
+
+	h2 {
+		text-align: left;
+		font-weight: bold;
+		padding: 5px 5px 5px 15px;
+		font-size: 12px;
+		margin: -7px;
+		margin-bottom: 0px;
+		background-color: #c00;
+		color: #fff;
+	}
+
+	ul li {
+		font-size: 12px;
+		list-style: square;
+	}
 }

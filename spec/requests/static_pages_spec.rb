@@ -8,12 +8,6 @@ describe "Static Pages" do
 		it { should have_title(full_title(page_title)) }
 	end
 
-	describe "Login page" do
-		before { visit root_url }
-		let(:page_title) { "" }
-		let(:content) { I18n.t (:base_title) }
-		it_should_behave_like "all static pages"
-	end
 	describe "Contact page" do
 		before { visit contact_url }
 		let(:page_title) { I18n.t (:contact) }

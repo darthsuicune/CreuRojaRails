@@ -5,52 +5,69 @@ describe "Users" do
 
 	describe "Http requests" do
 		before { @user = FactoryGirl.create(:user) }
-		describe "GET /users" do
-			before { get users_path }
-			its(:status) { should be(200) }
-		end
-		describe "individual user" do
-			describe "GET /users/:id" do
-				before { get user_path( { :id => 1 } ) }
-				its(:status) { should be(200) }
-				its(:body) { should include @user.name }
+		describe "without signing in" do
+			describe "GET /users" do
+				before { get users_path }
+				it { should redirect_to(signin_url) }
 			end
-			describe "non existing user" do
-				before { get user_path( { :id => 5 } ) }
-				it { should redirect_to(root_url) }
+			describe "individual user" do
+				describe "GET /users/:id" do
+					before { get user_path( { :id => 1 } ) }
+					it { should redirect_to(signin_url) }
+				end
+				describe "non existing user" do
+					before { get user_path( { :id => 5 } ) }
+					it { should redirect_to(signin_url) }
+				end
+			end
+			describe "create user" do
+				before { get new_user_path }
+				it { should redirect_to(signin_url) }
+			end
+		end
+		describe "signed in" do
+			before { sign_in @user }
+			describe "" do
 			end
 		end
 	end
   
 	describe "Json Requests" do
 		before { @user = FactoryGirl.create(:user) }
-		describe "user index" do
+		describe "without signing in" do
 			before { get users_path, { :format => :json } }
-			it "has the correct header" do
-				response.header['Content-Type'].should include 'application/json'
-			end
+			
 		end
-		describe "individual user" do
-			describe "existing user" do
-				before { get user_path( { :id => @user.id, :format => :json } ) }
+		describe "signed in" do
+			before { sign_in @user }
+			describe "user index" do
+				before { get users_path, { :format => :json } }
 				it "has the correct header" do
 					response.header['Content-Type'].should include 'application/json'
 				end
-				it "shows a restricted Json" do
-					json = { :id => @user.id,
-					         :name => @user.name, 
-					         :surname => @user.surname,
-					         :email => @user.email,
-					         :language => @user.language,
-					         :role => @user.role,
-					         :created_at => @user.created_at,
-					         :updated_at => @user.updated_at }.to_json
-					response.body.should == json
-				end
 			end
-			describe "non existing user" do
-				before { get user_path( { :id => 5, :format => :json } ) }
-				it { should redirect_to(root_url) }
+			describe "individual user" do
+				describe "existing user" do
+					before { get user_path( { :id => @user.id, :format => :json } ) }
+					it "has the correct header" do
+						response.header['Content-Type'].should include 'application/json'
+					end
+					it "shows a restricted Json" do
+						json = { :id => @user.id,
+									:name => @user.name, 
+									:surname => @user.surname,
+									:email => @user.email,
+									:language => @user.language,
+									:role => @user.role,
+									:created_at => @user.created_at,
+									:updated_at => @user.updated_at }.to_json
+						response.body.should == json
+					end
+				end
+				describe "non existing user" do
+					before { get user_path( { :id => 5, :format => :json } ) }
+					it { should redirect_to(signin_url) }
+				end
 			end
 		end
 	end

@@ -31,6 +31,9 @@ describe UsersController do
 	# in order to pass any filters (e.g. authentication) defined in
 	# UsersController. Be sure to keep this updated too.
 	let(:valid_session) { {} }
+	
+	before { @user = FactoryGirl.create(:user) 
+	         sign_in @user }
 
 	describe "GET index" do
 		it "assigns all users as @users" do
@@ -78,7 +81,6 @@ describe UsersController do
 					post :create, {:user => valid_attributes}, valid_session
 				}.to change(User, :count).by(1)
 			end
-
 
 			it "assigns a newly created user as @user" do
 				post :create, {:user => valid_attributes}, valid_session

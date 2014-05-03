@@ -2,14 +2,15 @@
 
 FactoryGirl.define do
 	factory :user do
-		name "Name"
-		surname "Surname"
-		email "email@something.com"
+		sequence(:name) { |n| "Name #{n}" }
+		sequence(:surname) { |n| "Surname #{n}" }
+		sequence(:email) { |n| "person_#{n}@example.com" }
 		password "mypassword"
 		password_confirmation "mypassword"
 		resettoken "asdfasdf"
 		resettime 0
 		language "ca"
 		role "voluntario"
+		blocked false
 	end
 end

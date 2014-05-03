@@ -1,0 +1,13 @@
+<% provide(:title, t(:login)) %>
+<h1><%= t(:login) %></h1>
+<div id="login_form">
+	<%= form_tag sessions_path do %>
+		<%= label_tag "session_email", t(:form_user_email) %>
+		<%= text_field "session", "email" %>
+
+		<%= label_tag "session_password", t(:form_user_password) %>
+		<%= password_field "session", "password" %>
+
+		<%= submit_tag t(:login_button), class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>

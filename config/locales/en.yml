@@ -23,8 +23,10 @@ en:
    base_title: "Creu Roja"
    contact: "Contact"
    about: "About"
-   home: "Home"
+   login: "Log in"
+   
    user_list_title: "User list"
+   
    form_new_user_title: "New user"
    form_edit_user_title: "Edit user"
    form_user_name: "Name"
@@ -36,6 +38,10 @@ en:
    form_user_role: "Role"
    form_user_submit: "Submit"
    form_errors_found: "prevented the form from being processed"
+   
+   login_button: "Log in"
+   
+   user_profile_title: "User profile"
    
    resource_show: "Show"
    resource_edit: "Edit"
@@ -53,3 +59,6 @@ en:
    lang_catalan: "Catalan"
    lang_spanish: "Spanish"
    lang_english: "English"
+   
+   error_invalid_login: "Invalid email/password combination"
+   error_please_login: "Please sign in."

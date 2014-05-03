@@ -1,11 +1,16 @@
 CreuRoja::Application.routes.draw do
-  root 'static_pages#home'
+	root 'sessions#new'
+	
+	get '/home' => 'static_pages#home'
+	get '/contact' => 'static_pages#contact'
+	get '/about' => 'static_pages#about'
+	get '/signin' => 'sessions#new'
+	get '/login' => 'sessions#new'
+	get '/signout' => 'sessions#destroy'
+	get '/logout' => 'sessions#destroy'
   
-  get '/home' => 'static_pages#home'
-  get '/contact' => 'static_pages#contact'
-  get '/about' => 'static_pages#about'
-  
-  resources :users
+	resources :users
+	resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
