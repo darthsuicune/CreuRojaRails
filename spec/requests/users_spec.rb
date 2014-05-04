@@ -27,7 +27,11 @@ describe "Users" do
 		end
 		describe "signed in" do
 			before { sign_in @user }
-			describe "" do
+			describe "navigation menu" do
+				before { visit users_path }
+				subject { page }
+				it { should have_content(I18n.t(:user_list_title)) }
+				it { should have_content(I18n.t(:logout)) }
 			end
 		end
 	end
@@ -36,12 +40,13 @@ describe "Users" do
 		before { @user = FactoryGirl.create(:user) }
 		describe "without signing in" do
 			before { get users_path, { :format => :json } }
-			
+			it { should redirect_to(signin_url) }
 		end
 		describe "signed in" do
 			before { sign_in @user }
 			describe "user index" do
 				before { get users_path, { :format => :json } }
+				its(:status) { should be(200) }
 				it "has the correct header" do
 					response.header['Content-Type'].should include 'application/json'
 				end
@@ -66,7 +71,7 @@ describe "Users" do
 				end
 				describe "non existing user" do
 					before { get user_path( { :id => 5, :format => :json } ) }
-					it { should redirect_to(signin_url) }
+					it { should redirect_to(root_url) }
 				end
 			end
 		end

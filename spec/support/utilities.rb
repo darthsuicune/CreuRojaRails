@@ -6,5 +6,5 @@ def sign_in(user)
   fill_in I18n.t(:form_user_password), with: user.password
   click_button I18n.t(:login_button)
 
-  #cookies[:remember_token] = user.remember_token
+  cookies[:remember_token] = user.sessions.last.token
 end

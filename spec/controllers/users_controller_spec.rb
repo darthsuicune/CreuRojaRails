@@ -39,7 +39,7 @@ describe UsersController do
 		it "assigns all users as @users" do
 			user = User.create! valid_attributes
 			get :index, {}, valid_session
-			assigns(:users).should eq([user])
+			assigns(:users).should eq([@user, user])
 		end
 	end
 
@@ -108,7 +108,7 @@ describe UsersController do
 				post :create, {:user => { "name" => "invalid value" }}, valid_session
 				response.should render_template("new")
 			end
-		end
+	end
 	end
 
 	describe "PUT update" do

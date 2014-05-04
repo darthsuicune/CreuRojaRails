@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 	has_secure_password
 
-	has_many :access_tokens
+	has_many :sessions, dependent: :destroy
 
 	before_save { email.downcase! }
+	before_save :create_session_token
 
 	VALID_EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_FORMAT }, 
@@ -26,5 +27,10 @@ class User < ActiveRecord::Base
 		else
 			false
 		end
+	end
+
+	private
+	def create_session_token
+		sessions.build(token: SecureRandom.urlsafe_base64)
 	end
 end

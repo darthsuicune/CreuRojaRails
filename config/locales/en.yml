@@ -24,9 +24,10 @@ en:
    contact: "Contact"
    about: "About"
    login: "Log in"
+   logout: "Log out"
    
    user_list_title: "User list"
-   
+      
    form_new_user_title: "New user"
    form_edit_user_title: "Edit user"
    form_user_name: "Name"
