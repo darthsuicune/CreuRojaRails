@@ -6,7 +6,9 @@
 	<nav class="nav_menu">
 		<ul>
 			<li> <%= link_to t(:home), root_url %>
-			<li> <%= link_to t(:user_list_title), users_url if current_user.allowed_to?("") %>
+			<% if current_user.allowed_to?(:see_user_list) %>
+			<li> <%= link_to t(:user_list_title), users_url  %>
+			<% end %>
 			<li> <%= link_to t(:logout), logout_url %>
 		</ul>
 	</nav>

@@ -1,5 +1,5 @@
 CreuRoja::Application.routes.draw do
-	root 'sessions#new'
+	root 'static_pages#map'
 	
 	get '/home' => 'static_pages#home'
 	get '/contact' => 'static_pages#contact'
@@ -8,6 +8,7 @@ CreuRoja::Application.routes.draw do
 	get '/login' => 'sessions#new'
 	get '/signout' => 'sessions#destroy'
 	get '/logout' => 'sessions#destroy'
+	get '/map' => 'static_pages#map'
   
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]

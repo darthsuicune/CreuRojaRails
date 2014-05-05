@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe User do
-	before { @user = User.new( name: "Example", email: "user@example.com", role: "volunteer",
-										password: "foobar", password_confirmation: "foobar" ) }
+	before { @user = User.new( name: "Example", surname: "Example", email: "user@example.com", 
+										role: "volunteer", password: "foobar", password_confirmation: "foobar" ) }
 	subject { @user }
 
 	it { should respond_to(:name) }
@@ -27,6 +27,16 @@ describe User do
 		end
 		describe "is waaaay too long" do
 			before { @user.name = "abcdefghijklmnopqrstuvwxyz" * 4 }
+			it { should_not be_valid }
+		end
+	end
+	describe "surname" do
+		describe "is not present" do
+			before { @user.surname = " " }
+			it { should_not be_valid }
+		end
+		describe "is waaaay too long" do
+			before { @user.surname = "abcdefghijklmnopqrstuvwxyz" * 4 }
 			it { should_not be_valid }
 		end
 	end
@@ -108,27 +118,27 @@ describe User do
 		describe "admins" do
 			before { @user.role = "admin"
 						@user.save }
-			it { should be_allowed_to("manage admin users") }
-			it { should be_allowed_to("see own profile") }
+			it { should be_allowed_to(:manage_admin_users) }
+			it { should be_allowed_to(:see_own_profile) }
 		end
 		describe "technicians" do
-			before { @user.role = "technician"
+			before { @user.role = "Technician"
 						@user.save }
-			it { should be_allowed_to("see own profile") }
-			it { should be_allowed_to("manage technician users") }
-			it { should_not be_allowed_to("manage admin users") }
+			it { should be_allowed_to(:see_own_profile) }
+			it { should be_allowed_to(:manage_technician_users) }
+			it { should_not be_allowed_to(:manage_admin_users) }
 		end
 		describe "volunteers" do
-			before { @user.role = "volunteer"
+			before { @user.role = "Volunteer"
 						@user.save }
-			it { should be_allowed_to("see own profile") }
-			it { should_not be_allowed_to("manage technician users") }
-			it { should_not be_allowed_to("manage admin users") }
+			it { should be_allowed_to(:see_own_profile) }
+			it { should_not be_allowed_to(:manage_technician_users) }
+			it { should_not be_allowed_to(:manage_admin_users) }
 		end
 		describe "a blocked user" do
 			before { @user.blocked = true
 						@user.save }
-			it { should_not be_allowed_to("see own profile") }
+			it { should_not be_allowed_to(:see_own_profile) }
 		end
 	end
 end

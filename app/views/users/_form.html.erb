@@ -13,10 +13,10 @@
 
 		<% available_languages = [[t(:lang_catalan), 'ca'], [t(:lang_spanish), 'es'], [t(:lang_english), 'en']] %>
 		<% available_roles = [[t(:role_volunteer)]] %>
-		<% if @user.allowed_to?('manage technician users') %>
+		<% if @user.allowed_to?(:manage_technician_users) %>
 			<% available_roles << [t(:role_technician)] %>
 		<% end %>
-		<% if @user.allowed_to?('manage technician users') %>
+		<% if @user.allowed_to?(:manage_technician_users) %>
 			<% available_roles << [t(:role_admin)] %>
 		<% end %>
 

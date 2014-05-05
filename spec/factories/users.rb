@@ -10,7 +10,7 @@ FactoryGirl.define do
 		resettoken "asdfasdf"
 		resettime 0
 		language "ca"
-		role "voluntario"
+		role "Volunteer"
 		blocked false
 	end
 end
