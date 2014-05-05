@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	def new
+		redirect_to map_url if signed_in?
 	end
 
 	def create

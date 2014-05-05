@@ -27,11 +27,26 @@ describe "Users" do
 		end
 		describe "signed in" do
 			before { sign_in @user }
+			subject { page }
 			describe "navigation menu" do
 				before { visit users_path }
-				subject { page }
 				it { should have_content(I18n.t(:user_list_title)) }
 				it { should have_content(I18n.t(:logout)) }
+			end
+			describe "individual user" do
+				describe "GET /users/:id" do
+					before { get user_path( { :id => @user.id } ) }
+					it { should have_content(@user.name) }
+					it { should have_content(@user.surname) }
+					it { should have_content(@user.email) }
+				end
+				describe "non existing user" do
+					before { get user_path( { :id => 555 } ) }
+					it { should redirect_to(users_url) }
+				end
+			end
+			describe "create user" do
+				before { get new_user_path }
 			end
 		end
 	end
@@ -70,8 +85,8 @@ describe "Users" do
 					end
 				end
 				describe "non existing user" do
-					before { get user_path( { :id => 5, :format => :json } ) }
-					it { should redirect_to(root_url) }
+					before { get user_path( { :id => 555, :format => :json } ) }
+					it { should redirect_to(users_url) }
 				end
 			end
 		end

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 	# GET /users/1
 	# GET /users/1.json
 	def show
-		redirect_to root_url if @user.nil?
+		redirect_to users_url if @user.nil?
 	end
 
 	# GET /users/new

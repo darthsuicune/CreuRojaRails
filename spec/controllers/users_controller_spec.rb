@@ -53,8 +53,8 @@ describe UsersController do
 		end
 		describe "non-existing user" do
 			it "redirects to user list" do
-				get :show, {:id => 15 }, valid_session
-				response.should redirect_to(root_url)
+				get :show, {:id => 555 }, valid_session
+				response.should redirect_to(users_url)
 			end
 		end
 	end
