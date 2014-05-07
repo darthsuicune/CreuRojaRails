@@ -23,11 +23,11 @@ class User < ActiveRecord::Base
 		return true if role == "admin"
 		case action
 		when :see_own_profile
-			role == "volunteer" || role == "technician"
+			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
 		when :see_user_list
-			role == "volunteer" || role == "technician"
+			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
 		when :manage_technician_users
-			role == "technician"
+			role == I18n.t(:role_technician)
 		when :manage_admin_users
 			false
 		else
@@ -45,6 +45,6 @@ class User < ActiveRecord::Base
 		resettoken = nil
 		resettime = 0
 		language ||= "ca"
-		role ||= "volunteer"
+		role ||= I18n.t(:role_volunteer)
 	end
 end

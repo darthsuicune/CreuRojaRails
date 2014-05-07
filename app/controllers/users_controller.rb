@@ -44,13 +44,17 @@ class UsersController < ApplicationController
 	# PATCH/PUT /users/1
 	# PATCH/PUT /users/1.json
 	def update
-		respond_to do |format|
-			if @user.update(user_params)
-				format.html { redirect_to @user, notice: I18n.t(:user_updated) }
-				format.json { head :no_content }
-			else
-				format.html { render action: 'edit' }
-				format.json { render json: @user.errors, status: :unprocessable_entity }
+		if @user.nil?
+			redirect_to root_url
+		else
+			respond_to do |format|
+				if @user.update(user_params)
+					format.html { redirect_to @user, notice: I18n.t(:user_updated) }
+					format.json { head :no_content }
+				else
+					format.html { render action: 'edit' }
+					format.json { render json: @user.errors, status: :unprocessable_entity }
+				end
 			end
 		end
 	end
@@ -58,10 +62,14 @@ class UsersController < ApplicationController
 	# DELETE /users/1
 	# DELETE /users/1.json
 	def destroy
-		@user.destroy
-		respond_to do |format|
-			format.html { redirect_to users_url }
-			format.json { head :no_content }
+		if @user.nil?
+			redirect_to root_url
+		else
+			@user.destroy
+			respond_to do |format|
+				format.html { redirect_to users_url }
+				format.json { head :no_content }
+			end
 		end
 	end
 
