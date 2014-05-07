@@ -54,9 +54,9 @@ en:
    user_created: "User was successfully created."
    user_updated: "User was successfully updated."
    
-   role_volunteer: "Volunteer"
-   role_technician: "Technician"
-   role_admin: "Admin"
+   role_volunteer: "volunteer"
+   role_technician: "technician"
+   role_admin: "admin"
    
    lang_catalan: "Catalan"
    lang_spanish: "Spanish"

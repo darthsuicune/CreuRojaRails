@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 
 	has_many :sessions, dependent: :destroy
 
-	before_save { email.downcase! }
+	before_save { email.downcase!
+	              role.downcase unless role.nil? }
 	before_save :create_session_token
 	
 	before_validation :defaults
@@ -22,11 +23,11 @@ class User < ActiveRecord::Base
 		return true if role == "admin"
 		case action
 		when :see_own_profile
-			role == "Volunteer" || role == "Technician"
+			role == "volunteer" || role == "technician"
 		when :see_user_list
-			role == "Volunteer" || role == "Technician"
+			role == "volunteer" || role == "technician"
 		when :manage_technician_users
-			role == "Technician"
+			role == "technician"
 		when :manage_admin_users
 			false
 		else
@@ -44,6 +45,6 @@ class User < ActiveRecord::Base
 		resettoken = nil
 		resettime = 0
 		language ||= "ca"
-		role ||= "Volunteer"
+		role ||= "volunteer"
 	end
 end

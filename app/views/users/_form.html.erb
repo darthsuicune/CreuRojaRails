@@ -12,12 +12,12 @@
 		<% end %>
 
 		<% available_languages = [[t(:lang_catalan), 'ca'], [t(:lang_spanish), 'es'], [t(:lang_english), 'en']] %>
-		<% available_roles = [[t(:role_volunteer)]] %>
+		<% available_roles = [[t(:role_volunteer), t(:role_volunteer).humanize]] %>
 		<% if @user.allowed_to?(:manage_technician_users) %>
-			<% available_roles << [t(:role_technician)] %>
+			<% available_roles << [t(:role_technician),t(:role_technician).humanize] %>
 		<% end %>
 		<% if @user.allowed_to?(:manage_technician_users) %>
-			<% available_roles << [t(:role_admin)] %>
+			<% available_roles << [t(:role_admin), t(:role_admin).humanize] %>
 		<% end %>
 
 		<div class="field">
