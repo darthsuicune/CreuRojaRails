@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 	def defaults
 		blocked ||= false
 		resettoken = nil
-		resettime = 0.seconds.since
+		resettime = 0
 		language ||= "ca"
 		role ||= "Volunteer"
 	end

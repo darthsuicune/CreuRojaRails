@@ -1,5 +1,8 @@
 <% provide(:title, t(:login)) %>
 <h1><%= t(:login) %></h1>
+<% flash.each do |name, msg| -%>
+	<%= content_tag :div, msg, class: name %>
+<% end -%>
 <div id="login_form">
 	<%= form_tag sessions_path do %>
 		<%= label_tag "session_email", t(:form_user_email) %>

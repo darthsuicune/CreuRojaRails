@@ -10,7 +10,7 @@ describe "Authentication Pages" do
 
 	describe "with invalid information" do
 		before { click_button I18n.t(:login_button) }
-		#it { should have_selector('div.alert.alert-error') }
+		it { should have_selector('div.error') }
 	end
 
 	describe "with valid information" do
@@ -20,6 +20,6 @@ describe "Authentication Pages" do
 			fill_in I18n.t(:form_user_password), with: user.password
 			click_button I18n.t(:login_button)
 		end
-		#it { should have_title(user.name << " " << user.surname) }
+		it { should have_content(user.name << " " << user.surname) }
 	end
 end
