@@ -144,13 +144,13 @@ describe User do
 	end
 
 	describe "types" do
-		let(:user_type1) { FactoryGirl.create(:user_type) [type: "asdf"] }
-		let(:user_type2) { FactoryGirl.create(:user_type) [type: "asdfasdf"] }
+		let(:user_type1) { FactoryGirl.create(:user_type, user_id: 1, user_type: "asdf") }
+		let(:user_type2) { FactoryGirl.create(:user_type, user_id: 1, user_type: "asdfasdf") }
 		
 		describe "assign type" do
-			before { @user.user_types.build([user_type: "asdf"])
+			before { @user.user_types.build(user_type: "asdf")
 			         @user.save}
-			its(:user_types) { should eq([user_type1]) }
+			its(:user_types) { should eq(user_type1) }
 		end
 		
 		describe "to user that already has it" do
