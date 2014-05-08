@@ -17,6 +17,7 @@ describe User do
 	it { should respond_to(:blocked) }
 	it { should respond_to(:allowed_to?) }
 	it { should respond_to(:sessions) }
+	it { should respond_to(:user_types) }
 
 	it { should be_valid }
 
@@ -139,6 +140,23 @@ describe User do
 			before { @user.blocked = true
 						@user.save }
 			it { should_not be_allowed_to(:see_own_profile) }
+		end
+	end
+
+	describe "types" do
+		let(:user_type1) { FactoryGirl.create(:user_type) [type: "asdf"] }
+		let(:user_type2) { FactoryGirl.create(:user_type) [type: "asdfasdf"] }
+		
+		describe "assign type" do
+			before { @user.user_types.build([user_type: "asdf"])
+			         @user.save}
+			its(:user_types) { should eq([user_type1]) }
+		end
+		
+		describe "to user that already has it" do
+			before { @user.user_types.build([user_type: "asdf"])
+						@user.user_types.build([user_type: "asdfasdf"])
+						@user.user_types.build([user_type: "asdf"]) }
 		end
 	end
 end

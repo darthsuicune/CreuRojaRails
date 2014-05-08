@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	has_many :sessions, dependent: :destroy
+	has_many :user_types, dependent: :destroy
 
 	before_save { email.downcase!
 	              role.downcase unless role.nil? }
@@ -42,8 +43,6 @@ class User < ActiveRecord::Base
 	
 	def defaults
 		blocked ||= false
-		resettoken = nil
-		resettime = 0
 		language ||= "ca"
 		role ||= I18n.t(:role_volunteer)
 	end

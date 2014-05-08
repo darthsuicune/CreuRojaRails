@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe Session do
-	before { @user = FactoryGirl.create(:user) }
-	before { @session = FactoryGirl.create(:session) }
+	before do
+		@user = FactoryGirl.create(:user)
+		@session = FactoryGirl.create(:session) 
+	end
 	subject { @session }
 	
 	it { should respond_to(:user) }
