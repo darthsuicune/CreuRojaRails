@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Service do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before { @user = FactoryGirl.create(:service) }
+	subject { @user }
+	
+	it { should respond_to(:end_time) }
 end

@@ -7,7 +7,7 @@ FactoryGirl.define do
     assembly_id 1
     base_time "2014-05-11 22:16:35"
     start_time "2014-05-11 22:16:35"
-    finish_time "2014-05-11 22:16:35"
+    end_time "2014-05-11 22:16:35"
     code "MyString"
   end
 end

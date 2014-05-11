@@ -26,7 +26,9 @@
 			<td><%= user.role %></td>
 			<td><%= link_to t(:resource_show), user %></td>
 			<td><%= link_to t(:resource_edit), edit_user_path(user) if current_user == user %></td>
+			<% if current_user && current_user.allowed_to?(:destroy_users) %>
 			<td><%= link_to t(:resource_destroy), user, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+			<% end %>
 			</tr>
 		<% end %>
 	</tbody>

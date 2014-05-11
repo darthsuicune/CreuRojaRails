@@ -23,7 +23,8 @@ describe ServicesController do
   # This should return the minimal set of attributes required to create a valid
   # Service. As you add validations to Service, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString", "assembly_id" => 1, "base_time" => Time.now,
+                             "start_time" => 1.minute.from_now, "end_time" => 2.minutes.from_now } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

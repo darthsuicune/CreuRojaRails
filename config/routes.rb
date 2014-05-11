@@ -1,9 +1,4 @@
 CreuRoja::Application.routes.draw do
-  resources :services
-
-  resources :vehicles
-
-  resources :locations
 
 	root 'static_pages#map'
 	
@@ -18,6 +13,9 @@ CreuRoja::Application.routes.draw do
   
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
+	resources :services
+	resources :vehicles
+	resources :locations
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

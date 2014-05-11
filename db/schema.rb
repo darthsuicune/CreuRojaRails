@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140511201635) do
     t.integer  "assembly_id"
     t.datetime "base_time"
     t.datetime "start_time"
-    t.datetime "finish_time"
+    t.datetime "end_time"
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"

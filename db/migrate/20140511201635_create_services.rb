@@ -6,7 +6,7 @@ class CreateServices < ActiveRecord::Migration
 			t.integer :assembly_id
 			t.datetime :base_time
 			t.datetime :start_time
-			t.datetime :finish_time
+			t.datetime :end_time
 			t.string :code
 
 			t.timestamps
