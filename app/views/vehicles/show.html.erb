@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @vehicle.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @vehicle.model %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @vehicle.license %>
+</p>
+
+<p>
+  <strong>Indicative:</strong>
+  <%= @vehicle.indicative %>
+</p>
+
+<p>
+  <strong>Vehicle type:</strong>
+  <%= @vehicle.vehicle_type %>
+</p>
+
+<p>
+  <strong>Places:</strong>
+  <%= @vehicle.places %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @vehicle.notes %>
+</p>
+
+<p>
+  <strong>Operative:</strong>
+  <%= @vehicle.operative %>
+</p>
+
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'Back', vehicles_path %>

@@ -1,4 +1,10 @@
 CreuRoja::Application.routes.draw do
+  resources :services
+
+  resources :vehicles
+
+  resources :locations
+
 	root 'static_pages#map'
 	
 	get '/home' => 'static_pages#home'

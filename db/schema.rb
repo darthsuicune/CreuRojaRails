@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508213350) do
+ActiveRecord::Schema.define(version: 20140511201635) do
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "address"
+    t.string   "phone"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "location_type"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true
+  add_index "locations", ["name"], name: "index_locations_on_name"
+
+  create_table "services", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "assembly_id"
+    t.datetime "base_time"
+    t.datetime "start_time"
+    t.datetime "finish_time"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "services", ["assembly_id"], name: "index_services_on_assembly_id"
 
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
@@ -44,5 +74,22 @@ ActiveRecord::Schema.define(version: 20140508213350) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "vehicles", force: true do |t|
+    t.string   "brand"
+    t.string   "model"
+    t.string   "license"
+    t.string   "indicative"
+    t.string   "vehicle_type"
+    t.integer  "places"
+    t.string   "notes"
+    t.boolean  "operative"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vehicles", ["indicative"], name: "index_vehicles_on_indicative"
+  add_index "vehicles", ["license"], name: "index_vehicles_on_license"
+  add_index "vehicles", ["vehicle_type"], name: "index_vehicles_on_vehicle_type"
 
 end
