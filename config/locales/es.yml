@@ -19,6 +19,52 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-es:
-    contact: "Contacto"
-    edit_user_title: "Lista de usuarios"
+en:
+   base_title: "Cruz Roja"
+   contact: "Contacto"
+   about: "Sobre Nosotros"
+   login: "Iniciar sesión"
+   logout: "Cerrar sesión"
+   map: "Mapa"
+   
+   home: Inicio
+   user_list_title: "Usuarios"
+   location_list_title: "Localizaciones"
+   vehicle_list_title: "Vehículos"
+   service_list_title: "Servicios"
+      
+   form_new_user_title: "Nuevo usuario"
+   form_edit_user_title: "Editar usuario"
+   form_user_name: "Nombre"
+   form_user_surname: "Apellidos"
+   form_user_email: "Correo electrónico"
+   form_user_password: "Contraseña"
+   form_user_password_confirmation: "Confirmar contraseña"
+   form_user_language: "Idioma"
+   form_user_role: "Rol"
+   form_user_submit: "Enviar"
+   form_errors_found: "prevented the form from being processed"
+   
+   login_button: "Iniciar sesión"
+   
+   user_profile_title: "Perfil de usuario"
+   
+   resource_show: "Mostrar"
+   resource_edit: "Editar"
+   resource_destroy: "Eliminar"
+   resource_destroy_confirm: "¿Estás seguro?"
+   resource_back: "Cancelar"
+   
+   user_created: "El usuario ha sido creado."
+   user_updated: "El usuario ha sido actualizado."
+   
+   role_volunteer: "Voluntario"
+   role_technician: "Técnico"
+   role_admin: "Admin"
+   
+   lang_catalan: "Catalán"
+   lang_spanish: "Español"
+   lang_english: "Inglés"
+   
+   error_invalid_login: "Correo electrónico o contraseña incorrecta"
+   error_please_login: "Por favor, inicie sesión."

@@ -20,17 +20,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-   base_title: "Creu Roja"
+   base_title: "Red Cross"
    contact: "Contact"
    about: "About"
    login: "Log in"
    logout: "Log out"
    map: "Map"
    
-   user_list_title: "User list"
-   location_list_title: "Location list"
-   vehicle_list_title: "Vehicle list"
-   service_list_title: "Service list"
+   home: Home
+   user_list_title: "Users"
+   location_list_title: "Locations"
+   vehicle_list_title: "Vehicles"
+   service_list_title: "Services"
       
    form_new_user_title: "New user"
    form_edit_user_title: "Edit user"
@@ -42,7 +43,7 @@ en:
    form_user_language: "Language"
    form_user_role: "Role"
    form_user_submit: "Submit"
-   form_errors_found: "prevented the form from being processed"
+   form_errors_found: "Prevented the form from being processed"
    
    login_button: "Log in"
    
@@ -50,16 +51,16 @@ en:
    
    resource_show: "Show"
    resource_edit: "Edit"
-   resource_destroy: "Destroy"
+   resource_destroy: "Remove"
    resource_destroy_confirm: "Are you sure?"
-   resource_back: "Back"
+   resource_back: "Cancel"
    
    user_created: "User was successfully created."
    user_updated: "User was successfully updated."
    
-   role_volunteer: "volunteer"
-   role_technician: "technician"
-   role_admin: "admin"
+   role_volunteer: "Volunteer"
+   role_technician: "Technician"
+   role_admin: "Admin"
    
    lang_catalan: "Catalan"
    lang_spanish: "Spanish"
