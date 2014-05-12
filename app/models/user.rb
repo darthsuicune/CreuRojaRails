@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
 			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
 		when :see_user_list
 			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+		when :see_location_list
+			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+		when :see_vehicle_list
+			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+		when :see_service_list
+			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
 		when :manage_technician_users
 			role == I18n.t(:role_technician)
 		when :destroy_users

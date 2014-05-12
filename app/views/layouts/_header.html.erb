@@ -9,6 +9,15 @@
 			<% if current_user.allowed_to?(:see_user_list) %>
 			<li> <%= link_to t(:user_list_title), users_url  %>
 			<% end %>
+			<% if current_user.allowed_to?(:see_vehicle_list) %>
+			<li> <%= link_to t(:vehicle_list_title), vehicles_url  %>
+			<% end %>
+			<% if current_user.allowed_to?(:see_service_list) %>
+			<li> <%= link_to t(:service_list_title), services_url  %>
+			<% end %>
+			<% if current_user.allowed_to?(:see_location_list) %>
+			<li> <%= link_to t(:location_list_title), locations_url  %>
+			<% end %>
 			<li> <%= link_to t(:logout), logout_url %>
 		</ul>
 	</nav>

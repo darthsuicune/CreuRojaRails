@@ -28,6 +28,9 @@ en:
    map: "Map"
    
    user_list_title: "User list"
+   location_list_title: "Location list"
+   vehicle_list_title: "Vehicle list"
+   service_list_title: "Service list"
       
    form_new_user_title: "New user"
    form_edit_user_title: "Edit user"
