@@ -1,44 +1,44 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t(:form_location_name) %>:</strong>
   <%= @location.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= t(:form_location_description) %>:</strong>
   <%= @location.description %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong><%= t(:form_location_address) %>:</strong>
   <%= @location.address %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong><%= t(:form_location_phone) %>:</strong>
   <%= @location.phone %>
 </p>
 
 <p>
-  <strong>Latitude:</strong>
+  <strong><%= t(:form_location_latitude) %>:</strong>
   <%= @location.latitude %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
+  <strong><%= t(:form_location_longitude) %>:</strong>
   <%= @location.longitude %>
 </p>
 
 <p>
-  <strong>Location type:</strong>
+  <strong><%= t(:form_location_type) %>:</strong>
   <%= @location.location_type %>
 </p>
 
 <p>
-  <strong>Active:</strong>
+  <strong><%= t(:form_location_active) %>:</strong>
   <%= @location.active %>
 </p>
 
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<%= link_to t(:resource_edit), edit_location_path(@location) %> |
+<%= link_to t(:resource_back), locations_path %>

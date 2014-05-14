@@ -1,39 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t(:form_service_name) %>:</strong>
   <%= @service.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= t(:form_service_description) %>:</strong>
   <%= @service.description %>
 </p>
 
 <p>
-  <strong>Assembly:</strong>
+  <strong><%= t(:form_service_assembly) %>:</strong>
   <%= @service.assembly_id %>
 </p>
 
 <p>
-  <strong>Base time:</strong>
+  <strong><%= t(:form_service_base_time) %>:</strong>
   <%= @service.base_time %>
 </p>
 
 <p>
-  <strong>Start time:</strong>
+  <strong><%= t(:form_service_start_time) %>:</strong>
   <%= @service.start_time %>
 </p>
 
 <p>
-  <strong>Finish time:</strong>
+  <strong><%= t(:form_service_finish_time) %>:</strong>
   <%= @service.end_time %>
 </p>
 
 <p>
-  <strong>Code:</strong>
+  <strong><%= t(:form_service_code) %>:</strong>
   <%= @service.code %>
 </p>
 
-<%= link_to 'Edit', edit_service_path(@service) %> |
-<%= link_to 'Back', services_path %>
+<%= link_to t(:resource_edit), edit_service_path(@service) %> |
+<%= link_to t(:resource_back), services_path %>

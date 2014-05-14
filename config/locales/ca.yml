@@ -34,7 +34,7 @@ en:
    service_list_title: "Serveis"
       
    form_new_user_title: "Nou usuari"
-   form_edit_user_title: "Editar usuari"
+   form_user_edit_title: "Editar usuari"
    form_user_name: "Nom"
    form_user_surname: "Cognom"
    form_user_email: "Correu electrònic"

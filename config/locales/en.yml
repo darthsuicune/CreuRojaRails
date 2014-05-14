@@ -32,9 +32,11 @@ en:
    location_list_title: "Locations"
    vehicle_list_title: "Vehicles"
    service_list_title: "Services"
-      
+
+   form_errors_found: "Prevented the form from being processed"
+   
    form_new_user_title: "New user"
-   form_edit_user_title: "Edit user"
+   form_user_edit_title: "Edit user"
    form_user_name: "Name"
    form_user_surname: "Last name"
    form_user_email: "E-mail"
@@ -43,7 +45,31 @@ en:
    form_user_language: "Language"
    form_user_role: "Role"
    form_user_submit: "Submit"
-   form_errors_found: "Prevented the form from being processed"
+   
+   form_location_edit_title: "Edit location"
+   form_location_new: "New location"
+   form_location_name: "Name"
+   form_location_description: "Description"
+   form_location_address: "Address"
+   form_location_phone: "Phone"
+   form_location_latitude: "Latitude"
+   form_location_longitude: "Longitude"
+   form_location_type: "Location type"
+   form_location_active: "Active"
+   form_location_submit: "Create location"
+   
+   form_vehicle:
+   
+   form_service_edit_title: "Edit location"
+   form_service_new: "New service"
+   form_service_name: "Name"
+   form_service_description: "Description"
+   form_service_assembly_id: "Assembly"
+   form_service_base_time: "Base time"
+   form_service_start_time: "Start time"
+   form_service_end_time: "End time"
+   form_service_code: "Code"
+   form_service_submit: "Create service"
    
    login_button: "Log in"
    
