@@ -1,7 +1,7 @@
 <%= form_for(@vehicle) do |f| %>
   <% if @vehicle.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+      <h2><%= pluralize(@vehicle.errors.count, "error") << " " << t(:form_errors_found) %>:</h2>
 
       <ul>
       <% @vehicle.errors.full_messages.each do |msg| %>
@@ -12,38 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :brand %><br>
+    <%= f.label :brand, t(:form_vehicle_brand) %><br>
     <%= f.text_field :brand %>
   </div>
   <div class="field">
-    <%= f.label :model %><br>
+    <%= f.label :model, t(:form_vehicle_model) %><br>
     <%= f.text_field :model %>
   </div>
   <div class="field">
-    <%= f.label :license %><br>
+    <%= f.label :license, t(:form_vehicle_license) %><br>
     <%= f.text_field :license %>
   </div>
   <div class="field">
-    <%= f.label :indicative %><br>
+    <%= f.label :indicative, t(:form_vehicle_indicative) %><br>
     <%= f.text_field :indicative %>
   </div>
   <div class="field">
-    <%= f.label :vehicle_type %><br>
+    <%= f.label :vehicle_type, t(:form_vehicle_type) %><br>
     <%= f.text_field :vehicle_type %>
   </div>
   <div class="field">
-    <%= f.label :places %><br>
+    <%= f.label :places, t(:form_vehicle_places) %><br>
     <%= f.number_field :places %>
   </div>
   <div class="field">
-    <%= f.label :notes %><br>
+    <%= f.label :notes, t(:form_vehicle_notes) %><br>
     <%= f.text_field :notes %>
   </div>
   <div class="field">
-    <%= f.label :operative %><br>
+    <%= f.label :operative, t(:form_vehicle_operative) %><br>
     <%= f.check_box :operative %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t(:form_vehicle_submit) %>
   </div>
 <% end %>

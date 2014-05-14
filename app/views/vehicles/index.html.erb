@@ -1,16 +1,16 @@
-<h1>Listing vehicles</h1>
+<h1><%= t(:vehicle_list_title) %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Brand</th>
-      <th>Model</th>
-      <th>License</th>
-      <th>Indicative</th>
-      <th>Vehicle type</th>
-      <th>Places</th>
-      <th>Notes</th>
-      <th>Operative</th>
+      <th><%= t(:form_vehicle_brand) %></th>
+      <th><%= t(:form_vehicle_model) %></th>
+      <th><%= t(:form_vehicle_license) %></th>
+      <th><%= t(:form_vehicle_indicative) %></th>
+      <th><%= t(:form_vehicle_type) %></th>
+      <th><%= t(:form_vehicle_places) %></th>
+      <th><%= t(:form_vehicle_notes) %></th>
+      <th><%= t(:form_vehicle_operative) %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -28,9 +28,9 @@
         <td><%= vehicle.places %></td>
         <td><%= vehicle.notes %></td>
         <td><%= vehicle.operative %></td>
-        <td><%= link_to 'Show', vehicle %></td>
-        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
-        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:resource_show), vehicle %></td>
+        <td><%= link_to t(:resource_edit), edit_vehicle_path(vehicle) %></td>
+        <td><%= link_to t(:resource_destroy), vehicle, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Vehicle', new_vehicle_path %>
+<%= link_to t(:form_vehicle_new), new_vehicle_path %>

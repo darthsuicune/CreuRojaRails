@@ -1,44 +1,46 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
+<% end %>
 
 <p>
-  <strong>Brand:</strong>
+  <strong><%= t(:form_vehicle_brand) %>:</strong>
   <%= @vehicle.brand %>
 </p>
 
 <p>
-  <strong>Model:</strong>
+  <strong><%= t(:form_vehicle_model) %>:</strong>
   <%= @vehicle.model %>
 </p>
 
 <p>
-  <strong>License:</strong>
+  <strong><%= t(:form_vehicle_license) %>:</strong>
   <%= @vehicle.license %>
 </p>
 
 <p>
-  <strong>Indicative:</strong>
+  <strong><%= t(:form_vehicle_indicative) %>:</strong>
   <%= @vehicle.indicative %>
 </p>
 
 <p>
-  <strong>Vehicle type:</strong>
+  <strong><%= t(:form_vehicle_type) %>:</strong>
   <%= @vehicle.vehicle_type %>
 </p>
 
 <p>
-  <strong>Places:</strong>
+  <strong><%= t(:form_vehicle_places) %>:</strong>
   <%= @vehicle.places %>
 </p>
 
 <p>
-  <strong>Notes:</strong>
+  <strong><%= t(:form_vehicle_notes) %>:</strong>
   <%= @vehicle.notes %>
 </p>
 
 <p>
-  <strong>Operative:</strong>
+  <strong><%= t(:form_vehicle_operative) %>:</strong>
   <%= @vehicle.operative %>
 </p>
 
-<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
-<%= link_to 'Back', vehicles_path %>
+<%= link_to t(:resource_edit), edit_vehicle_path(@vehicle) %> |
+<%= link_to t(:resource_back), vehicles_path %>

@@ -58,7 +58,17 @@ en:
    form_location_active: "Active"
    form_location_submit: "Create location"
    
-   form_vehicle:
+   form_vehicle_edit_title: "Edit vehicle"
+   form_vehicle_new: "New vehicle"
+   form_vehicle_brand: "Brand"
+   form_vehicle_model: "Model"
+   form_vehicle_license: "License"
+   form_vehicle_indicative: "Indicative"
+   form_vehicle_type: "Type"
+   form_vehicle_places: "Places"
+   form_vehicle_notes: "Notes"
+   form_vehicle_operative: "Operative"
+   form_vehicle_submit: "Create vehicle"
    
    form_service_edit_title: "Edit location"
    form_service_new: "New service"
