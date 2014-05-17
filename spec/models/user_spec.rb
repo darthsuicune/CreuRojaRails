@@ -18,6 +18,8 @@ describe User do
 	it { should respond_to(:allowed_to?) }
 	it { should respond_to(:sessions) }
 	it { should respond_to(:user_types) }
+	it { should respond_to(:assemblies) }
+	it { should respond_to(:services) }
 
 	it { should be_valid }
 
@@ -41,7 +43,6 @@ describe User do
 			it { should_not be_valid }
 		end
 	end
-
 	describe "email" do
 		describe "is not present" do
 			before { @user.email = " " }
@@ -82,7 +83,6 @@ describe User do
 			end
 		end
 	end
-
 	describe "password" do
 		describe "is not present" do
 			before { @user.password = @user.password_confirmation = " " }
@@ -101,7 +101,6 @@ describe User do
 			it { should_not be_valid }
 		end
 	end
-
 	describe "return value of authenticate method" do
 		before { @user.save }
 		let(:found_user) { User.find_by_email(@user.email) }
@@ -114,23 +113,22 @@ describe User do
 			specify { user_for_invalid_password .should be_false }
 		end
 	end
-
 	describe "permission system" do
 		describe "admins" do
-			before { @user.role = "admin"
+			before { @user.role = I18n.t(:role_admin)
 						@user.save }
 			it { should be_allowed_to(:manage_admin_users) }
 			it { should be_allowed_to(:see_own_profile) }
 		end
 		describe "technicians" do
-			before { @user.role = "technician"
+			before { @user.role = I18n.t(:role_technician)
 						@user.save }
 			it { should be_allowed_to(:see_own_profile) }
 			it { should be_allowed_to(:manage_technician_users) }
 			it { should_not be_allowed_to(:manage_admin_users) }
 		end
 		describe "volunteers" do
-			before { @user.role = "volunteer"
+			before { @user.role = I18n.t(:role_volunteer)
 						@user.save }
 			it { should be_allowed_to(:see_own_profile) }
 			it { should_not be_allowed_to(:manage_technician_users) }

@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
 
 	has_many :sessions, dependent: :destroy
 	has_many :user_types, dependent: :destroy
-	has_many :services
-	has_many :locations
+	has_many :user_services
+	has_many :services, through: :user_services
+	has_and_belongs_to_many :assemblies, class_name: "Location"
 
 	before_save { email.downcase!
 	              role.downcase unless role.nil? }
@@ -20,10 +21,30 @@ class User < ActiveRecord::Base
 	validates :password, presence: true, length: { minimum: 6 }
   
 	after_validation { self.errors.messages.delete(:password_digest) }
+	
+	def get_map_markers
+		[
+			{ 
+				"lat" => 41.40, "lng" => 2.20,
+				"picture" => {
+					"width" => 36, "height" => 36,
+					"url" => "assets/asamblea.png"
+				},
+				"infowindow" => "Hello point1"
+			},{ 
+				"lat" => 41.39, "lng" => 2.19,
+				"picture" => {
+					"width" => 36, "height" => 36,
+					"url" => "assets/terrestre.png"
+				},
+				"infowindow" => "Hello point2"
+			}
+		]
+	end
 
 	def allowed_to?(action)
 		return false if blocked == true
-		return true if role == "admin"
+		return true if role == I18n.t(:role_admin) || role == "admin"
 		case action
 		when :see_own_profile
 			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)

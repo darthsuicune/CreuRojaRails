@@ -1,5 +1,6 @@
 class Location < ActiveRecord::Base
 	has_many :services
+	has_and_belongs_to_many :users
 	
 	validates :name, presence: true
 	validates :address, presence: true

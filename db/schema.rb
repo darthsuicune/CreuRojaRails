@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511201635) do
+ActiveRecord::Schema.define(version: 20140517213037) do
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20140511201635) do
   add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true
   add_index "locations", ["name"], name: "index_locations_on_name"
 
+  create_table "locations_users", id: false, force: true do |t|
+    t.integer "location_id"
+    t.integer "user_id"
+  end
+
   create_table "services", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -43,14 +48,27 @@ ActiveRecord::Schema.define(version: 20140511201635) do
 
   add_index "services", ["assembly_id"], name: "index_services_on_assembly_id"
 
-  create_table "sessions", force: true do |t|
+  create_table "sessions", id: false, force: true do |t|
     t.integer  "user_id"
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "user_types", force: true do |t|
+  add_index "sessions", ["token"], name: "index_sessions_on_token", unique: true
+
+  create_table "user_services", id: false, force: true do |t|
+    t.string   "user_type"
+    t.integer  "user_id"
+    t.integer  "service_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_services", ["user_id", "service_id"], name: "index_user_services_on_user_id_and_service_id", unique: true
+  add_index "user_services", ["user_type"], name: "index_user_services_on_user_type"
+
+  create_table "user_types", id: false, force: true do |t|
     t.integer  "user_id"
     t.string   "user_type"
     t.datetime "created_at"
@@ -70,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140511201635) do
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "blocked",         default: false
+    t.boolean  "active",          default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
