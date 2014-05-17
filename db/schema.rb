@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140517213037) do
 
   add_index "services", ["assembly_id"], name: "index_services_on_assembly_id"
 
-  create_table "sessions", id: false, force: true do |t|
+  create_table "sessions", force: true do |t|
     t.integer  "user_id"
     t.string   "token"
     t.datetime "created_at"
