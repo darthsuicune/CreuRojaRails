@@ -54,6 +54,9 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
+# Use Gmaps
+gem 'gmaps4rails'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
