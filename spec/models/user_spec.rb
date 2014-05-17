@@ -14,7 +14,7 @@ describe User do
 	it { should respond_to(:password) }
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:authenticate) }
-	it { should respond_to(:blocked) }
+	it { should respond_to(:active) }
 	it { should respond_to(:allowed_to?) }
 	it { should respond_to(:sessions) }
 	it { should respond_to(:user_types) }
@@ -135,7 +135,7 @@ describe User do
 			it { should_not be_allowed_to(:manage_admin_users) }
 		end
 		describe "a blocked user" do
-			before { @user.blocked = true
+			before { @user.active = false
 						@user.save }
 			it { should_not be_allowed_to(:see_own_profile) }
 		end

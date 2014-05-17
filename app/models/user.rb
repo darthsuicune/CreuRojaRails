@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 	end
 
 	def allowed_to?(action)
-		return false if blocked == true
+		return false if active == false
 		return true if role == I18n.t(:role_admin) || role == "admin"
 		case action
 		when :see_own_profile
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
 	end
 	
 	def defaults
-		blocked ||= false
+		active ||= true
 		language ||= "ca"
 		role ||= I18n.t(:role_volunteer)
 	end

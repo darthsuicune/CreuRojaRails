@@ -11,6 +11,6 @@ FactoryGirl.define do
 		resettime 0
 		language "ca"
 		role "Volunteer"
-		blocked false
+		active true
 	end
 end
