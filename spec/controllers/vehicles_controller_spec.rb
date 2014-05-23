@@ -23,139 +23,177 @@ describe VehiclesController do
   # This should return the minimal set of attributes required to create a valid
   # Vehicle. As you add validations to Vehicle, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "brand" => "MyString", "model" => "Model", "license" => "License",
+	let(:valid_attributes) { { "brand" => "MyString", "model" => "Model", "license" => "License",
 										"vehicle_type" => "type", "places" => 5 } }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # VehiclesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+	# This should return the minimal set of values that should be in the session
+	# in order to pass any filters (e.g. authentication) defined in
+	# VehiclesController. Be sure to keep this updated too.
+	let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all vehicles as @vehicles" do
-      vehicle = Vehicle.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:vehicles).should eq([vehicle])
-    end
-  end
 
-  describe "GET show" do
-    it "assigns the requested vehicle as @vehicle" do
-      vehicle = Vehicle.create! valid_attributes
-      get :show, {:id => vehicle.to_param}, valid_session
-      assigns(:vehicle).should eq(vehicle)
-    end
-  end
+	describe "without signin in" do
+		subject { page }
+		describe "index" do
+			before { get :index, {}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+		describe "show" do
+			before { get :show, {:id => 0}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+		describe "new" do
+			before { get :new, {}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+		describe "edit" do
+			before { get :edit, {:id => 0}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+		describe "create" do
+			before { post :create, {:vehicle => valid_attributes}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+		describe "update" do
+			before { put :update, {:id => 0, :vehicle => { "brand" => "MyString" }}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+		describe "destroy" do
+			before { delete :destroy, {:id => 0}, valid_session }
+			it { should redirect_to(signin_url) }
+		end
+	end
+	
+	describe "signed in" do
+		let(:user) { FactoryGirl.create(:user) }
+		before { sign_in user }
 
-  describe "GET new" do
-    it "assigns a new vehicle as @vehicle" do
-      get :new, {}, valid_session
-      assigns(:vehicle).should be_a_new(Vehicle)
-    end
-  end
+		describe "GET index" do
+			it "assigns all vehicles as @vehicles" do
+				vehicle = Vehicle.create! valid_attributes
+				get :index, {}, valid_session
+				assigns(:vehicles).should eq([vehicle])
+			end
+		end
 
-  describe "GET edit" do
-    it "assigns the requested vehicle as @vehicle" do
-      vehicle = Vehicle.create! valid_attributes
-      get :edit, {:id => vehicle.to_param}, valid_session
-      assigns(:vehicle).should eq(vehicle)
-    end
-  end
+		describe "GET show" do
+			it "assigns the requested vehicle as @vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				get :show, {:id => vehicle.to_param}, valid_session
+				assigns(:vehicle).should eq(vehicle)
+			end
+		end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Vehicle" do
-        expect {
-          post :create, {:vehicle => valid_attributes}, valid_session
-        }.to change(Vehicle, :count).by(1)
-      end
+		describe "GET new" do
+			it "assigns a new vehicle as @vehicle" do
+				get :new, {}, valid_session
+				assigns(:vehicle).should be_a_new(Vehicle)
+			end
+		end
 
-      it "assigns a newly created vehicle as @vehicle" do
-        post :create, {:vehicle => valid_attributes}, valid_session
-        assigns(:vehicle).should be_a(Vehicle)
-        assigns(:vehicle).should be_persisted
-      end
+		describe "GET edit" do
+			it "assigns the requested vehicle as @vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				get :edit, {:id => vehicle.to_param}, valid_session
+				assigns(:vehicle).should eq(vehicle)
+			end
+		end
 
-      it "redirects to the created vehicle" do
-        post :create, {:vehicle => valid_attributes}, valid_session
-        response.should redirect_to(Vehicle.last)
-      end
-    end
+		describe "POST create" do
+			describe "with valid params" do
+				it "creates a new Vehicle" do
+				expect {
+					post :create, {:vehicle => valid_attributes}, valid_session
+				}.to change(Vehicle, :count).by(1)
+				end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved vehicle as @vehicle" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Vehicle.any_instance.stub(:save).and_return(false)
-        post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
-        assigns(:vehicle).should be_a_new(Vehicle)
-      end
+				it "assigns a newly created vehicle as @vehicle" do
+				post :create, {:vehicle => valid_attributes}, valid_session
+				assigns(:vehicle).should be_a(Vehicle)
+				assigns(:vehicle).should be_persisted
+				end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Vehicle.any_instance.stub(:save).and_return(false)
-        post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
+				it "redirects to the created vehicle" do
+				post :create, {:vehicle => valid_attributes}, valid_session
+				response.should redirect_to(Vehicle.last)
+				end
+			end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested vehicle" do
-        vehicle = Vehicle.create! valid_attributes
-        # Assuming there are no other vehicles in the database, this
-        # specifies that the Vehicle created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Vehicle.any_instance.should_receive(:update).with({ "brand" => "MyString" })
-        put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "MyString" }}, valid_session
-      end
+			describe "with invalid params" do
+				it "assigns a newly created but unsaved vehicle as @vehicle" do
+				# Trigger the behavior that occurs when invalid params are submitted
+				Vehicle.any_instance.stub(:save).and_return(false)
+				post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
+				assigns(:vehicle).should be_a_new(Vehicle)
+				end
 
-      it "assigns the requested vehicle as @vehicle" do
-        vehicle = Vehicle.create! valid_attributes
-        put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
-        assigns(:vehicle).should eq(vehicle)
-      end
+				it "re-renders the 'new' template" do
+				# Trigger the behavior that occurs when invalid params are submitted
+				Vehicle.any_instance.stub(:save).and_return(false)
+				post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
+				response.should render_template("new")
+				end
+			end
+		end
 
-      it "redirects to the vehicle" do
-        vehicle = Vehicle.create! valid_attributes
-        put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
-        response.should redirect_to(vehicle)
-      end
-    end
+		describe "PUT update" do
+			describe "with valid params" do
+				it "updates the requested vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				# Assuming there are no other vehicles in the database, this
+				# specifies that the Vehicle created on the previous line
+				# receives the :update_attributes message with whatever params are
+				# submitted in the request.
+				Vehicle.any_instance.should_receive(:update).with({ "brand" => "MyString" })
+				put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "MyString" }}, valid_session
+				end
 
-    describe "with invalid params" do
-      it "assigns the vehicle as @vehicle" do
-        vehicle = Vehicle.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Vehicle.any_instance.stub(:save).and_return(false)
-        put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
-        assigns(:vehicle).should eq(vehicle)
-      end
+				it "assigns the requested vehicle as @vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
+				assigns(:vehicle).should eq(vehicle)
+				end
 
-      it "re-renders the 'edit' template" do
-        vehicle = Vehicle.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Vehicle.any_instance.stub(:save).and_return(false)
-        put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
+				it "redirects to the vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
+				response.should redirect_to(vehicle)
+				end
+			end
 
-  describe "DELETE destroy" do
-    it "destroys the requested vehicle" do
-      vehicle = Vehicle.create! valid_attributes
-      expect {
-        delete :destroy, {:id => vehicle.to_param}, valid_session
-      }.to change(Vehicle, :count).by(-1)
-    end
+			describe "with invalid params" do
+				it "assigns the vehicle as @vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				# Trigger the behavior that occurs when invalid params are submitted
+				Vehicle.any_instance.stub(:save).and_return(false)
+				put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
+				assigns(:vehicle).should eq(vehicle)
+				end
 
-    it "redirects to the vehicles list" do
-      vehicle = Vehicle.create! valid_attributes
-      delete :destroy, {:id => vehicle.to_param}, valid_session
-      response.should redirect_to(vehicles_url)
-    end
-  end
+				it "re-renders the 'edit' template" do
+				vehicle = Vehicle.create! valid_attributes
+				# Trigger the behavior that occurs when invalid params are submitted
+				Vehicle.any_instance.stub(:save).and_return(false)
+				put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
+				response.should render_template("edit")
+				end
+			end
+		end
+
+		describe "DELETE destroy" do
+			it "destroys the requested vehicle" do
+				vehicle = Vehicle.create! valid_attributes
+				expect {
+				delete :destroy, {:id => vehicle.to_param}, valid_session
+				}.to change(Vehicle, :count).by(-1)
+			end
+
+			it "redirects to the vehicles list" do
+				vehicle = Vehicle.create! valid_attributes
+				delete :destroy, {:id => vehicle.to_param}, valid_session
+				response.should redirect_to(vehicles_url)
+			end
+		end
+	end
 
 end
