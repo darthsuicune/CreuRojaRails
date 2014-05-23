@@ -37,6 +37,7 @@ function setupData {
 	echo "user.role = \"admin\"" >> setup.rb;
 	echo "user.save" >> setup.rb;
 	bundle exec rails runner "eval(File.read 'setup.rb')";
+	rm setup.rb
 }
 
 function setupDb {
