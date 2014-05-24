@@ -96,6 +96,7 @@ GEM
     mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.10.0)
+    mysql2 (0.3.15)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     polyglot (0.3.4)
@@ -202,6 +203,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   libnotify
+  mysql2
   rails (= 4.0.3)
   rspec-rails
   sass-rails
