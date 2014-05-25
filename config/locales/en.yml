@@ -47,6 +47,7 @@ en:
    form_user_role: "Role"
    form_user_submit: "Submit"
    
+   form_location_show_title: "View location"
    form_location_edit_title: "Edit location"
    form_location_new: "New location"
    form_location_name: "Name"
@@ -93,6 +94,12 @@ en:
    
    user_created: "User was successfully created."
    user_updated: "User was successfully updated."
+   location_created: "Location was successfully created."
+   location_updated: "Location was successfully updated."
+   service_created: "Service was successfully created."
+   service_updated: "Service was successfully updated."
+   vehicle_created: "Vehicle was successfully created."
+   vehicle_updated: "Vehicle was successfully updated."
    
    role_volunteer: "Volunteer"
    role_technician: "Technician"

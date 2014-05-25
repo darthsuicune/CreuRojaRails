@@ -29,11 +29,11 @@ class VehiclesController < ApplicationController
 
 		respond_to do |format|
 			if @vehicle.save
-			format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
-			format.json { render action: 'show', status: :created, location: @vehicle }
+				format.html { redirect_to @vehicle, notice: I18n.t(:vehicle_created) }
+				format.json { render action: 'show', status: :created, location: @vehicle }
 			else
-			format.html { render action: 'new' }
-			format.json { render json: @vehicle.errors, status: :unprocessable_entity }
+				format.html { render action: 'new' }
+				format.json { render json: @vehicle.errors, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -43,11 +43,11 @@ class VehiclesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @vehicle.update(vehicle_params)
-			format.html { redirect_to @vehicle, notice: 'Vehicle was successfully updated.' }
-			format.json { head :no_content }
+				format.html { redirect_to @vehicle, notice: I18n.t(:vehicle_updated) }
+				format.json { head :no_content }
 			else
-			format.html { render action: 'edit' }
-			format.json { render json: @vehicle.errors, status: :unprocessable_entity }
+				format.html { render action: 'edit' }
+				format.json { render json: @vehicle.errors, status: :unprocessable_entity }
 			end
 		end
 	end

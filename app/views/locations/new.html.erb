@@ -1,5 +1,6 @@
-<h1><%= t(:form_location_edit_title) %></h1>
+<% provide(:title, t(:form_location_new)) %>
+<h1><%= t(:form_location_new) %></h1>
 
 <%= render 'form' %>
 
-<%= link_to t(:resources_back), locations_path %>
+<%= link_to t(:resource_back), locations_path %>
