@@ -19,7 +19,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+es:
    base_title: "Cruz Roja"
    contact: "Contacto"
    about: "Sobre Nosotros"
@@ -35,6 +35,7 @@ en:
 
    form_errors_found: "impidieron el registro"
    
+   form_show_user_title: "Perfil de usuario"
    form_new_user_title: "Nuevo usuario"
    form_user_edit_title: "Editar usuario"
    form_user_name: "Nombre"
@@ -46,6 +47,7 @@ en:
    form_user_role: "Rol"
    form_user_submit: "Enviar"
 
+   form_location_show_title: "Datos de localización"
    form_location_edit_title: "Editar localización"
    form_location_new: "Añadir Localización"
    form_location_name: "Nombre"
@@ -58,6 +60,7 @@ en:
    form_location_active: "Activo"
    form_location_submit: "Crear localización"
    
+   form_vehicle_show_title: "Datos del vehículo"
    form_vehicle_edit_title: "Editar vehículo"
    form_vehicle_new: "Añadir vehículo"
    form_vehicle_brand: "Marca"
@@ -83,8 +86,6 @@ en:
 
    login_button: "Iniciar sesión"
    
-   user_profile_title: "Perfil de usuario"
-   
    resource_show: "Mostrar"
    resource_edit: "Editar"
    resource_destroy: "Eliminar"
@@ -93,6 +94,12 @@ en:
    
    user_created: "El usuario ha sido creado."
    user_updated: "El usuario ha sido actualizado."
+   location_created: "La localización ha sido creada."
+   location_updated: "La localización ha sido actualizada."
+   service_created: "El servicio ha sido creado."
+   service_updated: "El servicio ha sido actualizado."
+   vehicle_created: "El vehículo ha sido creado."
+   vehicle_updated: "El vehículo ha sido actualizado."
    
    role_volunteer: "Voluntario"
    role_technician: "Técnico"
