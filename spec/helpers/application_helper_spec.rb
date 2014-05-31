@@ -7,7 +7,7 @@ describe ApplicationHelper do
 		end
 		
 		it "should contain base title" do
-			full_title("").should =~ /[Creu|Cruz] Roja/
+			full_title("").should =~ /[Creu|Cruz] Roja|Red Cross/
 		end
 		
 		it "should not have a |" do

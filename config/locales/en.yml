@@ -35,8 +35,8 @@ en:
 
    form_errors_found: "Prevented the form from being processed"
    
-   form_show_user_title: "User profile"
-   form_new_user_title: "New user"
+   form_user_show_title: "User profile"
+   form_user_new_title: "New user"
    form_user_edit_title: "Edit user"
    form_user_name: "Name"
    form_user_surname: "Last name"

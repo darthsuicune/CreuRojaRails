@@ -10,4 +10,7 @@ describe Vehicle do
 	it { should respond_to("vehicle_type") }
 	it { should respond_to("places") }
 	it { should respond_to("services") }
+	it { should respond_to("assemblies") }
+	
+	
 end

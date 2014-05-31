@@ -35,8 +35,8 @@ ca:
 
    form_errors_found: "van impedir el registre"
 
-   form_show_user_title: "User profile"
-   form_new_user_title: "Nou usuari"
+   form_user_show_title: "User profile"
+   form_user_new_title: "Nou usuari"
    form_user_edit_title: "Editar usuari"
    form_user_name: "Nom"
    form_user_surname: "Cognom"

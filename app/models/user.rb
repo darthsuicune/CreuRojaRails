@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
 
 	has_many :sessions, dependent: :destroy
 	has_many :user_types, dependent: :destroy
-	has_many :user_services
-	has_many :services, through: :user_services
 	has_and_belongs_to_many :assemblies, class_name: "Location"
 
 	before_save { email.downcase!

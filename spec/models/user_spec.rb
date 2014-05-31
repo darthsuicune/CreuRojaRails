@@ -19,7 +19,6 @@ describe User do
 	it { should respond_to(:sessions) }
 	it { should respond_to(:user_types) }
 	it { should respond_to(:assemblies) }
-	it { should respond_to(:services) }
 
 	it { should be_valid }
 
