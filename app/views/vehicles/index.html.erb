@@ -4,10 +4,10 @@
 <table>
   <thead>
     <tr>
+      <th><%= t(:form_vehicle_indicative) %></th>
       <th><%= t(:form_vehicle_brand) %></th>
       <th><%= t(:form_vehicle_model) %></th>
       <th><%= t(:form_vehicle_license) %></th>
-      <th><%= t(:form_vehicle_indicative) %></th>
       <th><%= t(:form_vehicle_type) %></th>
       <th><%= t(:form_vehicle_places) %></th>
       <th><%= t(:form_vehicle_notes) %></th>
@@ -21,10 +21,10 @@
   <tbody>
     <% @vehicles.each do |vehicle| %>
       <tr>
+        <td><%= vehicle.indicative %></td>
         <td><%= vehicle.brand %></td>
         <td><%= vehicle.model %></td>
         <td><%= vehicle.license %></td>
-        <td><%= vehicle.indicative %></td>
         <td><%= vehicle.vehicle_type %></td>
         <td><%= vehicle.places %></td>
         <td><%= vehicle.notes %></td>

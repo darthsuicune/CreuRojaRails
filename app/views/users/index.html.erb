@@ -6,7 +6,6 @@
 	<thead>
 		<tr>
 			<th><%= t(:form_user_name) %></th>
-			<th><%= t(:form_user_surname) %></th>
 			<th><%= t(:form_user_email) %></th>
 			<th><%= t(:form_user_language) %></th>
 			<th><%= t(:form_user_role) %></th>
@@ -19,8 +18,7 @@
 	<tbody>
 		<% @users.each do |user| %>
 			<tr>
-			<td><%= user.name %></td>
-			<td><%= user.surname %></td>
+			<td><%= user.name %> <%= user.surname %></td>
 			<td><%= user.email %></td>
 			<td><%= user.language %></td>
 			<td><%= user.role %></td>
