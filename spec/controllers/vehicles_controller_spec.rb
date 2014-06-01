@@ -102,36 +102,36 @@ describe VehiclesController do
 		describe "POST create" do
 			describe "with valid params" do
 				it "creates a new Vehicle" do
-				expect {
-					post :create, {:vehicle => valid_attributes}, valid_session
-				}.to change(Vehicle, :count).by(1)
+					expect {
+						post :create, {:vehicle => valid_attributes}, valid_session
+					}.to change(Vehicle, :count).by(1)
 				end
 
 				it "assigns a newly created vehicle as @vehicle" do
-				post :create, {:vehicle => valid_attributes}, valid_session
-				assigns(:vehicle).should be_a(Vehicle)
-				assigns(:vehicle).should be_persisted
+					post :create, {:vehicle => valid_attributes}, valid_session
+					assigns(:vehicle).should be_a(Vehicle)
+					assigns(:vehicle).should be_persisted
 				end
 
 				it "redirects to the created vehicle" do
-				post :create, {:vehicle => valid_attributes}, valid_session
-				response.should redirect_to(Vehicle.last)
+					post :create, {:vehicle => valid_attributes}, valid_session
+					response.should redirect_to(Vehicle.last)
 				end
 			end
 
 			describe "with invalid params" do
 				it "assigns a newly created but unsaved vehicle as @vehicle" do
-				# Trigger the behavior that occurs when invalid params are submitted
-				Vehicle.any_instance.stub(:save).and_return(false)
-				post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
-				assigns(:vehicle).should be_a_new(Vehicle)
+					# Trigger the behavior that occurs when invalid params are submitted
+					Vehicle.any_instance.stub(:save).and_return(false)
+					post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
+					assigns(:vehicle).should be_a_new(Vehicle)
 				end
 
 				it "re-renders the 'new' template" do
-				# Trigger the behavior that occurs when invalid params are submitted
-				Vehicle.any_instance.stub(:save).and_return(false)
-				post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
-				response.should render_template("new")
+					# Trigger the behavior that occurs when invalid params are submitted
+					Vehicle.any_instance.stub(:save).and_return(false)
+					post :create, {:vehicle => { "brand" => "invalid value" }}, valid_session
+					response.should render_template("new")
 				end
 			end
 		end
@@ -139,43 +139,43 @@ describe VehiclesController do
 		describe "PUT update" do
 			describe "with valid params" do
 				it "updates the requested vehicle" do
-				vehicle = Vehicle.create! valid_attributes
-				# Assuming there are no other vehicles in the database, this
-				# specifies that the Vehicle created on the previous line
-				# receives the :update_attributes message with whatever params are
-				# submitted in the request.
-				Vehicle.any_instance.should_receive(:update).with({ "brand" => "MyString" })
-				put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "MyString" }}, valid_session
+					vehicle = Vehicle.create! valid_attributes
+					# Assuming there are no other vehicles in the database, this
+					# specifies that the Vehicle created on the previous line
+					# receives the :update_attributes message with whatever params are
+					# submitted in the request.
+					Vehicle.any_instance.should_receive(:update).with({ "brand" => "MyString" })
+					put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "MyString" }}, valid_session
 				end
 
 				it "assigns the requested vehicle as @vehicle" do
-				vehicle = Vehicle.create! valid_attributes
-				put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
-				assigns(:vehicle).should eq(vehicle)
+					vehicle = Vehicle.create! valid_attributes
+					put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
+					assigns(:vehicle).should eq(vehicle)
 				end
 
 				it "redirects to the vehicle" do
-				vehicle = Vehicle.create! valid_attributes
-				put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
-				response.should redirect_to(vehicle)
+					vehicle = Vehicle.create! valid_attributes
+					put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
+					response.should redirect_to(vehicle)
 				end
 			end
 
 			describe "with invalid params" do
 				it "assigns the vehicle as @vehicle" do
-				vehicle = Vehicle.create! valid_attributes
-				# Trigger the behavior that occurs when invalid params are submitted
-				Vehicle.any_instance.stub(:save).and_return(false)
-				put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
-				assigns(:vehicle).should eq(vehicle)
+					vehicle = Vehicle.create! valid_attributes
+					# Trigger the behavior that occurs when invalid params are submitted
+					Vehicle.any_instance.stub(:save).and_return(false)
+					put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
+					assigns(:vehicle).should eq(vehicle)
 				end
 
 				it "re-renders the 'edit' template" do
-				vehicle = Vehicle.create! valid_attributes
-				# Trigger the behavior that occurs when invalid params are submitted
-				Vehicle.any_instance.stub(:save).and_return(false)
-				put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
-				response.should render_template("edit")
+					vehicle = Vehicle.create! valid_attributes
+					# Trigger the behavior that occurs when invalid params are submitted
+					Vehicle.any_instance.stub(:save).and_return(false)
+					put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
+					response.should render_template("edit")
 				end
 			end
 		end

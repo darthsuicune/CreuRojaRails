@@ -1,5 +1,5 @@
 class Vehicle < ActiveRecord::Base
-	has_many :services
+	has_many :services, through: :vehicle_services
 	has_many :assemblies, class_name: "Location", foreign_key: "assembly_id"
 	
 	validates :brand, presence: true

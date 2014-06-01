@@ -12,5 +12,4 @@ describe Vehicle do
 	it { should respond_to("services") }
 	it { should respond_to("assemblies") }
 	
-	
 end
