@@ -2,11 +2,11 @@ class VehicleServicesController < ApplicationController
 		before_filter :signed_in_user
 	
 	def create
-		vehicle_service = VehicleService.new(vehicle_service_params)
-		if vehicle_service.save
-			redirect_to vehicle_service.service, notice: I18n.t(:vehicle_assigned_to_service)
+		@vehicle_service = VehicleService.new(vehicle_service_params)
+		if @vehicle_service.save
+			redirect_to @vehicle_service.service, notice: I18n.t(:vehicle_assigned_to_service)
 		else
-			
+			redirect_to @vehicle_service.service
 		end
 		
 	end
