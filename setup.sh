@@ -45,9 +45,23 @@ function setupDb {
 	setupData $4 $5;
 }
 
+#RETURN CODES:
+#	0: Success
+#	1: Incorrect parameter count
+#	2: bundle failed, make sure all packages are in place.
+
+
 if [ "$#" -ne 5 ]; then
 	echo "Usage: $0 <database name> <database user> <database password> <admin email> <admin password>";
 	exit 1;
+fi;
+
+bundle install
+
+if [ $? -ne 0 ]
+then
+	echo "Bundle failed, please, make sure sqlite3, libsqlite3-dev, libnotify4, libmysql-ruby and libmysqlclient-dev are installed and try again";
+	exit 2;
 fi;
 
 DB_NAME="$1";
