@@ -73,7 +73,8 @@ en:
    form_vehicle_operative: "Operative"
    form_vehicle_submit: "Create vehicle"
    
-   form_service_edit_title: "Edit location"
+   form_service_show_title: "View service"
+   form_service_edit_title: "Edit service"
    form_service_new: "New service"
    form_service_name: "Name"
    form_service_description: "Description"
@@ -84,6 +85,11 @@ en:
    form_service_end_time: "End time"
    form_service_code: "Code"
    form_service_submit: "Create service"
+   form_service_assigned_vehicles: "Assigned vehicles"
+   form_service_assign_vehicle: "Assign vehicle"
+   
+   form_add_vehicle_to_service_submit: "Add"
+   form_add_vehicle_to_service_vehicle_id: "Vehicle"
    
    login_button: "Log in"
    

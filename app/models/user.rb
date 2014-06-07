@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
 			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
 		when :manage_technician_users
 			role == I18n.t(:role_technician)
+		when :assign_vehicle_to_service
+			role == I18n.t(:role_technician)
 		when :destroy_users
 			role == I18n.t(:role_technician)
 		when :manage_admin_users

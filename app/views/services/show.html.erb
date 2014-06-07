@@ -4,38 +4,67 @@
 <% end %>
 
 <p>
-  <strong><%= t(:form_service_name) %>:</strong>
-  <%= @service.name %>
+	<strong><%= t(:form_service_name) %>:</strong>
+	<%= @service.name %>
 </p>
 
 <p>
-  <strong><%= t(:form_service_description) %>:</strong>
-  <%= @service.description %>
+	<strong><%= t(:form_service_description) %>:</strong>
+	<%= @service.description %>
 </p>
 
 <p>
-  <strong><%= t(:form_service_assembly) %>:</strong>
-  <%= @service.assembly.name %>
+	<strong><%= t(:form_service_assembly) %>:</strong>
+	<%= @service.assembly.name %>
 </p>
 
 <p>
-  <strong><%= t(:form_service_base_time) %>:</strong>
-  <%= @service.base_time %>
+	<strong><%= t(:form_service_base_time) %>:</strong>
+	<%= @service.base_time %>
 </p>
 
 <p>
-  <strong><%= t(:form_service_start_time) %>:</strong>
-  <%= @service.start_time %>
+	<strong><%= t(:form_service_start_time) %>:</strong>
+	<%= @service.start_time %>
 </p>
 
 <p>
-  <strong><%= t(:form_service_finish_time) %>:</strong>
-  <%= @service.end_time %>
+	<strong><%= t(:form_service_end_time) %>:</strong>
+	<%= @service.end_time %>
 </p>
 
 <p>
-  <strong><%= t(:form_service_code) %>:</strong>
-  <%= @service.code %>
+	<strong><%= t(:form_service_code) %>:</strong>
+	<%= @service.code %>
+</p>
+
+<p>
+	<strong> <%= t(:form_service_assigned_vehicles) %>: </strong>
+	<table>
+		<tbody>
+		<% @service.vehicles.each do |vehicle| %>
+			<tr>
+			<td><%= vehicle.indicative %></td>
+			<td><%= vehicle.license %></td>
+			<td><%= vehicle.brand %></td>
+			<td><%= vehicle.model %></td>
+			<td><%= vehicle.vehicle_type %></td>
+			<td><%= vehicle.places %></td>
+			<td><%= link_to t(:resource_show), vehicle %></td>
+			<% if current_user.allowed_to?(:assign_vehicle_to_service) %>
+				<td><%= link_to t(:resource_destroy), vehicle, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+			<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+	</table>
+</p>
+
+<p>
+	<strong> <%= t(:form_service_assign_vehicle) %>: </strong>
+	<% if current_user.allowed_to?(:assign_vehicle_to_service) %>
+		<%= render 'add_vehicle' %>
+	<% end %>
 </p>
 
 <%= link_to t(:resource_edit), edit_service_path(@service) %> |
