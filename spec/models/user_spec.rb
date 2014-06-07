@@ -114,20 +114,20 @@ describe User do
 	end
 	describe "permission system" do
 		describe "admins" do
-			before { @user.role = I18n.t(:role_admin)
+			before { @user.role = "admin"
 						@user.save }
 			it { should be_allowed_to(:manage_admin_users) }
 			it { should be_allowed_to(:see_own_profile) }
 		end
 		describe "technicians" do
-			before { @user.role = I18n.t(:role_technician)
+			before { @user.role = "technician"
 						@user.save }
 			it { should be_allowed_to(:see_own_profile) }
 			it { should be_allowed_to(:manage_technician_users) }
 			it { should_not be_allowed_to(:manage_admin_users) }
 		end
 		describe "volunteers" do
-			before { @user.role = I18n.t(:role_volunteer)
+			before { @user.role = "volunteer"
 						@user.save }
 			it { should be_allowed_to(:see_own_profile) }
 			it { should_not be_allowed_to(:manage_technician_users) }

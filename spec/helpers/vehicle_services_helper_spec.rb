@@ -11,4 +11,15 @@ require 'spec_helper'
 #   end
 # end
 describe VehicleServicesHelper do
+	describe "get_available_vehicles" do
+		let(:service1) { FactoryGirl.create(:service) }
+		let(:service2) { FactoryGirl.create(:service) }
+		let(:vehicle1) { FactoryGirl.create(:vehicle) }
+		let(:vehicle2) { FactoryGirl.create(:vehicle) }
+		before { VehicleService.create!(service_id: service1.id, vehicle_id: vehicle1.id) }
+		it "should not show busy vehicles" do
+			should_result = vehicle2.indicative << ", " << vehicle2.license
+			get_available_vehicles(service2).should eq([[should_result, vehicle2.id]])
+		end
+	end
 end

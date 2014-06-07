@@ -11,7 +11,7 @@
 		</div>
 	<% end %>
 	
-	<% available_vehicles = Vehicle.all.collect { |vehicle| [ vehicle.indicative, vehicle.id ] } %>
+	<% available_vehicles = get_available_vehicles @service %>
 
 	<%= f.hidden_field :service_id, :value => @service.id %>
 	<div class="field">

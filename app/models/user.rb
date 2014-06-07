@@ -42,24 +42,24 @@ class User < ActiveRecord::Base
 
 	def allowed_to?(action)
 		return false if active == false
-		return true if role == I18n.t(:role_admin) || role == "admin"
+		return true if role == "admin"
 		case action
 		when :see_own_profile
-			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+			role == "volunteer" || role == "technician"
 		when :see_user_list
-			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+			role == "volunteer" || role == "technician"
 		when :see_location_list
-			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+			role == "volunteer" || role == "technician"
 		when :see_vehicle_list
-			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+			role == "volunteer" || role == "technician"
 		when :see_service_list
-			role == I18n.t(:role_volunteer) || role == I18n.t(:role_technician)
+			role == "volunteer" || role == "technician"
 		when :manage_technician_users
-			role == I18n.t(:role_technician)
+			role == "technician"
 		when :assign_vehicle_to_service
-			role == I18n.t(:role_technician)
+			role == "technician"
 		when :destroy_users
-			role == I18n.t(:role_technician)
+			role == "technician"
 		when :manage_admin_users
 			false
 		else
@@ -75,6 +75,6 @@ class User < ActiveRecord::Base
 	def defaults
 		active ||= true
 		language ||= "ca"
-		role ||= I18n.t(:role_volunteer)
+		role ||= "volunteer"
 	end
 end

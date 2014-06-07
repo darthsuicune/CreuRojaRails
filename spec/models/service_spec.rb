@@ -9,7 +9,7 @@ describe Service do
 	it { should respond_to(:base_time) }
 	it { should respond_to(:start_time) }
 	it { should respond_to(:end_time) }
-	it { should respond_to(:assigned_vehicles) }
+	it { should respond_to(:vehicles) }
 	
 	describe "with invalid parameters" do
 		let(:service) { Service.new(name: "asdf", assembly_id: 0, base_time: Time.now, start_time: Time.now, end_time: Time.now) }

@@ -15,6 +15,10 @@ class VehicleServicesController < ApplicationController
 	end
 	
 	def destroy
+		vehicle_service = VehicleService.find(params[:id])
+		service = vehicle_service.service
+		vehicle_service.destroy
+		redirect_to(service)
 	end
 	
 	private

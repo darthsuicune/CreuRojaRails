@@ -1,4 +1,5 @@
 <% provide(:title, t(:form_service_show_title)) %>
+<h1> <%= t(:form_service_show_title) %> </h1>
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
@@ -41,19 +42,30 @@
 <p>
 	<strong> <%= t(:form_service_assigned_vehicles) %>: </strong>
 	<table>
+		<thead>
+			<tr>
+				<th><%=I18n.t(:form_vehicle_indicative)%></th>
+				<th><%=I18n.t(:form_vehicle_license)%></th>
+				<th><%=I18n.t(:form_vehicle_brand)%></th>
+				<th><%=I18n.t(:form_vehicle_model)%></th>
+				<th><%=I18n.t(:form_vehicle_type)%></th>
+				<th><%=I18n.t(:form_vehicle_places)%></th>
+			</tr>
+		</thead>
 		<tbody>
 		<% @service.vehicles.each do |vehicle| %>
 			<tr>
-			<td><%= vehicle.indicative %></td>
-			<td><%= vehicle.license %></td>
-			<td><%= vehicle.brand %></td>
-			<td><%= vehicle.model %></td>
-			<td><%= vehicle.vehicle_type %></td>
-			<td><%= vehicle.places %></td>
-			<td><%= link_to t(:resource_show), vehicle %></td>
-			<% if current_user.allowed_to?(:assign_vehicle_to_service) %>
-				<td><%= link_to t(:resource_destroy), vehicle, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
-			<% end %>
+				<td><%= vehicle.indicative %></td>
+				<td><%= vehicle.license %></td>
+				<td><%= vehicle.brand %></td>
+				<td><%= vehicle.model %></td>
+				<td><%= vehicle.vehicle_type %></td>
+				<td><%= vehicle.places %></td>
+				<td><%= link_to t(:resource_show), vehicle %></td>
+				<% if current_user.allowed_to?(:assign_vehicle_to_service) %>
+					<% vehicle_service = vehicle.vehicle_services.find_by_service_id(@service.id) %>
+					<td><%= link_to t(:resource_destroy), vehicle_service, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>
