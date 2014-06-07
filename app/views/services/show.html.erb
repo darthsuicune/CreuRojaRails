@@ -74,7 +74,7 @@
 
 <p>
 	<strong> <%= t(:form_service_assign_vehicle) %>: </strong>
-	<% if current_user.allowed_to?(:assign_vehicle_to_service) %>
+	<% if current_user && current_user.allowed_to?(:assign_vehicle_to_service) %>
 		<%= render 'add_vehicle' %>
 	<% end %>
 </p>
