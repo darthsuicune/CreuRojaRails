@@ -1,49 +1,49 @@
 <%= form_for(@location) do |f| %>
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") << " " << t(:form_errors_found)%>:</h2>
+	<% if @location.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@location.errors.count, "error") << " " << t(:form_errors_found)%>:</h2>
 
-      <ul>
-      <% @location.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+				<% @location.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  <div class="field">
-    <%= f.label :name, t(:form_location_name) %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description, t(:form_location_description) %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :address, t(:form_location_address) %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone, t(:form_location_phone) %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude, t(:form_location_latitude) %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude, t(:form_location_longitude) %><br>
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :location_type, t(:form_location_type) %><br>
-    <%= f.text_field :location_type %>
-  </div>
-  <div class="field">
-    <%= f.label :active, t(:form_location_active) %><br>
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit t(:form_location_submit)  %>
-  </div>
+	<div class="field">
+		<%= f.label :name, t(:form_location_name) %><br>
+		<%= f.text_field :name %>
+	</div>
+	<div class="field">
+		<%= f.label :description, t(:form_location_description) %><br>
+		<%= f.text_field :description %>
+	</div>
+	<div class="field">
+		<%= f.label :address, t(:form_location_address) %><br>
+		<%= f.text_field :address %>
+	</div>
+	<div class="field">
+		<%= f.label :phone, t(:form_location_phone) %><br>
+		<%= f.text_field :phone %>
+	</div>
+	<div class="field">
+		<%= f.label :latitude, t(:form_location_latitude) %><br>
+		<%= f.number_field :latitude %>
+	</div>
+	<div class="field">
+		<%= f.label :longitude, t(:form_location_longitude) %><br>
+		<%= f.number_field :longitude %>
+	</div>
+	<div class="field">
+		<%= f.label :location_type, t(:form_location_type) %><br>
+		<%= f.text_field :location_type %>
+	</div>
+	<div class="field">
+		<%= f.label :active, t(:form_location_active) %><br>
+		<%= f.check_box :active, { :checked => true } %>
+	</div>
+	<div class="actions">
+		<%= f.submit t(:form_location_submit)  %>
+	</div>
 <% end %>

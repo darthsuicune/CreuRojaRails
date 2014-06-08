@@ -14,9 +14,13 @@ form{
 		display: block;
 		padding: 5px;
 		border-radius: 5px;
-		width: 60%;
+		width: 80%;
 		color: black;
 		text-decoration: none;
+	}
+	.date_field select {
+		display: inline;
+		width: 120px;
 	}
 
 	input[type="submit"] {

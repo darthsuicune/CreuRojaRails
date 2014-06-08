@@ -12,10 +12,10 @@ class VehicleService < ActiveRecord::Base
 			doc ||= 0
 			due ||= 0
 			tes ||= 0
-			ci ||= 0
+			ci  ||= 0
 			asi ||= 0
 			btp ||= 0
-			b1 ||= 0
+			b1  ||= 0
 			acu ||= 0
 			per ||= 0
 		end

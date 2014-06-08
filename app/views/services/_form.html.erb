@@ -11,6 +11,8 @@
 		</div>
 	<% end %>
 
+	<% user_assemblies = current_user.assemblies.collect { |assembly| [ assembly.name, assembly.id ] } %>
+
 	<div class="field">
 		<%= f.label :name, t(:form_service_name) %><br>
 		<%= f.text_field :name %>
@@ -20,18 +22,18 @@
 		<%= f.text_field :description %>
 	</div>
 	<div class="field">
-		<%= f.label :assembly_id, t(:form_service_assembly_id) %><br>
-		<%= f.number_field :assembly_id %>
+		<%= f.label :assembly_id, t(:form_service_assembly) %><br>
+		<%= f.select :assembly_id, user_assemblies %>
 	</div>
-	<div class="field">
+	<div class="field date_field">
 		<%= f.label :base_time, t(:form_service_base_time) %><br>
 		<%= f.datetime_select :base_time %>
 	</div>
-	<div class="field">
+	<div class="field date_field">
 		<%= f.label :start_time, t(:form_service_start_time) %><br>
 		<%= f.datetime_select :start_time %>
 	</div>
-	<div class="field">
+	<div class="field date_field">
 		<%= f.label :end_time, t(:form_service_end_time) %><br>
 		<%= f.datetime_select :end_time %>
 	</div>
