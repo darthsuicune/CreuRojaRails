@@ -85,11 +85,23 @@ en:
    form_service_end_time: "End time"
    form_service_code: "Code"
    form_service_submit: "Create service"
+   
    form_service_assigned_vehicles: "Assigned vehicles"
    form_service_assign_vehicle: "Assign vehicle"
    
-   form_add_vehicle_to_service_submit: "Add"
+   vehicle_assigned_to_service: "The vehicle was assigned"
+   
    form_add_vehicle_to_service_vehicle_id: "Vehicle"
+   form_add_vehicle_to_service_doc: "DOC"
+   form_add_vehicle_to_service_due: "DUE"
+   form_add_vehicle_to_service_tes: "TES"
+   form_add_vehicle_to_service_ci: "CI"
+   form_add_vehicle_to_service_asi: "ASI"
+   form_add_vehicle_to_service_btp: "BTP"
+   form_add_vehicle_to_service_b1: "B1"
+   form_add_vehicle_to_service_acu: "ACU"
+   form_add_vehicle_to_service_per: "PER"
+   form_add_vehicle_to_service_submit: "Add"
    
    login_button: "Log in"
    
