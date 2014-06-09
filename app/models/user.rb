@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
 			role == "volunteer" || role == "technician"
 		when :see_service_list
 			role == "volunteer" || role == "technician"
+		when :add_to_own_assembly
+			role == "technician"
+		when :add_to_any_assembly
+			false
 		when :manage_technician_users
 			role == "technician"
 		when :assign_vehicle_to_service
