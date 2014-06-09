@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 
 	has_many :sessions, dependent: :destroy
 	has_many :user_types, dependent: :destroy
-	has_and_belongs_to_many :assemblies, class_name: "Location", association_foreign_key: :location_id
+	has_many :location_users, dependent: :destroy
+	has_many :assemblies, through: :location_users, class_name: "Location", foreign_key: :location_id
 
 	before_save { email.downcase!
 	              role.downcase unless role.nil? }

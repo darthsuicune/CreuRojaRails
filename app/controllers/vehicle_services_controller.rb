@@ -1,5 +1,5 @@
 class VehicleServicesController < ApplicationController
-		before_filter :signed_in_user
+	before_filter :signed_in_user
 	
 	def create
 		@vehicle_service = VehicleService.new(vehicle_service_params)
@@ -12,6 +12,9 @@ class VehicleServicesController < ApplicationController
 	end
 	
 	def update
+		vehicle_service = VehicleService.find(params[:id])
+		vehicle_service.update(vehicle_service_params)
+		redirect_to(vehicle_service.service)
 	end
 	
 	def destroy
