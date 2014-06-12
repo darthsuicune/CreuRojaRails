@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609181419) do
+ActiveRecord::Schema.define(version: 20140612114105) do
 
   create_table "location_users", force: true do |t|
     t.integer  "location_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.datetime "updated_at"
   end
 
-  add_index "location_users", ["location_id", "user_id"], name: "index_location_users_on_location_id_and_user_id", unique: true, using: :btree
+  add_index "location_users", ["location_id", "user_id"], name: "index_location_users_on_location_id_and_user_id", unique: true
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -33,10 +33,16 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "expiredate"
   end
 
-  add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true, using: :btree
-  add_index "locations", ["name"], name: "index_locations_on_name", using: :btree
+  add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true
+  add_index "locations", ["name"], name: "index_locations_on_name"
+
+  create_table "locations_users", id: false, force: true do |t|
+    t.integer "location_id"
+    t.integer "user_id"
+  end
 
   create_table "services", force: true do |t|
     t.string   "name"
@@ -50,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.datetime "updated_at"
   end
 
-  add_index "services", ["assembly_id"], name: "index_services_on_assembly_id", using: :btree
+  add_index "services", ["assembly_id"], name: "index_services_on_assembly_id"
 
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
@@ -59,7 +65,18 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["token"], name: "index_sessions_on_token", unique: true, using: :btree
+  add_index "sessions", ["token"], name: "index_sessions_on_token", unique: true
+
+  create_table "user_services", id: false, force: true do |t|
+    t.string   "user_type"
+    t.integer  "user_id"
+    t.integer  "service_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_services", ["user_id", "service_id"], name: "index_user_services_on_user_id_and_service_id", unique: true
+  add_index "user_services", ["user_type"], name: "index_user_services_on_user_type"
 
   create_table "user_types", id: false, force: true do |t|
     t.integer  "user_id"
@@ -68,7 +85,7 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.datetime "updated_at"
   end
 
-  add_index "user_types", ["user_id", "user_type"], name: "index_user_types_on_user_id_and_user_type", unique: true, using: :btree
+  add_index "user_types", ["user_id", "user_type"], name: "index_user_types_on_user_id_and_user_type", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -84,7 +101,7 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.boolean  "active",          default: true
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "vehicle_services", force: true do |t|
     t.integer  "vehicle_id"
@@ -102,7 +119,7 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.datetime "updated_at"
   end
 
-  add_index "vehicle_services", ["vehicle_id", "service_id"], name: "index_vehicle_services_on_vehicle_id_and_service_id", unique: true, using: :btree
+  add_index "vehicle_services", ["vehicle_id", "service_id"], name: "index_vehicle_services_on_vehicle_id_and_service_id", unique: true
 
   create_table "vehicles", force: true do |t|
     t.string   "brand"
@@ -117,8 +134,8 @@ ActiveRecord::Schema.define(version: 20140609181419) do
     t.datetime "updated_at"
   end
 
-  add_index "vehicles", ["indicative"], name: "index_vehicles_on_indicative", using: :btree
-  add_index "vehicles", ["license"], name: "index_vehicles_on_license", using: :btree
-  add_index "vehicles", ["vehicle_type"], name: "index_vehicles_on_vehicle_type", using: :btree
+  add_index "vehicles", ["indicative"], name: "index_vehicles_on_indicative"
+  add_index "vehicles", ["license"], name: "index_vehicles_on_license"
+  add_index "vehicles", ["vehicle_type"], name: "index_vehicles_on_vehicle_type"
 
 end
