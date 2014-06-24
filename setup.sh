@@ -52,7 +52,7 @@ function setupDb {
 
 
 if [ "$#" -ne 5 ]; then
-	echo "Usage: $0 <database name> <database user> <database password> <admin email> <admin password>";
+	echo "Usage: $0 <database name> <database user> <database password> <admin email> <admin password> <environment>";
 	exit 1;
 fi;
 
@@ -69,6 +69,8 @@ DB_USER="$2";
 DB_PASS="$3";
 ADMIN_EMAIL="$4";
 ADMIN_PASS="$5";
+
+export RAILS_ENV="$6"
 
 setupDb $DB_NAME $DB_USER $DB_PASS $ADMIN_EMAIL $ADMIN_PASS;
 
