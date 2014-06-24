@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
 	has_many :sessions, dependent: :destroy
 	has_many :user_types, dependent: :destroy
 	has_many :location_users, dependent: :destroy
-	has_many :assemblies, through: :location_users, class_name: "Location", foreign_key: :location_id
-
+	has_many :assemblies, through: :location_users, source: :location
+	
 	before_save { email.downcase!
 	              role.downcase unless role.nil? }
 	before_save :create_session_token

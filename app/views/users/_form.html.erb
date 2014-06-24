@@ -14,10 +14,10 @@
 		<% available_languages = [[t(:lang_catalan), 'ca'], [t(:lang_spanish), 'es'], [t(:lang_english), 'en']] %>
 
 		<% available_roles = [[t(:role_volunteer).humanize, "volunteer"]] %>
-		<% if @user.allowed_to?(:manage_technician_users) %>
+		<% if current_user.allowed_to?(:manage_technician_users) %>
 			<% available_roles << [t(:role_technician).humanize,"technician"] %>
 		<% end %>
-		<% if @user.allowed_to?(:manage_technician_users) %>
+		<% if current_user.allowed_to?(:manage_admin_users) %>
 			<% available_roles << [t(:role_admin).humanize, "admin"] %>
 		<% end %>
 
@@ -49,7 +49,24 @@
 			<%= f.label :password_confirmation, t(:form_user_password_confirmation)  %><br>
 			<%= f.password_field :password_confirmation %>
 		</div>
-		<%= render 'add_assemblies' %>
+		
+		<!-- Add assemblies section -->
+		<% if current_user.allowed_to?(:add_to_own_assembly) || current_user.allowed_to?(:add_to_any_assembly) %>
+			<% assemblies = [] %>
+			<% if current_user.allowed_to?(:add_to_any_assembly) %>
+				<% assemblies = Location.where("location_type = \"asamblea\"").collect { |assembly| [assembly.name, assembly.id] } %>
+			<% else %>
+				<% assemblies = current_user.assemblies.collect { |assembly| [assembly.name, assembly.id] } %>
+			<% end %>
+			<%= f.fields_for :assemblies do |a| %>
+				<div class="subform" id="user_assemblies">
+					<%= a.label :location_id, t(:form_user_assemblies) %>
+					<%= a.select :location_id, assemblies %>
+				</div>
+			<% end %>
+		<% end %>
+		
+		
 		<div class="actions btn">
 			<%= f.submit t(:form_user_submit) %>
 		</div>

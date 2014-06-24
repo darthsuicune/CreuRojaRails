@@ -2,13 +2,12 @@ class LocationUserController < ApplicationController
 	before_filter :signed_in_user
 	
 	def create
-		@location_user = VehicleService.new(location_user_params)
+		@location_user = LocationUser.new(location_user_params)
 		if @location_user.save
 			redirect_to @location_user.service, notice: I18n.t(:user_assigned_to_assembly)
 		else
 			redirect_to @location_user.service
 		end
-		
 	end
 	
 	def update

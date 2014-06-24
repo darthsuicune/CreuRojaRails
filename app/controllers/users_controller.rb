@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_filter :user_has_permissions, only: [:create, :new, :destroy]
 	before_filter :signed_in_user
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 	after_action :log
@@ -28,7 +29,9 @@ class UsersController < ApplicationController
 	# POST /users
 	# POST /users.json
 	def create
+		assembly = Location.find_by_id(params[:user][:assemblies][:location_id])
 		@user = User.new(user_params)
+		@user.assemblies.append assembly
 		respond_to do |format|
 			if @user.save
 				format.html { redirect_to @user, notice: I18n.t(:user_created) }
@@ -84,7 +87,11 @@ class UsersController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def user_params
-		params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, :assemblies)
+		params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, assemblies: [:location_id])
+	end
+	
+	def user_has_permissions
+		current_user.allowed_to?(:manage_technician_users)
 	end
 	
 	def log
