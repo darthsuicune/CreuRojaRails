@@ -29,11 +29,10 @@ class UsersController < ApplicationController
 	# POST /users
 	# POST /users.json
 	def create
-		assembly = Location.find_by_id(params[:user][:assemblies][:location_id])
 		@user = User.new(user_params)
-		@user.assemblies.append assembly
 		respond_to do |format|
 			if @user.save
+				LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
 				format.html { redirect_to @user, notice: I18n.t(:user_created) }
 				format.json { render action: 'show', status: :created, location: @user }
 			else
@@ -87,7 +86,7 @@ class UsersController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def user_params
-		params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, assemblies: [:location_id])
+		params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active)
 	end
 	
 	def user_has_permissions

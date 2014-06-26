@@ -45,6 +45,22 @@ function setupDb {
 	setupData $4 $5;
 }
 
+## Receives $1 as the environment for installation
+function setEnvironmentVariables {
+	PWD=`pwd`
+	GEM_FOLDER=$PWD/gems
+	if [ ! -d $GEM_FOLDER ]; then
+		mkdir -p $GEM_FOLDER
+	fi;
+	echo "Exporting Gems to $GEM_FOLDER"
+	export GEM_PATH=$GEM_FOLDER
+	export GEM_HOME=$GEM_FOLDER
+	echo "export GEM_PATH=$GEM_FOLDER" >> .bashrc
+	echo "export GEM_HOME=$GEM_FOLDER" >> .bashrc
+
+	export RAILS_ENV $1
+}
+
 #RETURN CODES:
 #	0: Success
 #	1: Incorrect parameter count
@@ -55,6 +71,8 @@ if [ "$#" -ne 5 ]; then
 	echo "Usage: $0 <database name> <database user> <database password> <admin email> <admin password> <environment>";
 	exit 1;
 fi;
+
+setEnvironmentVariables $6;
 
 bundle install
 
@@ -69,8 +87,6 @@ DB_USER="$2";
 DB_PASS="$3";
 ADMIN_EMAIL="$4";
 ADMIN_PASS="$5";
-
-export RAILS_ENV="$6"
 
 setupDb $DB_NAME $DB_USER $DB_PASS $ADMIN_EMAIL $ADMIN_PASS;
 
