@@ -14,5 +14,6 @@ class Location < ActiveRecord::Base
 	private
 	def defaults
 		active ||= true
+		expiredate ||= 0
 	end
 end
