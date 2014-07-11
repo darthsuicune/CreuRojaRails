@@ -2,16 +2,7 @@ require 'spec_helper'
 
 describe "locations/edit" do
   before(:each) do
-    @location = assign(:location, stub_model(Location,
-      :name => "MyString",
-      :description => "MyString",
-      :address => "MyString",
-      :phone => "MyString",
-      :latitude => 1.5,
-      :longitude => 1.5,
-      :location_type => "MyString",
-      :active => false
-    ))
+    @location = FactoryGirl.create(:location)
   end
 
   it "renders the edit location form" do

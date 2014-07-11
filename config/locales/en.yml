@@ -104,6 +104,18 @@ en:
    form_add_vehicle_to_service_per: "PER"
    form_add_vehicle_to_service_submit: "Add"
    
+   field_not_available: "Not available"
+   
+   issue_status_new: "New"
+   issue_status_in_work: "In work"
+   issue_status_in_testing: "In testing"
+   issue_status_in_production: "In production"
+   issue_status_solved: "Solved"
+   
+   issue_severity_normal: "Normal"
+   issue_severity_critical: "Critical"
+   issue_severity_not_important: "Not important"
+   
    login_button: "Log in"
    
    resource_show: "Show"

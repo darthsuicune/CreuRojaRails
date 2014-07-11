@@ -3,12 +3,7 @@ require 'spec_helper'
 describe "services/show" do
 	let(:assembly) {FactoryGirl.create(:location) }
 	before(:each) do
-		@service = assign(:service, stub_model(Service,
-			:name => "Name",
-			:description => "Description",
-			:assembly_id => assembly.id,
-			:code => "Code"
-		))
+		@service = FactoryGirl.create(:service)
 	end
 
 	it "renders attributes in <p>" do

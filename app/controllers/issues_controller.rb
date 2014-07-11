@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
-  before_action :is_valud_user
+  before_action :is_valid_user
 
   # GET /issues
   # GET /issues.json

@@ -83,5 +83,6 @@ class User < ActiveRecord::Base
 		active ||= true
 		language ||= "ca"
 		role ||= "volunteer"
+		phone ||= I18n.t(:field_not_available)
 	end
 end

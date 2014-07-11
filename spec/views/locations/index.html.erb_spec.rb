@@ -3,26 +3,8 @@ require 'spec_helper'
 describe "locations/index" do
 	before(:each) do
 		assign(:locations, [
-			stub_model(Location,
-			:name => "Name",
-			:description => "Description",
-			:address => "Address",
-			:phone => "Phone",
-			:latitude => 1.5,
-			:longitude => 1.5,
-			:location_type => "Location Type",
-			:active => false
-			),
-			stub_model(Location,
-			:name => "Name",
-			:description => "Description",
-			:address => "Address",
-			:phone => "Phone",
-			:latitude => 1.5,
-			:longitude => 1.5,
-			:location_type => "Location Type",
-			:active => false
-			)
+			FactoryGirl.create(:location),
+			FactoryGirl.create(:location)
 		])
 	end
 

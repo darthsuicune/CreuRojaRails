@@ -4,18 +4,8 @@ describe "services/index" do
 	let(:assembly) { FactoryGirl.create(:location) }
 	before(:each) do
 		assign(:services, [
-			stub_model(Service,
-			:name => "Name",
-			:description => "Description",
-			:assembly_id => assembly.id,
-			:code => "Code"
-			),
-			stub_model(Service,
-			:name => "Name",
-			:description => "Description",
-			:assembly_id => assembly.id,
-			:code => "Code"
-			)
+			FactoryGirl.create(:service),
+			FactoryGirl.create(:service)
 		])
 	end
 

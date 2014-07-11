@@ -61,7 +61,6 @@ describe "Users" do
 			before { sign_in @user }
 			describe "user index" do
 				before { get users_path, { :format => :json } }
-				its(:status) { should be(200) }
 				it "has the correct header" do
 					response.header['Content-Type'].should include 'application/json'
 				end
