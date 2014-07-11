@@ -1,5 +1,4 @@
 class Issue < ActiveRecord::Base
-	
 	before_validation :defaults
 	
 	validates :status, presence: true
@@ -10,7 +9,7 @@ class Issue < ActiveRecord::Base
 	
 	private
 	def defaults
-		status = t(:issue_status_new)
+		status ||= t(:issue_status_new)
 		severity ||= t(:issue_severity_normal)
 	end
 end
