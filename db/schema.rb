@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612114105) do
+ActiveRecord::Schema.define(version: 20140708105352) do
+
+  create_table "issues", force: true do |t|
+    t.string   "status"
+    t.string   "severity"
+    t.string   "short_description"
+    t.string   "long_description"
+    t.string   "component"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "location_users", force: true do |t|
     t.integer  "location_id"
@@ -27,13 +37,13 @@ ActiveRecord::Schema.define(version: 20140612114105) do
     t.string   "description"
     t.string   "address"
     t.string   "phone"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "latitude",      limit: 24
+    t.float    "longitude",     limit: 24
     t.string   "location_type"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "expiredate"
+    t.integer  "expiredate",               default: 0
   end
 
   add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true, using: :btree

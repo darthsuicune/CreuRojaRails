@@ -67,6 +67,8 @@ class User < ActiveRecord::Base
 			role == "technician"
 		when :manage_admin_users
 			false
+		when :manage_issues
+			role == "technician"
 		else
 			false
 		end
