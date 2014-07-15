@@ -28,5 +28,5 @@ CreuRoja::Application.configure do
   config.assets.debug = true
   
   #Activate the fast mode for bcrypt in development environment
-  ActiveModel::SecurePassword.min_cost = true;
+  ActiveModel::SecurePassword.min_cost = true
 end

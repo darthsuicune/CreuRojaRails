@@ -9,7 +9,7 @@ class Issue < ActiveRecord::Base
 	
 	private
 	def defaults
-		status ||= t(:issue_status_new)
-		severity ||= t(:issue_severity_normal)
+		self.status ||= "New"
+		self.severity ||= "Normal"
 	end
 end

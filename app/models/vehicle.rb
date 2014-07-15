@@ -19,6 +19,6 @@ class Vehicle < ActiveRecord::Base
 
 	protected
 	def defaults
-		indicative ||= license
+		self.indicative ||= license
 	end
 end

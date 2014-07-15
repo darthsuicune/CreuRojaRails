@@ -80,9 +80,9 @@ class User < ActiveRecord::Base
 	end
 	
 	def defaults
-		active ||= true
-		language ||= "ca"
-		role ||= "volunteer"
-		phone ||= I18n.t(:field_not_available)
+		self.active ||= true
+		self.language ||= "ca"
+		self.role ||= "volunteer"
+		self.phone ||= 0
 	end
 end

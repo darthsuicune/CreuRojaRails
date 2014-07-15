@@ -43,5 +43,10 @@
   <%= @location.active %>
 </p>
 
+<p>
+  <strong><%= t(:form_location_expiredate) %>:</strong>
+  <%= @location.expiredate %>
+</p>
+
 <%= link_to t(:resource_edit), edit_location_path(@location) %> |
 <%= link_to t(:resource_back), locations_path %>

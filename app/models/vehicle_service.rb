@@ -9,14 +9,14 @@ class VehicleService < ActiveRecord::Base
 	
 	private
 		def defaults
-			doc ||= 0
-			due ||= 0
-			tes ||= 0
-			ci  ||= 0
-			asi ||= 0
-			btp ||= 0
-			b1  ||= 0
-			acu ||= 0
-			per ||= 0
+			self.doc ||= 0
+			self.due ||= 0
+			self.tes ||= 0
+			self.ci  ||= 0
+			self.asi ||= 0
+			self.btp ||= 0
+			self.b1  ||= 0
+			self.acu ||= 0
+			self.per ||= 0
 		end
 end

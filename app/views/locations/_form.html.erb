@@ -43,6 +43,10 @@
 		<%= f.label :active, t(:form_location_active) %><br>
 		<%= f.check_box :active, { :checked => true } %>
 	</div>
+	<div class="field">
+		<%= f.label :expiredate, t(:form_location_expiredate) %><br>
+		<%= f.number_field :expiredate %>
+	</div>
 	<div class="actions">
 		<%= f.submit t(:form_location_submit)  %>
 	</div>
