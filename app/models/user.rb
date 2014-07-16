@@ -80,7 +80,6 @@ class User < ActiveRecord::Base
 	end
 	
 	def defaults
-		self.active ||= true
 		self.language ||= "ca"
 		self.role ||= "volunteer"
 		self.phone ||= 0

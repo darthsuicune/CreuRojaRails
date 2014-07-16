@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711155002) do
+ActiveRecord::Schema.define(version: 20140716110445) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140711155002) do
     t.float    "latitude",      limit: 24
     t.float    "longitude",     limit: 24
     t.string   "location_type"
-    t.boolean  "active"
+    t.boolean  "active",                   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "expiredate"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20140711155002) do
     t.string   "vehicle_type"
     t.integer  "places"
     t.string   "notes"
-    t.boolean  "operative"
+    t.boolean  "operative",    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
