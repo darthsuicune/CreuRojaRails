@@ -70,16 +70,18 @@ class User < ActiveRecord::Base
 			false
 		when :manage_issues
 			role == "technician"
+		when :edit_user
+			current_user == user
 		else
 			false
 		end
 	end
 
-	private
 	def create_session_token
-		sessions.build(token: SecureRandom.urlsafe_base64)
+		self.sessions.build(token: SecureRandom.urlsafe_base64)
 	end
 	
+	private
 	def defaults
 		self.language ||= "ca"
 		self.role ||= "volunteer"
