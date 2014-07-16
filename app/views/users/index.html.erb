@@ -9,6 +9,7 @@
 			<th><%= t(:form_user_email) %></th>
 			<th><%= t(:form_user_language) %></th>
 			<th><%= t(:form_user_role) %></th>
+			<th><%= t(:form_user_active) %></th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -22,6 +23,7 @@
 			<td><%= user.email %></td>
 			<td><%= user.language %></td>
 			<td><%= user.role %></td>
+			<td><%= user.active %></td>
 			<td><%= link_to t(:resource_show), user %></td>
 			<td><%= link_to t(:resource_edit), edit_user_path(user) if current_user == user %></td>
 			<% if current_user && current_user.allowed_to?(:destroy_users) %>

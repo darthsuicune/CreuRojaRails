@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
 			uniqueness: { case_sensitive: false }
 	validates :name, presence: true, length: { maximum: 60 }
 	validates :surname, presence: true, length: { maximum: 60 }
-	validates :password, presence: true, length: { minimum: 6 }
+	validates :password, presence: true, length: { minimum: 6 }, on: :create
+	validates :password, length: {minimum: 6 }, on: :update, allow_blank: true
   
 	after_validation { self.errors.messages.delete(:password_digest) }
 	
