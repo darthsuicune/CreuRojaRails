@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :operative, t(:form_vehicle_operative) %>
-    <%= f.check_box :operative, { :checked => @vehicle.active } %>
+    <%= f.check_box :operative, { :checked => @vehicle.operative } %>
   </div>
   <div class="actions">
     <%= f.submit t(:form_vehicle_submit) %>
