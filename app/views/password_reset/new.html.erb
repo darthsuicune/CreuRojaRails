@@ -1,0 +1,10 @@
+<% provide(:title, t(:recover_password)) %>
+<h1><%= t(:recover_password) %></h1>
+<div id="password_recovery_form">
+	<%= form_tag password_reset_path do %>
+		<%= label_tag "user_email", t(:form_user_email) %>
+		<%= text_field "user_email", "email" %>
+		
+		<%= submit_tag t(:password_recovery_submit), class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>
