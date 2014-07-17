@@ -119,6 +119,13 @@ en:
    issue_severity_not_important: "Not important"
    
    login_button: "Log in"
+   recover_password: "Recover password"
+   password_recovery_submit: "Submit"
+   password_recovery_email_sent: "We've sent you an e-mail with instructions to recover your password"
+   password_recovery_invalid_user: "Invalid user"
+   form_password_recovery_confirm: "Confirm"
+   
+   user_mailer.password_reset.subject: "Password recovery for the Red Cross service"
    
    resource_show: "Show"
    resource_edit: "Edit"

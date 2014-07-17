@@ -76,9 +76,24 @@ class User < ActiveRecord::Base
 			false
 		end
 	end
+	
+	def create_reset_password_token
+		self.resettoken = SecureRandom.urlsafe_base64
+		self.resettime = Time.now
+		if self.save!
+			UserMailer.password_reset(self).deliver
+		end
+	end
+	
+	def reset_password(password)
+		self.password = password
+		self.password_confirmation = password
+		self.save
+	end
 
 	def create_session_token
-		self.sessions.build(token: SecureRandom.urlsafe_base64)
+		session = self.sessions.build(token: SecureRandom.urlsafe_base64)
+		session.save
 	end
 	
 	private

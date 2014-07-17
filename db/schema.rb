@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716110445) do
+ActiveRecord::Schema.define(version: 20140717113455) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140716110445) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "resettoken"
-    t.integer  "resettime"
+    t.datetime "resettime"
     t.string   "language"
     t.string   "role"
     t.datetime "created_at"

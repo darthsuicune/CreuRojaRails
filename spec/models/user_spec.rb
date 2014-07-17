@@ -19,6 +19,8 @@ describe User do
 	it { should respond_to(:sessions) }
 	it { should respond_to(:user_types) }
 	it { should respond_to(:assemblies) }
+	it { should respond_to(:resettoken) }
+	it { should respond_to(:resettime) }
 
 	it { should be_valid }
 

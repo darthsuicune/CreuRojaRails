@@ -10,7 +10,10 @@ CreuRoja::Application.routes.draw do
 	get '/signout' => 'sessions#destroy'
 	get '/logout' => 'sessions#destroy'
 	get '/map' => 'static_pages#map'
-  
+	get '/password_reset/new'
+	get '/password_reset' => 'password_reset#new'
+	post '/password_reset' => 'password_reset#create'
+
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :services
@@ -19,6 +22,7 @@ CreuRoja::Application.routes.draw do
 	resources :vehicle_services, only: [:create, :update, :destroy]
 	resources :location_users, only: [:create, :update, :destroy]
 	resources :issues
+	resources :password_reset, only: [:new, :create, :edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

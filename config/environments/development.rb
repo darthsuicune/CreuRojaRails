@@ -29,4 +29,6 @@ CreuRoja::Application.configure do
   
   #Activate the fast mode for bcrypt in development environment
   ActiveModel::SecurePassword.min_cost = true
+  
+  config.action_mailer.default_url_options = { :host => "localhost" }
 end
