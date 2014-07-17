@@ -42,6 +42,10 @@
 			<%= f.select :role, available_roles %>
 		</div>
 		<div class="field">
+			<%= f.label :phone, t(:form_user_phone) %><br>
+			<%= f.text_field :phone%>
+		</div>
+		<div class="field">
 			<%= f.label :password, t(:form_user_password) %><br>
 			<%= f.password_field :password %>
 		</div>

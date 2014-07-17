@@ -10,9 +10,6 @@ CreuRoja::Application.routes.draw do
 	get '/signout' => 'sessions#destroy'
 	get '/logout' => 'sessions#destroy'
 	get '/map' => 'static_pages#map'
-	get '/password_reset/new'
-	get '/password_reset' => 'password_reset#new'
-	post '/password_reset' => 'password_reset#create'
 
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]

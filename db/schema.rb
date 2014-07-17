@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717113455) do
+ActiveRecord::Schema.define(version: 20140717155653) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20140717113455) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["resettoken"], name: "index_users_on_resettoken", unique: true, using: :btree
 
   create_table "vehicle_services", force: true do |t|
     t.integer  "vehicle_id"

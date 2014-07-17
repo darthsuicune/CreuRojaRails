@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-	before_filter :user_has_permissions, only: [:create, :new, :destroy]
+	before_filter :user_can_manage, only: [:create, :new, :destroy]
 	before_filter :signed_in_user
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
-	after_action :log
 
 	# GET /users
 	# GET /users.json
@@ -91,7 +90,7 @@ class UsersController < ApplicationController
 		params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active)
 	end
 	
-	def user_has_permissions
+	def user_can_manage
 		current_user.allowed_to?(:manage_technician_users)
 	end
 	

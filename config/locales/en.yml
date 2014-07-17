@@ -45,6 +45,7 @@ en:
    form_user_password_confirmation: "Confirm password"
    form_user_language: "Language"
    form_user_role: "Role"
+   form_user_phone: "Phone"
    form_user_active: "Active"
    form_user_submit: "Submit user"
    form_user_assemblies: "Assemblies"

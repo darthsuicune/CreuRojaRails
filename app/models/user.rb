@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 	
 	before_save { email.downcase!
 	              role.downcase unless role.nil? }
-	before_save :create_session_token
 	
 	before_validation :defaults
 
@@ -88,6 +87,7 @@ class User < ActiveRecord::Base
 	def reset_password(password)
 		self.password = password
 		self.password_confirmation = password
+		self.resettoken = nil
 		self.save
 	end
 
