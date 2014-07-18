@@ -62,30 +62,12 @@ class UsersController < ApplicationController
 	# DELETE /users/1
 	# DELETE /users/1.json
 	def destroy
-		if @user.nil?
-			redirect_to root_url
-		else
-			@user.active = false
-			@user.save
-			@user.sessions.clear
-			respond_to do |format|
-				format.html { redirect_to users_url }
-				format.json { head :no_content }
-			end
-		end
+		toggle_user false
+		@user.sessions.clear
 	end
 	
 	def activate
-		if @user.nil?
-			redirect_to root_url
-		else
-			@user.active = true
-			@user.save
-			respond_to do |format|
-				format.html { redirect_to users_url }
-				format.json { head :no_content }
-			end
-		end
+		toggle_user true
 	end
 
 	private
@@ -105,5 +87,19 @@ class UsersController < ApplicationController
 	
 	def user_can_manage
 		current_user.allowed_to?(:manage_technician_users)
+	end
+	
+	def toggle_user(activate)
+		if @user.nil?
+			redirect_to root_url
+		else
+			@user.active = activate
+			@user.save
+			@user.sessions.clear
+			respond_to do |format|
+				format.html { redirect_to users_url }
+				format.json { head :no_content }
+			end
+		end
 	end
 end
