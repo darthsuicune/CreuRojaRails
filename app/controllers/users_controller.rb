@@ -95,7 +95,6 @@ class UsersController < ApplicationController
 		else
 			@user.active = activate
 			@user.save
-			@user.sessions.clear
 			respond_to do |format|
 				format.html { redirect_to users_url }
 				format.json { head :no_content }
