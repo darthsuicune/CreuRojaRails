@@ -93,7 +93,4 @@ class UsersController < ApplicationController
 	def user_can_manage
 		current_user.allowed_to?(:manage_technician_users)
 	end
-	
-	def log
-	end
 end

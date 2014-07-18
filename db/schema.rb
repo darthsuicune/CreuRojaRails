@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717155653) do
+ActiveRecord::Schema.define(version: 20140718084249) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(version: 20140717155653) do
 
   add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true, using: :btree
   add_index "locations", ["name"], name: "index_locations_on_name", using: :btree
+
+  create_table "logs", force: true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "controller"
+  end
+
+  add_index "logs", ["action"], name: "index_logs_on_action", using: :btree
+  add_index "logs", ["controller"], name: "index_logs_on_controller", using: :btree
+  add_index "logs", ["ip"], name: "index_logs_on_ip", using: :btree
+  add_index "logs", ["user_id"], name: "index_logs_on_user_id", using: :btree
 
   create_table "services", force: true do |t|
     t.string   "name"
