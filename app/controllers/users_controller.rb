@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :user_can_manage, only: [:create, :new, :destroy]
 	before_filter :signed_in_user
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
+	before_action :set_user, only: [:show, :edit, :update, :destroy, :activate]
 
 	# GET /users
 	# GET /users.json
@@ -68,6 +68,19 @@ class UsersController < ApplicationController
 			@user.active = false
 			@user.save
 			@user.sessions.clear
+			respond_to do |format|
+				format.html { redirect_to users_url }
+				format.json { head :no_content }
+			end
+		end
+	end
+	
+	def activate
+		if @user.nil?
+			redirect_to root_url
+		else
+			@user.active = true
+			@user.save
 			respond_to do |format|
 				format.html { redirect_to users_url }
 				format.json { head :no_content }

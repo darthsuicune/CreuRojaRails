@@ -10,6 +10,7 @@ CreuRoja::Application.routes.draw do
 	get '/signout' => 'sessions#destroy'
 	get '/logout' => 'sessions#destroy'
 	get '/map' => 'static_pages#map'
+	post '/users/:id' => 'users#activate'
 
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
