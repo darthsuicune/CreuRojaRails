@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
 	before { @user = User.new( name: "Example", surname: "Example", email: "user@example.com", 
@@ -54,7 +54,7 @@ describe User do
 				addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
 				addresses.each do |invalid_address|
 					@user.email = invalid_address
-					@user.should_not be_valid
+					expect(@user).not_to be_valid
 				end
 			end
 		end
@@ -63,7 +63,7 @@ describe User do
 				addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
 				addresses.each do |valid_address|
 					@user.email = valid_address
-					@user.should be_valid
+					expect(@user).to be_valid
 				end
 			end
 		end
@@ -80,7 +80,7 @@ describe User do
 			it "should be lower case" do
 				@user.email = email1
 				@user.save
-				@user.reload.email.should == email1.downcase
+				expect(@user.reload.email).to eq(email1.downcase)
 			end
 		end
 	end
@@ -98,7 +98,8 @@ describe User do
 			it { should_not be_valid }
 		end
 		describe "confirmation is nil" do
-			before { @user.password_confirmation = nil }
+			before { @user.password = "asdfgh"
+			         @user.password_confirmation = nil }
 			it { should_not be_valid }
 		end
 	end
@@ -110,8 +111,11 @@ describe User do
 		end
 		describe "with invalid password" do
 			let(:user_for_invalid_password) { found_user.authenticate("invalid") }
+			
 			it { should_not eq(user_for_invalid_password) }
-			specify { user_for_invalid_password .should be_false }
+			it "should be false" do
+				expect(user_for_invalid_password).to be_falsey
+			end
 		end
 	end
 	describe "permission system" do

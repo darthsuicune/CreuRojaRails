@@ -3,9 +3,8 @@ class Issue < ActiveRecord::Base
 	
 	validates :status, presence: true
 	validates :severity, presence: true
-	validates :short_description, presence: true
+	validates :short_description, presence: true, length: { maximum: 60 }
 	validates :long_description, presence: true
-	validates :component, presence: true
 	
 	private
 	def defaults

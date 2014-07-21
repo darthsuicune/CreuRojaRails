@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Authentication Pages" do
 	before { visit signin_path }

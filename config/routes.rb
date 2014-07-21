@@ -1,7 +1,14 @@
 CreuRoja::Application.routes.draw do
+	# The priority is based upon order of creation: first created -> highest priority.
+	# See how all your routes lay out with "rake routes".
 
+	# You can have the root of your site routed with "root"
 	root 'static_pages#map'
+
+	# Example of named route that can be invoked with purchase_url(id: product.id)
+	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 	
+	#Regular routes
 	get '/home' => 'static_pages#home'
 	get '/contact' => 'static_pages#contact'
 	get '/about' => 'static_pages#about'
@@ -12,6 +19,7 @@ CreuRoja::Application.routes.draw do
 	get '/map' => 'static_pages#map'
 	post '/users/:id' => 'users#activate'
 
+	#Resource routes (maps HTTP verbs to controller actions automatically):
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :services
@@ -21,21 +29,6 @@ CreuRoja::Application.routes.draw do
 	resources :location_users, only: [:create, :update, :destroy]
 	resources :issues
 	resources :password_reset, only: [:new, :create, :edit, :update]
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
 
   # Example resource route with options:
   #   resources :products do

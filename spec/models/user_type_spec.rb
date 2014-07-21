@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserType do
   let(:user_type) { FactoryGirl.create(:user_type) }

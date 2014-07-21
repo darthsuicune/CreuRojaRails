@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe VehicleService do
 	let(:vehicle_service) { FactoryGirl.create(:vehicle_service) }

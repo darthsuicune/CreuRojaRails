@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe VehicleServicesController do
 	let(:vehicle) { FactoryGirl.create(:vehicle) }
@@ -7,6 +7,7 @@ describe VehicleServicesController do
 	
 	let(:valid_attributes) { { "vehicle_id" => vehicle.id, "service_id" => service.id } }
 	let(:valid_session) { {} }
+
 	before { sign_in user }
 	
 	describe "POST create" do
@@ -29,7 +30,7 @@ describe VehicleServicesController do
 
 		it "redirects to the service" do
 			delete :destroy, { :id => @vs.id }, valid_session
-			response.should redirect_to(service)
+			expect(response).to redirect_to(service)
 		end
 	end
 end

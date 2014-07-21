@@ -11,6 +11,6 @@ class UserMailer < ActionMailer::Base
 	def password_reset(user)
 		@user = user
 
-		mail to: "lapuente@localhost"
+		mail to: @user.email
 	end
 end

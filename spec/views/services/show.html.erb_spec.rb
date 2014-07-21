@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "services/show" do
 	let(:assembly) {FactoryGirl.create(:location) }

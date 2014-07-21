@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Issue, :type => :model do
 	before { @issue = FactoryGirl.create(:issue) }

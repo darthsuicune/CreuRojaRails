@@ -12,5 +12,9 @@ FactoryGirl.define do
 		language "ca"
 		role "Volunteer"
 		active true
+		
+		factory :admin do
+			role "Admin"
+		end
 	end
 end
