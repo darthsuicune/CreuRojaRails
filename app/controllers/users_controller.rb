@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_filter :user_can_manage, only: [:create, :new, :destroy]
 	before_filter :signed_in_user
+	before_filter :user_can_manage, only: [:create, :new, :destroy]
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :activate]
 
 	# GET /users
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
 	end
 	
 	def user_can_manage
-		current_user.allowed_to?(:manage_technician_users)
+		current_user.allowed_to?(:manage_technician_users) if current_user
 	end
 	
 	def toggle_user(activate)

@@ -14,7 +14,7 @@ describe "locations/show" do
 		expect(rendered).to match(/Phone/)
 		expect(rendered).to match(/1.5/)
 		expect(rendered).to match(/1.5/)
-		expect(rendered).to match(/Location Type/)
+		expect(rendered).to match(/Location type/)
 		expect(rendered).to match(/false/)
 	end
 end

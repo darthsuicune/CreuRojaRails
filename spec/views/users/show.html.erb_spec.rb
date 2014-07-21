@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "users/show" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
+		sign_in user
 		@user = FactoryGirl.create(:user)
 	end
 

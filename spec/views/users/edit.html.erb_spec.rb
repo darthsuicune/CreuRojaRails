@@ -1,17 +1,10 @@
 require 'rails_helper'
 
 describe "users/edit" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
-		@user = assign(:user, stub_model(User,
-			:name => "MyString",
-			:surname => "MyString",
-			:email => "MyString",
-			:password_digest => "MyString",
-			:resettoken => "MyString",
-			:resettime => 1,
-			:language => "MyString",
-			:role => "MyString"
-		))
+		sign_in user
+		@user = FactoryGirl.create(:user)
 	end
 
 	it "renders the edit user form" do

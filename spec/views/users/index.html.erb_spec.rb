@@ -1,37 +1,19 @@
 require 'rails_helper'
 
 describe "users/index" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
-		assign(:users, [
-			stub_model(User,
-			:name => "Name",
-			:surname => "Surname",
-			:email => "Email",
-			:password_digest => "Password Digest",
-			:resettoken => "Resettoken",
-			:resettime => 1,
-			:language => "Language",
-			:role => "Role"
-			),
-			stub_model(User,
-			:name => "Name",
-			:surname => "Surname",
-			:email => "Email",
-			:password_digest => "Password Digest",
-			:resettoken => "Resettoken",
-			:resettime => 1,
-			:language => "Language",
-			:role => "Role"
-			)
-		])
+		sign_in user
+		assign(:users, [@user = FactoryGirl.create(:user),@user = FactoryGirl.create(:user)])
 	end
 
 	it "renders a list of users" do
 		render
 		# Run the generator again with the --webrat flag if you want to use webrat matchers
-		assert_select "tr>td", :text => "Name Surname".to_s, :count => 2
-		assert_select "tr>td", :text => "Email".to_s, :count => 2
-		assert_select "tr>td", :text => "Language".to_s, :count => 2
-		assert_select "tr>td", :text => "Role".to_s, :count => 2
+		expect(rendered).to match "Name"
+		expect(rendered).to match "Surname"
+		expect(rendered).to match "E-mail"
+		expect(rendered).to match "Language"
+		expect(rendered).to match "Role"
 	end
 end

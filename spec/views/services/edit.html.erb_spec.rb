@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "services/edit" do
+	let(:user) { FactoryGirl.create(:admin) }
 	before(:each) do
+		sign_in user
 		@service = FactoryGirl.create(:service)
 	end
 
@@ -12,7 +14,6 @@ describe "services/edit" do
 		assert_select "form[action=?][method=?]", service_path(@service), "post" do
 			assert_select "input#service_name[name=?]", "service[name]"
 			assert_select "input#service_description[name=?]", "service[description]"
-			assert_select "input#service_assembly_id[name=?]", "service[assembly_id]"
 			assert_select "input#service_code[name=?]", "service[code]"
 		end
 	end

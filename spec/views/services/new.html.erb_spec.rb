@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "services/new" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
+		sign_in user
 		@service = FactoryGirl.create(:service)
 	end
 

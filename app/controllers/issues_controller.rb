@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
   before_action :is_valid_user
 
   # GET /issues
@@ -74,6 +75,6 @@ class IssuesController < ApplicationController
     end
 	 
 	 def is_valid_user
-		 current_user.allowed_to?(:manage_issues)
+		current_user.allowed_to?(:manage_issues)
 	 end
 end

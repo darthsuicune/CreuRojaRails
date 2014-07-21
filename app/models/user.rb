@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
 		when :manage_issues
 			role == "technician"
 		when :edit_user
-			current_user == user
+			role == "technician"
 		else
 			false
 		end

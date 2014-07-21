@@ -1,17 +1,10 @@
 require 'rails_helper'
 
 describe "users/new" do
+	let(:admin) { FactoryGirl.create(:admin) }
 	before(:each) do
-		assign(:user, stub_model(User,
-			:name => "MyString",
-			:surname => "MyString",
-			:email => "MyString",
-			:password_digest => "MyString",
-			:resettoken => "MyString",
-			:resettime => 1,
-			:language => "MyString",
-			:role => "MyString"
-		).as_new_record)
+		sign_in admin
+		@user = FactoryGirl.create(:user)
 	end
 
 	it "renders new user form" do

@@ -2,16 +2,7 @@ require 'rails_helper'
 
 describe "vehicles/edit" do
   before(:each) do
-    @vehicle = assign(:vehicle, stub_model(Vehicle,
-      :brand => "MyString",
-      :model => "MyString",
-      :license => "MyString",
-      :indicative => "MyString",
-      :vehicle_type => "MyString",
-      :places => 1,
-      :notes => "MyString",
-      :operative => false
-    ))
+    @vehicle = FactoryGirl.create(:vehicle)
   end
 
   it "renders the edit vehicle form" do
