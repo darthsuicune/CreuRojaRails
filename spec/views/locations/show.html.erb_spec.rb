@@ -8,13 +8,13 @@ describe "locations/show" do
 	it "renders attributes in <p>" do
 		render
 		# Run the generator again with the --webrat flag if you want to use webrat matchers
-		rendered.should match(/Name/)
-		rendered.should match(/Description/)
-		rendered.should match(/Address/)
-		rendered.should match(/Phone/)
-		rendered.should match(/1.5/)
-		rendered.should match(/1.5/)
-		rendered.should match(/Location Type/)
-		rendered.should match(/false/)
+		expect(rendered).to match(/Name/)
+		expect(rendered).to match(/Description/)
+		expect(rendered).to match(/Address/)
+		expect(rendered).to match(/Phone/)
+		expect(rendered).to match(/1.5/)
+		expect(rendered).to match(/1.5/)
+		expect(rendered).to match(/Location Type/)
+		expect(rendered).to match(/false/)
 	end
 end

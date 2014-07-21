@@ -3,15 +3,15 @@ require 'rails_helper'
 describe ApplicationHelper do
 	describe "full title" do
 		it "should contain full title" do
-			full_title("foo").should =~ / | foo/
+			expect(full_title("foo")).to match(/| foo/)
 		end
 		
 		it "should contain base title" do
-			full_title("").should =~ /[Creu|Cruz] Roja|Red Cross/
+			expect(full_title("")).to match /[Creu|Cruz] Roja|Red Cross/
 		end
 		
 		it "should not have a |" do
-			full_title("").should_not =~ /\|/
+			expect(full_title("")).not_to match(/\|/)
 		end
 	end
 end

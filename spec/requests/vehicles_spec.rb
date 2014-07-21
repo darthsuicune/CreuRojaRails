@@ -5,7 +5,7 @@ describe "Vehicles" do
 		describe "GET /vehicles" do
 			it "redirects to login" do
 				get vehicles_path
-				response.status.should be(302)
+				expect(response.status).to be(302)
 			end
 		end
 	end
@@ -16,7 +16,7 @@ describe "Vehicles" do
 			it "shows the vehicle index" do
 				# Run the generator again with the --webrat flag if you want to use webrat methods/matchers
 				get vehicles_path
-				response.status.should be(200)
+				expect(response.status).to be(200)
 			end
 		end
 	end

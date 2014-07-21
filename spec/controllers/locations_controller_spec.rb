@@ -13,7 +13,7 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 #
 # Compared to earlier versions of this generator, there is very limited use of
-# stubs and message expectations in this spec.  Stubs are only used when there
+# to receives and message expectations in this spec.  Stubs are only used when there
 # is no simpler way to get a handle on the object needed for the example.
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
@@ -121,14 +121,14 @@ describe LocationsController do
 			describe "with invalid params" do
 				it "assigns a newly created but unsaved location as @location" do
 					# Trigger the behavior that occurs when invalid params are submitted
-					Location.any_instance.stub(:save).and_return(false)
+					allow_any_instance_of(Location).to receive(:save).and_return(false)
 					post :create, {:location => { "name" => "invalid value" }}, valid_session
 					expect(assigns(:location)).to be_a_new(Location)
 				end
 
 				it "re-renders the 'new' template" do
 					# Trigger the behavior that occurs when invalid params are submitted
-					Location.any_instance.stub(:save).and_return(false)
+					allow_any_instance_of(Location).to receive(:save).and_return(false)
 					post :create, {:location => { "name" => "invalid value" }}, valid_session
 					expect(response).to render_template("new")
 				end
@@ -143,7 +143,7 @@ describe LocationsController do
 					# specifies that the Location created on the previous line
 					# receives the :update_attributes message with whatever params are
 					# submitted in the request.
-					Location.any_instance.should_receive(:update).with({ "name" => "MyString" })
+					expect_any_instance_of(Location).to receive(:update).with({ "name" => "MyString" })
 					put :update, {:id => location.to_param, :location => { "name" => "MyString" }}, valid_session
 				end
 
@@ -164,7 +164,7 @@ describe LocationsController do
 				it "assigns the location as @location" do
 					location = Location.create! valid_attributes
 					# Trigger the behavior that occurs when invalid params are submitted
-					Location.any_instance.stub(:save).and_return(false)
+					allow_any_instance_of(Location).to receive(:save).and_return(false)
 					put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
 					expect(assigns(:location)).to eq(location)
 				end
@@ -172,7 +172,7 @@ describe LocationsController do
 				it "re-renders the 'edit' template" do
 					location = Location.create! valid_attributes
 					# Trigger the behavior that occurs when invalid params are submitted
-					Location.any_instance.stub(:save).and_return(false)
+					allow_any_instance_of(Location).to receive(:save).and_return(false)
 					put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
 					expect(response).to render_template("edit")
 				end
@@ -181,13 +181,21 @@ describe LocationsController do
 
 		describe "DELETE destroy" do
 			let(:location) { Location.create! valid_attributes }
-			before { delete :destroy, {:id => location.to_param}, valid_session }
 			
 			it "deactivates the requested location" do
-				expect(location).not_to be_active
+				expect {
+					delete :destroy, {:id => location.to_param}, valid_session
+				}.to change(location, :active).to false
+			end
+			
+			it "doesn't change the location count" do
+				expect {
+					delete :destroy, {:id => location.to_param}, valid_session
+				}.not_to change(Location, :count)
 			end
 
 			it "redirects to the locations list" do
+				delete :destroy, {:id => location.to_param}, valid_session
 				expect(response).to redirect_to(locations_url)
 			end
 		end

@@ -8,10 +8,10 @@ describe "users/show" do
 	it "renders attributes in <p>" do
 		render
 		# Run the generator again with the --webrat flag if you want to use webrat matchers
-		rendered.should match(/[Name|Nombre]/)
-		rendered.should match(/[Surname|Apellido]/)
-		rendered.should match(/[E-mail|Correo]/)
-		rendered.should match(/[Language|Idioma]/)
-		rendered.should match(/Rol/)
+		expect(rendered).to match(/[Name|Nombre]/)
+		expect(rendered).to match(/[Surname|Apellido]/)
+		expect(rendered).to match(/[E-mail|Correo]/)
+		expect(rendered).to match(/[Language|Idioma]/)
+		expect(rendered).to match(/Rol/)
 	end
 end

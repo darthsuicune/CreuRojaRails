@@ -62,14 +62,14 @@ describe "Users" do
 			describe "user index" do
 				before { get users_path, { :format => :json } }
 				it "has the correct header" do
-					response.header['Content-Type'].should include 'application/json'
+					expect(response.header['Content-Type']).to include 'application/json'
 				end
 			end
 			describe "individual user" do
 				describe "existing user" do
 					before { get user_path( { :id => @user.id, :format => :json } ) }
 					it "has the correct header" do
-						response.header['Content-Type'].should include 'application/json'
+						expect(response.header['Content-Type']).to include 'application/json'
 					end
 					it "shows a restricted Json" do
 						json = { :id => @user.id,
@@ -80,7 +80,7 @@ describe "Users" do
 									:role => @user.role,
 									:created_at => @user.created_at,
 									:updated_at => @user.updated_at }.to_json
-						response.body.should == json
+						expect(response.body).to eq(json)
 					end
 				end
 				describe "non existing user" do

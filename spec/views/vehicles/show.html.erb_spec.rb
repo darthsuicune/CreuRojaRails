@@ -17,13 +17,13 @@ describe "vehicles/show" do
   it "renders attributes in <p>" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Brand/)
-    rendered.should match(/Model/)
-    rendered.should match(/License/)
-    rendered.should match(/Indicative/)
-    rendered.should match(/Vehicle Type/)
-    rendered.should match(/1/)
-    rendered.should match(/Notes/)
-    rendered.should match(/false/)
+    expect(rendered).to match(/Brand/)
+    expect(rendered).to match(/Model/)
+    expect(rendered).to match(/License/)
+    expect(rendered).to match(/Indicative/)
+    expect(rendered).to match(/Vehicle Type/)
+    expect(rendered).to match(/1/)
+    expect(rendered).to match(/Notes/)
+    expect(rendered).to match(/false/)
   end
 end

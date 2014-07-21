@@ -19,7 +19,7 @@ describe VehicleServicesHelper do
 		before { VehicleService.create!(service_id: service1.id, vehicle_id: vehicle1.id) }
 		it "should not show busy vehicles" do
 			should_result = vehicle2.indicative << ", " << vehicle2.license
-			get_available_vehicles(service2).should eq([[should_result, vehicle2.id]])
+			expect(get_available_vehicles(service2)).to eq([[should_result, vehicle2.id]])
 		end
 	end
 end

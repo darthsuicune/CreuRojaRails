@@ -24,8 +24,21 @@ describe UsersController do
 	# User. As you add validations to User, be sure to
 	# adjust the attributes here as well.
 	let(:valid_attributes) { { "name" => "MyString", "surname" => "MyString2",
-	                           "email" => "email1@something.com", "password" => "MyPass", 
-	                           "password_confirmation" => "MyPass", "assemblies" => { "location_id" => 1 } } }
+										"email" => "email1@something.com", "password" => "MyPass", 
+										"password_confirmation" => "MyPass", "assemblies" => { "location_id" => 1 } } }
+	
+	let(:full_attributes) { { "name" => "MyString", 
+										"surname" => "MyString2",
+										"email" => "email1@something.com", 
+										"phone" => "13470198723",
+										"resettoken" => "123öjipouhn09819832r190832",
+										"resettime" => Time.now,
+										"language" => "ca",
+										"role" => "volunteer",
+										"active" => true,
+										"password" => "MyPass", 
+										"password_confirmation" => "MyPass", 
+										"assemblies" => { "location_id" => 1 } } }
 
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in
@@ -80,6 +93,12 @@ describe UsersController do
 					post :create, { :user => valid_attributes }, valid_session
 				}.to change(User, :count).by(1)
 			end
+			
+			it "creates a full user" do
+				expect {
+					post :create, { :user => full_attributes }, valid_session
+				}.to change(User, :count).by(1)
+			end
 
 			it "assigns a newly created user as @user" do
 				post :create, { :user => valid_attributes }, valid_session
@@ -96,14 +115,14 @@ describe UsersController do
 		describe "with invalid params" do
 			it "assigns a newly created but unsaved user as @user" do
 				# Trigger the behavior that occurs when invalid params are submitted
-				User.any_instance.stub(:save).and_return(false)
+				expect_any_instance_of(User).to receive(:save).and_return(false)
 				post :create, {:user => { "name" => "invalid value" * 6 }}, valid_session
 				expect(assigns(:user)).to be_a_new(User)
 			end
 
 			it "re-renders the 'new' template" do
 				# Trigger the behavior that occurs when invalid params are submitted
-				User.any_instance.stub(:save).and_return(false)
+				expect_any_instance_of(User).to receive(:save).and_return(false)
 				post :create, {:user => { "name" => "invalid value" * 6 }}, valid_session
 				expect(response).to render_template("new")
 			end
@@ -117,7 +136,7 @@ describe UsersController do
 				# specifies that the User created on the previous line
 				# receives the :update_attributes message with whatever params are
 				# submitted in the request.
-				User.any_instance.should_receive(:update).with({ "name" => "MyString" })
+				expect_any_instance_of(User).to receive(:update).with({ "name" => "MyString" })
 				put :update, {:id => @user.to_param, :user => { "name" => "MyString" }}, valid_session
 			end
 
@@ -134,7 +153,7 @@ describe UsersController do
 
 		describe "with invalid params" do
 			before do
-				User.any_instance.stub(:save).and_return(false)
+				allow_any_instance_of(User).to receive(:save).and_return(false)
 				put :update, {:id => @user.to_param, :user => { "name" => "invalid value" }}, valid_session
 			end
 			it "assigns the user as @user" do
@@ -150,24 +169,36 @@ describe UsersController do
 	end
 
 	describe "DELETE destroy" do
-		before { delete :destroy, {:id => @user.to_param}, valid_session }
+		let(:user) { FactoryGirl.create(:user) }
 		
 		it "deactivates the requested user but doesn't delete it" do
-			expect(@user).not_to be_active
-			expect(User, :count).not_to change
+			expect { 
+				delete :destroy, {:id => user.to_param}, valid_session 
+			}.to change(user, :active).to(false)
+		end
+		
+		it "doesn't change user count" do
+			expect {
+				delete :destroy, {:id => user.to_param}, valid_session 
+			}.not_to change(User, :count)
 		end
 
 		it "redirects to the users list" do
+			delete :destroy, {:id => user.to_param}, valid_session 
 			expect(response).to redirect_to(users_url)
 		end
 	end
 	
-	describe "activate" do
-		before { @user.active = false
-					@user.save
-					post :activate, { :id => @user.to_param }, valid_session }
+	describe "POST activate" do
+		let(:user) { FactoryGirl.create(:user) }
+		
+		before { user.active = false
+					user.save }
+		
 		it "reactivates the user" do
-			expect(@user).to be_active
+			expect {
+				post :activate, { :id => user.to_param }, valid_session
+			}.to change(user, :active).to(true)
 		end
 	end
 end
