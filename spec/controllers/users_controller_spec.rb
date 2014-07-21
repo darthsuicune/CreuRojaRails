@@ -164,7 +164,10 @@ describe UsersController do
 	
 	describe "activate" do
 		before { @user.active = false
-		         @user.save }
-		expect { 
+					@user.save
+					post :activate, { :id => @user.to_param }, valid_session }
+		it "reactivates the user" do
+			expect(@user).to be_active
+		end
 	end
 end
