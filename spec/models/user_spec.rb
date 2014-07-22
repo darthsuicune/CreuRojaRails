@@ -129,7 +129,7 @@ describe User do
 			before { @user.role = "technician"
 						@user.save }
 			it { should be_allowed_to(:see_own_profile) }
-			it { should be_allowed_to(:manage_technician_users) }
+			it { should be_allowed_to(:manage_users) }
 			it { should_not be_allowed_to(:manage_admin_users) }
 		end
 		describe "volunteers" do
