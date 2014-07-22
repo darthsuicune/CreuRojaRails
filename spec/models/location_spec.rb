@@ -12,7 +12,6 @@ describe Location do
 	it { should respond_to("location_type") }
 	it { should respond_to("services") }
 	it { should respond_to("users") }
-	it { should respond_to("expiredate") }
 	it { should respond_to("active") }
 	
 	describe "with invalid parameters" do

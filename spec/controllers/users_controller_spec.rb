@@ -45,23 +45,23 @@ describe UsersController do
 	# UsersController. Be sure to keep this updated too.
 	let(:valid_session) { {} }
 	
+	let(:user) { FactoryGirl.create(:admin) }
 	before(:each) do
-		@user = FactoryGirl.create(:admin)
-		sign_in @user
+		sign_in user
 	end
 
 	describe "GET index" do
 		it "assigns all users as @users" do
 			get :index, {}, valid_session
-			expect(assigns(:users)).to eq([@user])
+			expect(assigns(:users)).to eq([user])
 		end
 	end
 
 	describe "GET show" do
 		describe "existing user" do
-			before { get :show, {:id => @user.to_param}, valid_session }
+			before { get :show, {:id => user.to_param}, valid_session }
 			it "assigns the requested user as @user" do
-				expect(assigns(:user)).to eq(@user)
+				expect(assigns(:user)).to eq(user)
 			end
 		end
 		describe "non-existing user" do
@@ -81,8 +81,8 @@ describe UsersController do
 
 	describe "GET edit" do
 		it "assigns the requested user as @user" do
-			get :edit, {:id => @user.to_param}, valid_session
-			expect(assigns(:user)).to eq(@user)
+			get :edit, {:id => user.to_param}, valid_session
+			expect(assigns(:user)).to eq(user)
 		end
 	end
 
@@ -137,28 +137,28 @@ describe UsersController do
 				# receives the :update_attributes message with whatever params are
 				# submitted in the request.
 				expect_any_instance_of(User).to receive(:update).with({ "name" => "MyString" })
-				put :update, {:id => @user.to_param, :user => { "name" => "MyString" }}, valid_session
+				put :update, {:id => user.to_param, :user => { "name" => "MyString" }}, valid_session
 			end
 
 			it "assigns the requested user as @user" do
-				put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
-				expect(assigns(:user)).to eq(@user)
+				put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+				expect(assigns(:user)).to eq(user)
 			end
 
 			it "redirects to the user" do
-				put :update, {:id => @user.to_param, :user => valid_attributes}, valid_session
-				expect(response).to redirect_to(@user)
+				put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+				expect(response).to redirect_to(user)
 			end
 		end
 
 		describe "with invalid params" do
 			before do
 				allow_any_instance_of(User).to receive(:save).and_return(false)
-				put :update, {:id => @user.to_param, :user => { "name" => "invalid value" }}, valid_session
+				put :update, {:id => user.to_param, :user => { "name" => "invalid value" }}, valid_session
 			end
 			it "assigns the user as @user" do
 				# Trigger the behavior that occurs when invalid params are submitted
-				expect(assigns(:user)).to eq(@user)
+				expect(assigns(:user)).to eq(user)
 			end
 
 			it "re-renders the 'edit' template" do
@@ -169,36 +169,16 @@ describe UsersController do
 	end
 
 	describe "DELETE destroy" do
-		let(:user) { FactoryGirl.create(:user) }
-		
-		it "deactivates the requested user but doesn't delete it" do
+		before { @user = FactoryGirl.create(:user) }
+		it "destroys the requested user" do
 			expect { 
-				delete :destroy, {:id => user.to_param}, valid_session 
-			}.to change(user, :active).to(false)
-		end
-		
-		it "doesn't change user count" do
-			expect {
-				delete :destroy, {:id => user.to_param}, valid_session 
-			}.not_to change(User, :count)
+				delete :destroy, {:id => @user.to_param}, valid_session 
+			}.to change(User, :count).by(-1)
 		end
 
 		it "redirects to the users list" do
-			delete :destroy, {:id => user.to_param}, valid_session 
+			delete :destroy, {:id => @user.to_param}, valid_session 
 			expect(response).to redirect_to(users_url)
-		end
-	end
-	
-	describe "POST activate" do
-		let(:user) { FactoryGirl.create(:user) }
-		
-		before { user.active = false
-					user.save }
-		
-		it "reactivates the user" do
-			expect {
-				post :activate, { :id => user.to_param }, valid_session
-			}.to change(user, :active).to(true)
 		end
 	end
 end

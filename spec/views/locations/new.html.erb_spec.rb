@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe "locations/new" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
-		@location = FactoryGirl.create(:location)
+		sign_in user
+		@location = Location.new
 	end
 
 	it "renders new location form" do

@@ -17,7 +17,8 @@ CreuRoja::Application.routes.draw do
 	get '/signout' => 'sessions#destroy'
 	get '/logout' => 'sessions#destroy'
 	get '/map' => 'static_pages#map'
-	post '/users/:id' => 'users#activate'
+	post '/users/:id' => 'users#update'
+	post '/locations/:id' => 'locations#update'
 
 	#Resource routes (maps HTTP verbs to controller actions automatically):
 	resources :users

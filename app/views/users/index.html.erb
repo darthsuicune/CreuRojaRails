@@ -27,12 +27,12 @@
 			<td><%= link_to t(:resource_show), user %></td>
 			<td><%= link_to t(:resource_edit), edit_user_path(user) if user == current_user || current_user.allowed_to?(:edit_user) %></td>
 			<% if user.active %>
-				<% if current_user && current_user.allowed_to?(:destroy_users) %>
-				<td><%= link_to t(:resource_destroy), user, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+				<% if current_user && current_user != user && current_user.allowed_to?(:destroy_users) %>
+				<td><%= link_to t(:deactivate_user), user_path(user, :user => {:active => false}), method: :put, data: { confirm: t(:resource_destroy_confirm) } %></td>
 				<% end %>
 			<% else %>
 				<% if current_user && current_user.allowed_to?(:destroy_users) %>
-				<td><%= link_to t(:reactivate_user), user, method: :activate %></td>
+				<td><%= link_to t(:reactivate_user), user_path(user, :user => {:active => true}), method: :put %></td>
 				<% end %>
 			<% end %>
 			</tr>

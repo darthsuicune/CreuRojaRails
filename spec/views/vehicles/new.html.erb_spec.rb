@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "vehicles/new" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
+		sign_in user
 		@vehicle = Vehicle.new
 	end
 

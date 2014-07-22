@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
 	before_filter :signed_in_user
-	before_action :set_location, only: [:show, :edit, :update, :destroy]
+	before_action :set_location, only: [:show, :edit, :update, :destroy, :activate]
 
 	# GET /locations
 	# GET /locations.json
@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @location.update(location_params)
-				format.html { redirect_to @location, notice: I18n.t(:location_updated) }
+				format.html { redirect_to locations_path, notice: I18n.t(:location_updated) }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }
@@ -55,8 +55,7 @@ class LocationsController < ApplicationController
 	# DELETE /locations/1
 	# DELETE /locations/1.json
 	def destroy
-		@location.active = false
-		@location.save
+		@location.destroy
 		respond_to do |format|
 			format.html { redirect_to locations_url }
 			format.json { head :no_content }

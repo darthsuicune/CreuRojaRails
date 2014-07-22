@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :signed_in_user
-	before_filter :user_can_manage, only: [:create, :new, :destroy]
+	before_filter :user_can_manage, only: [:create, :new, :destroy, :update]
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :activate]
 
 	# GET /users
@@ -62,12 +62,15 @@ class UsersController < ApplicationController
 	# DELETE /users/1
 	# DELETE /users/1.json
 	def destroy
-		toggle_user false
-		@user.sessions.clear
-	end
-	
-	def activate
-		toggle_user true
+		if @user.nil?
+			redirect_to root_url
+		else
+			@user.destroy
+			respond_to do |format|
+				format.html { redirect_to users_url }
+				format.json { head :no_content }
+			end
+		end
 	end
 
 	private
@@ -86,19 +89,6 @@ class UsersController < ApplicationController
 	end
 	
 	def user_can_manage
-		current_user.allowed_to?(:manage_technician_users) if current_user
-	end
-	
-	def toggle_user(activate)
-		if @user.nil?
-			redirect_to root_url
-		else
-			@user.active = activate
-			@user.save
-			respond_to do |format|
-				format.html { redirect_to users_url }
-				format.json { head :no_content }
-			end
-		end
+		current_user.allowed_to?(:manage_users) if current_user
 	end
 end

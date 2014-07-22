@@ -4,7 +4,7 @@ describe "services/new" do
 	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
 		sign_in user
-		@service = FactoryGirl.create(:service)
+		@service = Service.new
 	end
 
 	it "renders new service form" do
@@ -14,7 +14,7 @@ describe "services/new" do
 		assert_select "form[action=?][method=?]", services_path, "post" do
 			assert_select "input#service_name[name=?]", "service[name]"
 			assert_select "input#service_description[name=?]", "service[description]"
-			assert_select "input#service_assembly_id[name=?]", "service[assembly_id]"
+			assert_select "select#service_assembly_id[name=?]", "service[assembly_id]"
 			assert_select "input#service_code[name=?]", "service[code]"
 		end
 	end

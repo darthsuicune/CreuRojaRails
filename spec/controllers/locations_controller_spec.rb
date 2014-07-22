@@ -156,7 +156,7 @@ describe LocationsController do
 				it "redirects to the location" do
 					location = Location.create! valid_attributes
 					put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
-					expect(response).to redirect_to(location)
+					expect(response).to redirect_to(locations_path)
 				end
 			end
 
@@ -180,25 +180,18 @@ describe LocationsController do
 		end
 
 		describe "DELETE destroy" do
-			let(:location) { Location.create! valid_attributes }
+			before { @location = FactoryGirl.create(:location) }
 			
-			it "deactivates the requested location" do
+			it "destroys the requested location" do
 				expect {
-					delete :destroy, {:id => location.to_param}, valid_session
-				}.to change(location, :active).to false
-			end
-			
-			it "doesn't change the location count" do
-				expect {
-					delete :destroy, {:id => location.to_param}, valid_session
-				}.not_to change(Location, :count)
+					delete :destroy, {:id => @location.to_param}, valid_session
+				}.to change(Location, :count).by(-1)
 			end
 
 			it "redirects to the locations list" do
-				delete :destroy, {:id => location.to_param}, valid_session
+				delete :destroy, {:id => @location.to_param}, valid_session
 				expect(response).to redirect_to(locations_url)
 			end
 		end
 	end
-
 end

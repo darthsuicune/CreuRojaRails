@@ -50,6 +50,7 @@ en:
    form_user_submit: "Submit user"
    form_user_assemblies: "Assemblies"
    reactivate_user: "Reactivate user"
+   deactivate_user: "Deactivate user"
    
    form_location_show_title: "View location"
    form_location_edit_title: "Edit location"
@@ -64,6 +65,8 @@ en:
    form_location_active: "Active"
    form_location_expiredate: "Expire date"
    form_location_submit: "Submit location"
+   reactivate_location: "Reactivate location"
+   deactivate_location: "Deactivate location"
    
    form_vehicle_show_title: "View vehicle"
    form_vehicle_edit_title: "Edit vehicle"

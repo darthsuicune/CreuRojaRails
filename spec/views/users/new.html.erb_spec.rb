@@ -4,7 +4,7 @@ describe "users/new" do
 	let(:admin) { FactoryGirl.create(:admin) }
 	before(:each) do
 		sign_in admin
-		@user = FactoryGirl.create(:user)
+		@user = User.new
 	end
 
 	it "renders new user form" do

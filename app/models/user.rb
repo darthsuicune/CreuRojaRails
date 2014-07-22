@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 			role == "technician"
 		when :add_to_any_assembly
 			false
-		when :manage_technician_users
+		when :manage_users
 			role == "technician"
 		when :assign_vehicle_to_service
 			role == "technician"
