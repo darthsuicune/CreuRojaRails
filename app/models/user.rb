@@ -23,24 +23,20 @@ class User < ActiveRecord::Base
   
 	after_validation { self.errors.messages.delete(:password_digest) }
 	
-	def get_map_markers
-		[
-			{ 
-				"lat" => 41.40, "lng" => 2.20,
-				"picture" => {
-					"width" => 36, "height" => 36,
-					"url" => "assets/asamblea.png"
-				},
-				"infowindow" => "Hello point1"
-			},{ 
-				"lat" => 41.39, "lng" => 2.19,
-				"picture" => {
-					"width" => 36, "height" => 36,
-					"url" => "assets/terrestre.png"
-				},
-				"infowindow" => "Hello point2"
-			}
-		]
+	def get_locations
+		locations = Location.all.where("active = true")
+		hash = Gmaps4rails.build_markers(locations) do |location,marker|
+			marker_picture = "assets/#{location.location_type}.png"
+			marker.lat location.latitude
+			marker.lng location.longitude
+			marker.picture({
+				"url" => marker_picture,
+				"width" => 36,
+				"height" => 36
+			})
+			marker.infowindow "asdf"
+		end
+		hash
 	end
 
 	def allowed_to?(action)

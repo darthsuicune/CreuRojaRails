@@ -19,6 +19,6 @@ handler.buildMap({
 			id: 'map'
 		}
 	}, function(){
-		markers = handler.addMarkers(<%= raw current_user.get_map_markers.to_json %>);
+		markers = handler.addMarkers(<%= raw current_user.get_locations.to_json %>);
 });
 </script>
