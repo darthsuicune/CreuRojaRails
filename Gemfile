@@ -59,11 +59,11 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
-# Use Gmaps
-gem 'gmaps4rails'
+# Use Gmaps NOT ANYMORE
+# gem 'gmaps4rails'
 
-# Required for execjs
-gem 'therubyracer'
+# Required for execjs NOT ANYMORE
+# gem 'therubyracer'
 
 # Use unicorn as the app server
 # gem 'unicorn'

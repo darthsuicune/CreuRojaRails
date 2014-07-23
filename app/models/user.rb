@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 	after_validation { self.errors.messages.delete(:password_digest) }
 	
 	def get_locations
-		Location.all.where("active=1")
+		Location.all.where(:active == 1).select([:latitude,:longitude,:location_type,:name,:description,:phone,:address])
 	end
 
 	def allowed_to?(action)
