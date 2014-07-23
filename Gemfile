@@ -62,6 +62,9 @@ gem 'bcrypt-ruby'
 # Use Gmaps
 gem 'gmaps4rails'
 
+# Required for execjs
+gem 'therubyracer'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
