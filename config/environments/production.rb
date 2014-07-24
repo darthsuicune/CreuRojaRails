@@ -7,4 +7,6 @@ CreuRoja::Application.configure do
 	
 	#Make rails serve the static assets as well
 	config.serve_static_assets = true
+	
+	config.action_mailer.smtp_settings = { enable_starttls_auto: false, openssl_verify_mode: "none" }
 end
