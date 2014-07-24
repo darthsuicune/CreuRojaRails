@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :signed_in_user
-	before_filter :user_can_manage, only: [:create, :new, :destroy, :update]
+	before_filter :is_valid_user, only: [:create, :new, :destroy, :update]
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :activate]
 
 	# GET /users
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
 		params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, :phone)
 	end
 	
-	def user_can_manage
-		current_user.allowed_to?(:manage_users) if current_user
+	def is_valid_user
+		current_user && current_user.allowed_to?(:manage_users)
 	end
 end

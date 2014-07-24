@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
 		return false if active == false
 		return true if role == "admin"
 		case action
+		when :see_map
+			role == "volunteer" || role == "technician"
 		when :see_own_profile
 			role == "volunteer" || role == "technician"
 		when :see_user_list
@@ -54,6 +56,12 @@ class User < ActiveRecord::Base
 		when :manage_admin_users
 			false
 		when :manage_issues
+			role == "technician"
+		when :manage_locations
+			role == "technician"
+		when :manage_services
+			role == "technician"
+		when :manage_vehicles
 			role == "technician"
 		when :edit_user
 			role == "technician"

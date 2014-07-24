@@ -1,6 +1,7 @@
 class VehiclesController < ApplicationController
 	before_filter :signed_in_user
 	before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+	before_filter :is_valid_user, only: [:new, :create, :edit, :update, :destroy]
 
 	# GET /vehicles
 	# GET /vehicles.json
@@ -71,5 +72,9 @@ class VehiclesController < ApplicationController
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def vehicle_params
 			params.require(:vehicle).permit(:brand, :model, :license, :indicative, :vehicle_type, :places, :notes, :operative)
+		end
+		
+		def is_valid_user
+			current_user && current_user.allowed_to?(:manage_vehicles)
 		end
 end

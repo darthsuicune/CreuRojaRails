@@ -1,5 +1,6 @@
 class VehicleServicesController < ApplicationController
 	before_filter :signed_in_user
+	before_filter :is_valid_user, only: [:new, :create, :edit, :update, :destroy]
 	
 	def create
 		@vehicle_service = VehicleService.new(vehicle_service_params)
@@ -25,7 +26,11 @@ class VehicleServicesController < ApplicationController
 	end
 	
 	private
-	def vehicle_service_params
-		params.require(:vehicle_service).permit(:vehicle_id, :service_id, :doc, :due, :tes, :ci, :asi, :btp, :b1, :acu, :per)
-	end
+		def vehicle_service_params
+			params.require(:vehicle_service).permit(:vehicle_id, :service_id, :doc, :due, :tes, :ci, :asi, :btp, :b1, :acu, :per)
+		end
+		
+		def is_valid_user
+			current_user && current_user.allowed_to?(:assign_vehicle_to_service)
+		end
 end

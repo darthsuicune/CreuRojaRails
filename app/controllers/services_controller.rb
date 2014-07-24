@@ -1,6 +1,7 @@
 class ServicesController < ApplicationController
 	before_filter :signed_in_user
 	before_action :set_service, only: [:show, :edit, :update, :destroy]
+	before_filter :is_valid_user, only: [:new, :create, :edit, :update, :destroy]
 
 	# GET /services
 	# GET /services.json
@@ -72,5 +73,9 @@ class ServicesController < ApplicationController
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def service_params
 			params.require(:service).permit(:name, :description, :assembly_id, :base_time, :start_time, :end_time, :code)
+		end
+		
+		def is_valid_user
+			current_user && current_user.allowed_to?(:manage_services)
 		end
 end

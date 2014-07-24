@@ -1,6 +1,7 @@
 class LocationUserController < ApplicationController
 	before_filter :signed_in_user
-	
+	before_filter :is_valid_user
+		
 	def create
 		@location_user = LocationUser.new(location_user_params)
 		if @location_user.save
@@ -24,7 +25,10 @@ class LocationUserController < ApplicationController
 	end
 	
 	private
-	def location_user_params
-		params.require(:location_user).permit(:location_id, :user_id)
-	end
+		def location_user_params
+			params.require(:location_user).permit(:location_id, :user_id)
+		end
+		def is_valid_user
+			current_user && current_user.allowed_to?(:assign_users_to_assemblies)
+		end
 end
