@@ -145,4 +145,18 @@ describe User do
 			it { should_not be_allowed_to(:see_own_profile) }
 		end
 	end
+	
+	describe "get_locations" do
+	end
+	
+	describe "create_reset_password_token" do
+	end
+	
+	describe "reset_password(password)" do
+	end
+	
+	describe "create_session_token" do
+	end
+	
+	
 end

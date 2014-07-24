@@ -11,4 +11,31 @@ require 'rails_helper'
 #   end
 # end
 describe SessionsHelper do
+	describe "sign_in(user)" do
+	end
+	
+	describe "signed_in?" do
+	end
+	
+	describe "sign_out" do
+	end
+	
+	describe "current_user=(user)" do
+	end
+	
+	describe "current_user" do
+	end
+	
+	describe "current_user?(user)" do
+	end
+	
+	describe "redirect_back_or(default)" do
+	end
+	
+	describe "store_location" do
+	end
+	
+	describe "signed_in_user" do
+	end
+	
 end

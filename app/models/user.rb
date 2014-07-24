@@ -91,9 +91,9 @@ class User < ActiveRecord::Base
 	end
 	
 	private
-	def defaults
-		self.language ||= "ca"
-		self.role ||= "volunteer"
-		self.phone ||= 0
-	end
+		def defaults
+			self.language ||= "ca"
+			self.role ||= "volunteer"
+			self.phone ||= 0
+		end
 end
