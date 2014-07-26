@@ -19,6 +19,7 @@ CreuRoja::Application.routes.draw do
 	get '/map' => 'static_pages#map'
 	post '/users/:id' => 'users#update'
 	post '/locations/:id' => 'locations#update'
+	get '/email_sent' => 'static_pages#email_sent'
 
 	#Resource routes (maps HTTP verbs to controller actions automatically):
 	resources :users

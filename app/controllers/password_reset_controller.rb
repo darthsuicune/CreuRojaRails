@@ -5,7 +5,9 @@ class PasswordResetController < ApplicationController
 	def create
 		user = User.find_by_email(params[:user][:email])
 		if user && user.create_reset_password_token
-			redirect_to login_path, :notice => I18n.t(:password_recovery_email_sent)
+			#TODO: Uncomment once Rails goes into production
+			#redirect_to login_path, :notice => I18n.t(:password_recovery_email_sent)
+			redirect_to email_sent_url
 		else
 			@email = params[:user][:email]
 			flash.now[:notice] = I18n.t(:error_invalid_email)
