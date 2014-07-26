@@ -19,19 +19,37 @@ class PasswordResetController < ApplicationController
 			redirect_to root_url 
 			@user.errors << I18n.t(:error_invalid_token) unless @user.nil?
 		end
+		flash.now[:notice] = I18n.t(:set_your_new_password)
 	end
 	
 	def update
-		user = User.find_by_resettoken!(params[:id])
-		if user && params[:user][:password] && params[:user][:password_confirmation] && 
+		@user = User.find_by_resettoken!(params[:id])
+		if @user && params[:user][:password] && params[:user][:password_confirmation] && 
 				params[:user][:password] == params[:user][:password_confirmation] && 
 				params[:user][:password].length >= 6 && params[:user][:password_confirmation].length >= 6 && 
-				user.reset_password(params[:user][:password]) && user.resettime < 4.hours.ago
-			sign_in user
-			redirect_to user
+				@user.resettime < 4.hours.ago && @user.reset_password(params[:user][:password])
+			sign_in @user
+			redirect_to @user
 		else
-			flash.now[:notice] = I18n.t(:error_invalid_password)
-			render 'edit'
+			if @user
+				@errors = []
+				if params[:user][:password]
+					@errors << I18n.t(:password_must_be_set)
+				end
+				if params[:user][:password_confirmation]
+					@errors << I18n.t(:password_confirmation_must_be_set)
+				end
+				if params[:user][:password] == params[:user][:password_confirmation]
+					@errors << I18n.t(:password_and_confirmation_must_match)
+				end
+				if params[:user][:password].length < 6 || params[:user][:password_confirmation].length < 6
+					@errors << I18n.t(:password_and_confirmation_must_be_longer)
+				end
+				render 'edit'
+			else
+				redirect_to root_url
+			end
+			
 		end
 	end
 end

@@ -1,16 +1,16 @@
 <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-	<% if @user.errors.any? %>
-		<div class "error_messages">
+	<% if @errors.any? %>
+		<div class="error">
 			<h2> Form is invalid </h2>
 			<ul>
-				<% for message in @user.errors.full_messages %>
-					<li><%= message %></li>
+				<% @errors.each do |error| %>
+					<li><%= error %></li>
 				<% end %>
 			</ul>
 		</div>
 	<% end %>
 	<% if notice %>
-		<p id="notice"><%= notice %></p>
+		<p class="notice"><%= notice %></p>
 	<% end %>
 	<div class="field">
 		<%= f.label :password, t(:form_user_password) %>
