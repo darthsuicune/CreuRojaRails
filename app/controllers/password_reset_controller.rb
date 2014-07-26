@@ -4,7 +4,7 @@ class PasswordResetController < ApplicationController
 	
 	def edit
 		@user = User.find_by_resettoken!(params[:id])
-		redirect_to root_url if @user.nil? || @user.resettime > 2.hours.ago
+		redirect_to root_url if @user.nil? || @user.resettime < 4.hours.ago
 		flash.now[:error] = I18n.t(:error_invalid_token)
 	end
 	
