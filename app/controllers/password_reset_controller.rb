@@ -28,8 +28,10 @@ class PasswordResetController < ApplicationController
 				params[:user][:password] == params[:user][:password_confirmation] && 
 				params[:user][:password].length >= 6 && params[:user][:password_confirmation].length >= 6 && 
 				@user.resettime >= 4.hours.ago && @user.reset_password(params[:user][:password])
-			sign_in @user
-			redirect_to @user
+			#TODO: Uncomment once Rails gets into production
+			#sign_in @user
+			#redirect_to @user
+			redirect_to "https://creuroja.net"
 		else
 			if @user
 				@errors = []
