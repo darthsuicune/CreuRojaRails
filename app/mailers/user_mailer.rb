@@ -13,6 +13,6 @@ class UserMailer < ActionMailer::Base
 		@hostname = "http://testing.creuroja.net"
 		@reset_password_link = "#{@hostname}#{edit_password_reset_path(@user.resettoken)}"
 
-		mail to: user.email
+		mail to: "denis@localhost"
 	end
 end
