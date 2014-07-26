@@ -1,5 +1,5 @@
 <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-	<% if @errors.any? %>
+	<% if @errors && @errors.any? %>
 		<div class="error">
 			<h2> Form is invalid </h2>
 			<ul>
