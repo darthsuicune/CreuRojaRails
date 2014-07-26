@@ -27,7 +27,7 @@ class PasswordResetController < ApplicationController
 		if @user && params[:user][:password] && params[:user][:password_confirmation] && 
 				params[:user][:password] == params[:user][:password_confirmation] && 
 				params[:user][:password].length >= 6 && params[:user][:password_confirmation].length >= 6 && 
-				@user.resettime < 4.hours.ago && @user.reset_password(params[:user][:password])
+				@user.resettime >= 4.hours.ago && @user.reset_password(params[:user][:password])
 			sign_in @user
 			redirect_to @user
 		else
@@ -37,8 +37,8 @@ class PasswordResetController < ApplicationController
 				@errors << I18n.t(:password_confirmation_must_be_set) unless params[:user][:password_confirmation]
 				@errors << I18n.t(:password_and_confirmation_must_match) unless params[:user][:password] == params[:user][:password_confirmation]
 				@errors << I18n.t(:password_and_confirmation_must_be_longer) if params[:user][:password].length < 6 || params[:user][:password_confirmation].length < 6
-				@errors << I18n.t(:reset_token_has_expired) unless @user.resettime < 4.hours.ago
-				@errors << I18n.t(:reset_password_has_failed) unless @user.reset_password(params[:user][:password])
+				@errors << I18n.t(:reset_token_has_expired) unless @user.resettime >= 4.hours.ago
+				flash[:notice] = "#{}"
 				render 'edit'
 			else
 				redirect_to root_url
