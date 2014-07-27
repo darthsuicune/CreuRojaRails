@@ -10,6 +10,8 @@
       </ul>
     </div>
   <% end %>
+  
+  <% available_vehicle = [[t(:vehicle_alfabravo), 'alfa bravo'], [t(:vehicle_alfamike), 'alfa mike'], [t(:vehicle_tango), 'tango'], [t(:vehicle_mike), 'mike'], [t(:vehicle_romeo), 'romeo']] %>
 
   <div class="field">
     <%= f.label :brand, t(:form_vehicle_brand) %><br>
@@ -29,7 +31,7 @@
   </div>
   <div class="field">
     <%= f.label :vehicle_type, t(:form_vehicle_type) %><br>
-    <%= f.text_field :vehicle_type %>
+    <%= f.select :vehicle_type, available_vehicle %>
   </div>
   <div class="field">
     <%= f.label :places, t(:form_vehicle_places) %><br>

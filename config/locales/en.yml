@@ -155,5 +155,20 @@ en:
    lang_spanish: "Spanish"
    lang_english: "English"
    
+   location_asamblea: "Assembly"
+   location_bravo: "Bravo"
+   location_cuap: "CUAP"
+   location_hospital: "Hospital"
+   location_maritimo: "Maritime Preventive Service"
+   location_nostrum: "Nostrum"
+   location_salvamento: "Salvage"
+   location_terrestre: "Terrestrial Preventive Service"
+   
+   vehicle_alfabravo: "Basic Life Support Ambulance (alfa)"
+   vehicle_alfamike: "Advanced Life Support Ambulance (alfa)"
+   vehicle_tango: "Transport Vehicle (tango)"
+   vehicle_mike: "Nautical Vessel (mike)"
+   vehicle_romeo: "Rescue Vehicle (romeo)"
+   
    error_invalid_login: "Invalid email/password combination"
    error_please_login: "Please sign in."
