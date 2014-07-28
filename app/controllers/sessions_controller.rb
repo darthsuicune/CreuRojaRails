@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			respond_to do |format|
 				sign_in user
 				format.html { redirect_back_or user }
-				format.json { render :json => @session }
+				#format.json { render :json => @session }
 			end
 		else
 			flash.now[:error] = I18n.t(:error_invalid_login)

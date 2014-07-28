@@ -20,17 +20,16 @@ describe SessionsHelper do
 	
 	describe "sign_out" do
 		before { sign_in user }
+		
 		it "should log out the user" do
+			expect {
+				sign_out
+			}.to change(Session, :count).by(-1)
+		end
+		
+		it "should put current_user to nil" do
 			sign_out
 			expect(current_user).to be_nil
-		end
-	end
-	
-	describe "current_user=(user)" do
-		before { current_user = user }
-		it "sets @current_user to the user" do
-			expect(@current_user).to eq(user)
-			expect(@current_user).not_to be_nil
 		end
 	end
 	

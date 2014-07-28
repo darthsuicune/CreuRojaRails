@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 	before_filter :signed_in_user
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
-	before_filter :is_valid_user
+	before_filter :is_valid_user, except: [:show, :edit]
+	before_filter :can_modify_profile, only: [:show, :edit]
 
 	# GET /users
 	# GET /users.json
@@ -89,8 +90,10 @@ class UsersController < ApplicationController
 	end
 	
 	def is_valid_user
-		unless current_user && (current_user.allowed_to?(:manage_users) || (current_user == @user && current_user.allowed_to?(:see_own_profile)))
-			redirect_to root_url
-		end
+		redirect_to root_url unless current_user && current_user.allowed_to?(:manage_users)
+	end
+	
+	def can_modify_profile
+		redirect_to root_url unless current_user && current_user == @user && current_user.allowed_to?(:see_own_profile)
 	end
 end
