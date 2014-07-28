@@ -10,7 +10,7 @@ describe "Locations" do
 		end
 	end
 	describe "signed in" do
-		let(:user) { FactoryGirl.create(:user) }
+		let(:user) { FactoryGirl.create(:admin) }
 		before { sign_in user }
 		describe "GET /locations" do
 			it "shows the location index" do

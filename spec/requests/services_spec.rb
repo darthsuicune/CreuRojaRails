@@ -10,7 +10,7 @@ describe "Services" do
 		end
 	end
 	describe "signed in" do
-		let(:user) { FactoryGirl.create(:user) }
+		let(:user) { FactoryGirl.create(:admin) }
 		before { sign_in user }
 		describe "GET /services" do
 			it "shows the services index" do

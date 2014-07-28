@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Static Pages" do
-	let(:user) { FactoryGirl.create(:user) }
+	let(:user) { FactoryGirl.create(:admin) }
 	subject { page }
 
 	shared_examples_for "all static pages" do

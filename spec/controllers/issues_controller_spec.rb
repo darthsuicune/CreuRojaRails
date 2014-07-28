@@ -20,7 +20,7 @@ require 'rails_helper'
 
 RSpec.describe IssuesController, :type => :controller do
 	before do
-		user = FactoryGirl.create(:user)
+		user = FactoryGirl.create(:admin)
 		sign_in user
 	end
 

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :signed_in_user
 	before_filter :is_valid_user, only: [:create, :new, :destroy, :update]
-	before_action :set_user, only: [:show, :edit, :update, :destroy, :activate]
+	before_action :set_user, only: [:index, :show, :edit, :update, :destroy, :activate]
 
 	# GET /users
 	# GET /users.json
