@@ -16,6 +16,7 @@ header {
 	}
 
 	ul.nav_menu {
+		z-index: 1000;
 		float: right;
 		list-style-type: none;
 		
@@ -24,7 +25,7 @@ header {
 			float: left;
 			position: relative;
 			
-			padding: 4px;
+			padding: .2em 1em;
 			background-color: #a00;
 			border-radius: 5px;
 			margin-left: 10px;
@@ -41,7 +42,6 @@ header {
 			
 			a {
 				text-decoration: none;
-				padding: .2em 1em;
 				color: white;
 				
 				&:hover {
@@ -50,14 +50,10 @@ header {
 			}
 			
 			ul.sub_menu {
+				z-index: 1000;
 				display:none;
 				list-style-type: none;
 				position: absolute;
-				
-				li {
-					&:hover {
-					}
-				}
 			}
 		}
 	}
