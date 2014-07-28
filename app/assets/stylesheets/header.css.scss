@@ -24,8 +24,6 @@ header {
 		
 		li {
 			display: inline-block;
-			float: left;
-			position: relative;
 			
 			padding: .2em 1em;
 			background-color: #a00;
@@ -48,11 +46,13 @@ header {
 				background-color: #600;
 				
 				ul.sub_menu {
-					display:block;
+					display: block;
 					background-color: #a00;
 					margin-left: 0px;
+					border-radius: 5px;
 					
 					li {
+						display: block;
 						border-radius: 0px;
 						padding: .2em 1em;
 					}
@@ -62,7 +62,6 @@ header {
 			ul.sub_menu {
 				z-index: 1000;
 				display: none;
-				list-style-type: none;
 				position: absolute;
 			}
 		}
