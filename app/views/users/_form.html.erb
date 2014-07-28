@@ -37,7 +37,7 @@
 			<%= f.label :language, t(:form_user_language) %><br>
 			<%= f.select :language, available_languages %>
 		</div>
-		<% unless @user.role = "admin" %>
+		<% unless @user.role == "admin" %>
 			<div class="field">
 				<%= f.label :role, t(:form_user_role) %><br>
 				<%= f.select :role, available_roles %>
