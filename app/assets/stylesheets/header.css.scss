@@ -2,8 +2,10 @@
 
 header {
 	height: 50px;
+	background-color: white;
 
 	img {
+		background-color: white;
 		float: left;
 		margin-top: 4px;
 		margin-bottom: 4px;
@@ -33,13 +35,6 @@ header {
 			text-decoration: none;
 			color: white;
 			
-			&:hover {
-				background-color: #600;
-				ul.sub_menu {
-					display:block;
-				}
-			}
-			
 			a {
 				text-decoration: none;
 				color: white;
@@ -49,9 +44,24 @@ header {
 				}
 			}
 			
+			&:hover {
+				background-color: #600;
+				
+				ul.sub_menu {
+					display:block;
+					background-color: #a00;
+					margin-left: 0px;
+					
+					li {
+						border-radius: 0px;
+						padding: .2em 1em;
+					}
+				}
+			}
+			
 			ul.sub_menu {
 				z-index: 1000;
-				display:none;
+				display: none;
 				list-style-type: none;
 				position: absolute;
 			}
