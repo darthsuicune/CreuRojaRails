@@ -11,6 +11,7 @@ require 'rails_helper'
 #   end
 # end
 describe SessionsHelper do
+	let(:user) { FactoryGirl.create(:user) }
 	describe "sign_in(user)" do
 	end
 	
@@ -18,9 +19,19 @@ describe SessionsHelper do
 	end
 	
 	describe "sign_out" do
+		before { sign_in user }
+		it "should log out the user" do
+			sign_out
+			expect(current_user).to be_nil
+		end
 	end
 	
 	describe "current_user=(user)" do
+		before { current_user = user }
+		it "sets @current_user to the user" do
+			expect(@current_user).to eq(user)
+			expect(@current_user).not_to be_nil
+		end
 	end
 	
 	describe "current_user" do

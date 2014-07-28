@@ -1,7 +1,8 @@
 module SessionsHelper
 	def sign_in(user)
 		user.create_session_token
-		cookies.permanent[:remember_token] = user.sessions.last.token
+		cookies.permanent[:remember_token] = user.sessions.last.token #For HTML clients
+		@session = user.sessions.last.token # For JSON clients
 		self.current_user = user
 	end
 	
@@ -19,7 +20,9 @@ module SessionsHelper
 	end
 	
 	def current_user
-		session = Session.find_by_token(cookies[:remember_token])
+		session = Session.find_by_token(cookies[:remember_token]) #For HTML clients
+		session ||= Session.find_by_token("") #For JSON clients
+		
 		@current_user = session.user unless session.nil?
 	end
 	

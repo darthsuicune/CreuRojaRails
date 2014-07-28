@@ -12,8 +12,8 @@ describe "users/index" do
 		# Run the generator again with the --webrat flag if you want to use webrat matchers
 		expect(rendered).to match "Name"
 		expect(rendered).to match "Surname"
-		expect(rendered).to match "E-mail"
-		expect(rendered).to match "Language"
-		expect(rendered).to match "Role"
+		expect(rendered).to match "E-mail|Correu"
+		expect(rendered).to match "Language|Idioma"
+		expect(rendered).to match "Rol|Role"
 	end
 end

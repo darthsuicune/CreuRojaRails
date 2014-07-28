@@ -16,7 +16,7 @@ describe "locations/edit" do
       assert_select "input#location_phone[name=?]", "location[phone]"
       assert_select "input#location_latitude[name=?]", "location[latitude]"
       assert_select "input#location_longitude[name=?]", "location[longitude]"
-      assert_select "input#location_location_type[name=?]", "location[location_type]"
+      assert_select "select#location_location_type[name=?]", "location[location_type]"
       assert_select "input#location_active[name=?]", "location[active]"
     end
   end
