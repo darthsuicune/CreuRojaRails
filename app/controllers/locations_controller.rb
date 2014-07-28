@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 	before_filter :signed_in_user
 	before_action :set_location, only: [:show, :edit, :update, :destroy]
-	before_filter :is_valid_user, only: [:new, :create, :edit, :update, :destroy]
+	before_filter :is_valid_user, only: [:index, :new, :create, :edit, :update, :destroy]
 
 	# GET /locations
 	# GET /locations.json
@@ -75,6 +75,6 @@ class LocationsController < ApplicationController
 		end
 		
 		def is_valid_user
-			current_user && current_user.allowed_to?(:manage_locations)
+			redirect_to root_url unless current_user && current_user.allowed_to?(:manage_locations)
 		end
 end

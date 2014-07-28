@@ -14,7 +14,7 @@ describe "vehicles/edit" do
       assert_select "input#vehicle_model[name=?]", "vehicle[model]"
       assert_select "input#vehicle_license[name=?]", "vehicle[license]"
       assert_select "input#vehicle_indicative[name=?]", "vehicle[indicative]"
-      assert_select "input#vehicle_vehicle_type[name=?]", "vehicle[vehicle_type]"
+      assert_select "select#vehicle_vehicle_type[name=?]", "vehicle[vehicle_type]"
       assert_select "input#vehicle_places[name=?]", "vehicle[places]"
       assert_select "input#vehicle_notes[name=?]", "vehicle[notes]"
       assert_select "input#vehicle_operative[name=?]", "vehicle[operative]"

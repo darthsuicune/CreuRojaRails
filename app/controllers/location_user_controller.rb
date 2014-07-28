@@ -29,6 +29,6 @@ class LocationUserController < ApplicationController
 			params.require(:location_user).permit(:location_id, :user_id)
 		end
 		def is_valid_user
-			current_user && current_user.allowed_to?(:assign_users_to_assemblies)
+			redirect_to root_url unless current_user && current_user.allowed_to?(:assign_users_to_assemblies)
 		end
 end
