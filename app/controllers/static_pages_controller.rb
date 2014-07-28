@@ -17,6 +17,6 @@ class StaticPagesController < ApplicationController
 	
 	private
 		def is_valid_user
-			current_user && current_user.allowed_to?(:see_map)
+			redirect_to root_url unless current_user && current_user.allowed_to?(:see_map)
 		end
 end
