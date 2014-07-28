@@ -36,13 +36,13 @@ class User < ActiveRecord::Base
 		when :see_own_profile
 			role == "volunteer" || role == "technician"
 		when :see_user_list
-			role == "volunteer" || role == "technician"
+			role == "technician"
 		when :see_location_list
-			role == "volunteer" || role == "technician"
+			role == "technician"
 		when :see_vehicle_list
-			role == "volunteer" || role == "technician"
+			role == "technician"
 		when :see_service_list
-			role == "volunteer" || role == "technician"
+			role == "technician"
 		when :add_to_own_assembly
 			role == "technician"
 		when :add_to_any_assembly

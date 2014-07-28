@@ -172,3 +172,5 @@ en:
    
    error_invalid_login: "Invalid email/password combination"
    error_please_login: "Please sign in."
+   
+   show_beta: "This application is under development and may contain errors."
