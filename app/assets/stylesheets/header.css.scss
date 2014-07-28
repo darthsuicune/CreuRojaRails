@@ -15,20 +15,28 @@ header {
 		}
 	}
 
-	.nav_menu ul {
+	ul.nav_menu {
 		float: right;
-		list-style: none;
+		list-style-type: none;
 		
 		li {
-			display: inline;
+			display: inline-block;
+			float: left;
+			position: relative;
+			
 			padding: 4px;
 			background-color: #a00;
 			border-radius: 5px;
-			float: left;
 			margin-left: 10px;
+			
+			text-decoration: none;
+			color: white;
 			
 			&:hover {
 				background-color: #600;
+				ul.sub_menu {
+					display:block;
+				}
 			}
 			
 			a {
@@ -38,6 +46,17 @@ header {
 				
 				&:hover {
 					background-color: #600;
+				}
+			}
+			
+			ul.sub_menu {
+				display:none;
+				list-style-type: none;
+				position: absolute;
+				
+				li {
+					&:hover {
+					}
 				}
 			}
 		}
