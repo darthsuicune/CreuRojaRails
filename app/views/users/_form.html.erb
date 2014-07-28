@@ -2,7 +2,7 @@
 	<%= form_for(@user) do |f| %>
 		<% if @user.errors.any? %>
 			<div id="error_explanation">
-				<h2><%= pluralize(@user.errors.count, "error") << " " << t(:form_errors_found) %> :</h2>
+				<h2><%= "#{pluralize(@user.errors.count, "error")} #{t(:form_errors_found)}" %> :</h2>
 				<ul>
 					<% @user.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
@@ -37,7 +37,7 @@
 			<%= f.label :language, t(:form_user_language) %><br>
 			<%= f.select :language, available_languages %>
 		</div>
-		<% unless @user.role == "admin" %>
+		<% unless "admin" == @user.role %>
 			<div class="field">
 				<%= f.label :role, t(:form_user_role) %><br>
 				<%= f.select :role, available_roles %>
