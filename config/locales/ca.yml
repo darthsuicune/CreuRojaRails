@@ -27,11 +27,64 @@ ca:
    logout: "Finalitzar sessió"
    map: "Mapa"
    
-   home: Inici
+   home: "Inici"
    user_list_title: "Usuaris"
    location_list_title: "Localitzacions"
    vehicle_list_title: "Vehicles"
    service_list_title: "Serveis"
+   date:
+    abbr_day_names:
+    - Dg
+    - Dl
+    - Dm
+    - Dc
+    - Dj
+    - Dv
+    - Ds
+    abbr_month_names:
+    -
+    - Gen
+    - Feb
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Oct
+    - Nov
+    - Des
+    day_names:
+    - Diumenge
+    - Dilluns
+    - Dimarts
+    - Dimecres
+    - Dijous
+    - Divendres
+    - Dissabte
+    formats:
+      default: ! '%d-%m-%Y'
+      long: ! '%d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    -
+    - Gener
+    - Febrer
+    - Març
+    - Abril
+    - Maig
+    - Juny
+    - Juliol
+    - Agost
+    - Setembre
+    - Octubre
+    - Novembre
+    - Desembre
+    order:
+    - :day
+    - :month
+    - :year
 
    form_errors_found: "van impedir el registre"
 
@@ -111,3 +164,5 @@ ca:
    
    error_invalid_login: "Invalid email/password combination"
    error_please_login: "Si us plau, inicia sessió."
+   
+   show_beta: "This application is under development and may contain errors."

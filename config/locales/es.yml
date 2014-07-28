@@ -27,11 +27,64 @@ es:
    logout: "Cerrar sesión"
    map: "Mapa"
    
-   home: Inicio
+   home: "Inicio"
    user_list_title: "Usuarios"
    location_list_title: "Localizaciones"
    vehicle_list_title: "Vehículos"
    service_list_title: "Servicios"
+   date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
 
    form_errors_found: "impidieron el registro"
    
@@ -111,3 +164,5 @@ es:
    
    error_invalid_login: "Correo electrónico o contraseña incorrecta"
    error_please_login: "Por favor, inicie sesión."
+   
+   show_beta: "This application is under development and may contain errors."
