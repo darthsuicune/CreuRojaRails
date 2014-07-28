@@ -58,7 +58,6 @@ describe "Users" do
 			it { should redirect_to(signin_url) }
 		end
 		describe "signed in" do
-			before { sign_in @user }
 			describe "user index" do
 				before { get users_path, { :format => :json } }
 				it "has the correct header" do

@@ -10,8 +10,8 @@ describe "Vehicles" do
 		end
 	end
 	describe "signed in" do
-		let(:user) { FactoryGirl.create(:admin) }
-		before { sign_in user }
+		let(:admin) { FactoryGirl.create(:admin) }
+		before { sign_in admin }
 		describe "GET /vehicles" do
 			it "shows the vehicle index" do
 				# Run the generator again with the --webrat flag if you want to use webrat methods/matchers

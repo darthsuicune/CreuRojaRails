@@ -4,19 +4,15 @@ describe "Static Pages" do
 	let(:user) { FactoryGirl.create(:admin) }
 	subject { page }
 
-	shared_examples_for "all static pages" do
-		it { should have_title(full_title(page_title)) }
-	end
-
 	describe "Contact page" do
 		before { visit contact_url }
 		let(:page_title) { I18n.t (:contact) }
-		it_should_behave_like "all static pages"
+		it { should have_title(full_title(page_title)) }
 	end
 	describe "About page" do
 		before { visit about_url }
 		let(:page_title) { I18n.t (:about) }
-		it_should_behave_like "all static pages"
+		it { should have_title(full_title(page_title)) }
 	end
 	
 	describe "Map" do
@@ -28,7 +24,7 @@ describe "Static Pages" do
 		describe "signed in" do
 			before { sign_in user
 			         visit map_url }
-			it_should_behave_like "all static pages"
+			it { should have_title(full_title(page_title)) }
 		end
 	end
 end
