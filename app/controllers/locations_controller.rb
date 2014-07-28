@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 	before_filter :signed_in_user
 	before_action :set_location, only: [:show, :edit, :update, :destroy]
-	before_filter :is_valid_user, only: [:index, :new, :create, :edit, :update, :destroy]
+	before_filter :is_valid_user
 
 	# GET /locations
 	# GET /locations.json
