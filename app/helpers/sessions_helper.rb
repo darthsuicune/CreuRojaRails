@@ -22,7 +22,7 @@ module SessionsHelper
 	
 	def current_user
 		session = Session.find_by_token(cookies[:remember_token]) #For HTML clients
-		session ||= Session.find_by_token("") #For JSON clients
+		session ||= Session.find_by_token(get_token_from_request) #For JSON clients
 		
 		@current_user = session.user unless session.nil?
 	end
@@ -42,8 +42,19 @@ module SessionsHelper
 	
 	def signed_in_user
 		unless signed_in?
-			store_location
-			redirect_to signin_url, notice: I18n.t(:error_please_login)
+			respond_to do |format|
+				format.html {
+					store_location
+					redirect_to signin_url, notice: I18n.t(:error_please_login)
+				}
+				format.json {
+					render file: "public/401.json", status: :unauthorized
+				}
+			end
 		end
+	end
+	
+	private
+	def get_token_from_request
 	end
 end

@@ -10,11 +10,11 @@ FactoryGirl.define do
 		sequence(:resettoken) { |n| "asdfasdf #{n}" }
 		resettime 0
 		language "ca"
-		role "Volunteer"
+		role "volunteer"
 		active true
 		
 		factory :admin do
-			role "Admin"
+			role "admin"
 		end
 	end
 end
