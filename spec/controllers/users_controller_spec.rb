@@ -66,8 +66,9 @@ describe UsersController do
 		end
 		describe "non-existing user" do
 			it "redirects to user list" do
-				get :show, {:id => 555 }, valid_session
-				expect(response).to redirect_to(users_url)
+				expect { 
+					get :show, {:id => 555 }, valid_session 
+				}.to raise_error(ActiveRecord::RecordNotFound)
 			end
 		end
 	end

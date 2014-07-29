@@ -41,8 +41,11 @@ describe "Users" do
 					it { should have_content(@user.email) }
 				end
 				describe "non existing user" do
-					before { get user_path( { :id => 555 } ) }
-					it { should redirect_to(users_url) }
+					it "should raise a RecordNotFound error" do
+						expect { 
+							get user_path( { :id => 555 } ) 
+						}.to raise_error(ActiveRecord::RecordNotFound)
+					end
 				end
 			end
 			describe "create user" do
@@ -71,9 +74,14 @@ describe "Users" do
 		end
 		describe "signed in" do
 			#TODO: Add token to request
+			let(:invalid_request) { { :format => :json, token: "asdfasdfasdf" } }
+			before {
+				admin.create_session_token
+				@valid_request =  { :format => :json, token: admin.sessions.last.token }
+			}
 			
 			describe "user index" do
-				before { get users_path, { :format => :json } }
+				before { get users_path, @valid_request  }
 				it "has the correct header" do
 					expect(response.header['Content-Type']).to include 'application/json'
 				end
@@ -86,7 +94,9 @@ describe "Users" do
 			end
 			describe "individual user" do
 				describe "existing user" do
-					before { get user_path( { :id => user.id, :format => :json } ) }
+					before { 
+						get user_path( {:id => user.id}), @valid_request 
+					}
 					it "has the correct header" do
 						expect(response.header['Content-Type']).to include 'application/json'
 					end
@@ -106,9 +116,10 @@ describe "Users" do
 					end
 				end
 				describe "non existing user" do
-					before { get user_path( { :id => 555, :format => :json } ) }
-					it "should show a 404" do
-						expect(status).to eq(404)
+					it "should raise an error" do
+						expect {
+							get user_path( {id: 555} ), @valid_request
+						}.to raise_error(ActiveRecord::RecordNotFound)
 					end
 				end
 			end

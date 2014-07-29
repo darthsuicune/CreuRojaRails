@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 	# GET /users/1
 	# GET /users/1.json
 	def show
-		redirect_to users_url if @user.nil?
 	end
 
 	# GET /users/new
@@ -22,7 +21,6 @@ class UsersController < ApplicationController
 
 	# GET /users/1/edit
 	def edit
-		redirect_to root_url if @user.nil?
 	end
 
 	# POST /users
@@ -44,17 +42,13 @@ class UsersController < ApplicationController
 	# PATCH/PUT /users/1
 	# PATCH/PUT /users/1.json
 	def update
-		if @user.nil?
-			redirect_to root_url
-		else
-			respond_to do |format|
-				if @user.update(user_params)
-					format.html { redirect_to @user, notice: I18n.t(:user_updated) }
-					format.json { head :no_content }
-				else
-					format.html { render action: 'edit' }
-					format.json { render json: @user.errors, status: :unprocessable_entity }
-				end
+		respond_to do |format|
+			if @user.update(user_params)
+				format.html { redirect_to @user, notice: I18n.t(:user_updated) }
+				format.json { head :no_content }
+			else
+				format.html { render action: 'edit' }
+				format.json { render json: @user.errors, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -62,25 +56,17 @@ class UsersController < ApplicationController
 	# DELETE /users/1
 	# DELETE /users/1.json
 	def destroy
-		if @user.nil?
-			redirect_to root_url
-		else
-			@user.destroy
-			respond_to do |format|
-				format.html { redirect_to users_url }
-				format.json { head :no_content }
-			end
+		@user.destroy
+		respond_to do |format|
+			format.html { redirect_to users_url }
+			format.json { head :no_content }
 		end
 	end
 
 	private
 	# Use callbacks to share common setup or constraints between actions.
 	def set_user
-		if(User.exists?(:id => params[:id]))
-			@user = User.find(params[:id])
-		else
-			@user = nil
-		end
+		@user = User.find(params[:id]) || not_found
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

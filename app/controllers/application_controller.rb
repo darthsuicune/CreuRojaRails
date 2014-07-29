@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 			Rails.application.routes.default_url_options
 		end
 	end
+	
+	def not_found
+		raise ActionController::RoutingError.new('Not Found')
+	end
 
 	private
 		def log

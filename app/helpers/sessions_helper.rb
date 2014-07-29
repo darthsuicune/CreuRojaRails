@@ -56,5 +56,7 @@ module SessionsHelper
 	
 	private
 	def get_token_from_request
+		session = Session.find_by_token(params[:token])
+		session.token if session
 	end
 end
