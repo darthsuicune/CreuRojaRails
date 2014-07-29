@@ -48,7 +48,7 @@ module SessionsHelper
 					redirect_to signin_url, notice: I18n.t(:error_please_login)
 				}
 				format.json {
-					render file: "public/401.json", status: :unauthorized
+					render file: "public/401.json", status: :unauthorized, :layout => false
 				}
 			end
 		end

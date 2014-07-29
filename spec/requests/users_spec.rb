@@ -4,6 +4,7 @@ describe "Users" do
 	subject { response }
 
 	describe "Http requests" do
+		let(:another_user) { FactoryGirl.create(:user) }
 		before { @user = FactoryGirl.create(:user) }
 		describe "without signing in" do
 			describe "GET /users" do
@@ -30,11 +31,18 @@ describe "Users" do
 			subject { page }
 			describe "navigation menu" do
 				before { visit users_path }
-				it { should have_content(I18n.t(:user_list_title)) }
+				it { should_not have_content(I18n.t(:user_list_title)) }
 				it { should have_content(I18n.t(:logout)) }
 			end
 			describe "individual user" do
-				describe "GET /users/:id" do
+				describe "other user profile" do
+					before { get user_path( { :id => another_user.id } ) }
+					it { should_not have_content(another_user.name) }
+					it { should_not have_content(another_user.surname) }
+					it { should_not have_content(another_user.email) }
+					it { should redirect_to(root_url) }
+				end
+				describe "same profile" do
 					before { get user_path( { :id => @user.id } ) }
 					it { should have_content(@user.name) }
 					it { should have_content(@user.surname) }
@@ -68,9 +76,6 @@ describe "Users" do
 			it "does not display the users" do
 				expect(body).not_to eq([user, admin])
 			end
-			it "does render a response" do
-				expect(body).to match("unauthorized")
-			end
 		end
 		describe "signed in" do
 			#TODO: Add token to request
@@ -82,11 +87,11 @@ describe "Users" do
 			
 			describe "user index" do
 				before { get users_path, @valid_request  }
+				it "returns the users list" do
+					expect(response).to render_template(:index)
+				end
 				it "has the correct header" do
 					expect(response.header['Content-Type']).to include 'application/json'
-				end
-				it "returns the users list" do
-					expect(body).to eq([user,admin])
 				end
 				it "should be authorized" do
 					expect(status).to eq(200)
@@ -104,15 +109,7 @@ describe "Users" do
 						expect(status).to eq(200)
 					end
 					it "shows a restricted Json" do
-						json = { :id => user.id,
-									:name => user.name, 
-									:surname => user.surname,
-									:email => user.email,
-									:language => user.language,
-									:role => user.role,
-									:created_at => user.created_at,
-									:updated_at => user.updated_at }.to_json
-						expect(body).to eq(json)
+						expect(response).to render_template(:show)
 					end
 				end
 				describe "non existing user" do
