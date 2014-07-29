@@ -71,6 +71,7 @@ describe "Users" do
 		end
 		describe "signed in" do
 			#TODO: Add token to request
+			
 			describe "user index" do
 				before { get users_path, { :format => :json } }
 				it "has the correct header" do
