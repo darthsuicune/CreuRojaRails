@@ -21,10 +21,10 @@ module SessionsHelper
 	end
 	
 	def current_user
-		session = Session.find_by_token(cookies[:remember_token]) #For HTML clients
-		session ||= Session.find_by_token(get_token_from_request) #For JSON clients
+		token = cookies[:remember_token] || authenticate || ""
+		session = Session.find_by_token(token)
 		
-		@current_user = session.user unless session.nil?
+		@current_user = session.user if session
 	end
 	
 	def current_user?(user)
@@ -55,8 +55,9 @@ module SessionsHelper
 	end
 	
 	private
-	def get_token_from_request
-		session = Session.find_by_token(params[:token])
-		session.token if session
+	def authenticate
+		authenticate_with_http_token do |token,options|
+			Session.exists?(token: token)
+		end
 	end
 end
