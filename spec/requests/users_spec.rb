@@ -65,7 +65,7 @@ describe "Users" do
 	describe "Json Requests" do
 		let(:user) { FactoryGirl.create(:user) }
 		let(:admin) { FactoryGirl.create(:admin) }
-		describe "without signing in" do
+		describe "without token" do
 			before { get users_path, { :format => :json } }
 			it "should be unauthorized" do
 				expect(status).to eq(401)
@@ -77,16 +77,13 @@ describe "Users" do
 				expect(body).not_to eq([user, admin])
 			end
 		end
-		describe "signed in" do
-			#TODO: Add token to request
-			let(:invalid_request) { { :format => :json, token: "asdfasdfasdf" } }
-			before {
+		describe "with provided token" do
+			before do
 				admin.create_session_token
-				@valid_request =  { :format => :json, token: admin.sessions.last.token }
-			}
-			
+				@params = { format: :json, token: admin.sessions.last.token }
+			end
 			describe "user index" do
-				before { get users_path, @valid_request  }
+				before { get users_path, @params }
 				it "returns the users list" do
 					expect(response).to render_template(:index)
 				end
@@ -100,7 +97,7 @@ describe "Users" do
 			describe "individual user" do
 				describe "existing user" do
 					before { 
-						get user_path( {:id => user.id}), @valid_request 
+						get user_path(user.id), @params
 					}
 					it "has the correct header" do
 						expect(response.header['Content-Type']).to include 'application/json'
@@ -115,7 +112,7 @@ describe "Users" do
 				describe "non existing user" do
 					it "should raise an error" do
 						expect {
-							get user_path( {id: 555} ), @valid_request
+							get user_path( { id: 555 } ), @params
 						}.to raise_error(ActiveRecord::RecordNotFound)
 					end
 				end

@@ -1,3 +1,4 @@
+include ActionController::HttpAuthentication::Token::ControllerMethods
 module SessionsHelper
 	def sign_in(user)
 		user.create_session_token
@@ -11,7 +12,7 @@ module SessionsHelper
 	end
 	
 	def sign_out
-		self.current_user = nil
+		@current_user = nil
 		Session.find_by_token(cookies[:remember_token]).destroy!
 		cookies.delete(:remember_token)
 	end
@@ -21,9 +22,8 @@ module SessionsHelper
 	end
 	
 	def current_user
-		token = cookies[:remember_token] || authenticate || ""
-		session = Session.find_by_token(token)
-		
+		token = cookies[:remember_token] || authenticate || params[:token] || nil
+		session = Session.find_by_token(token) if token
 		@current_user = session.user if session
 	end
 	
@@ -48,7 +48,7 @@ module SessionsHelper
 					redirect_to signin_url, notice: I18n.t(:error_please_login)
 				}
 				format.json {
-					render file: "public/401.json", status: :unauthorized, :layout => false
+					render file: "public/401.json", status: :unauthorized
 				}
 			end
 		end

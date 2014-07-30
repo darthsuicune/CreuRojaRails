@@ -28,8 +28,9 @@ describe SessionsHelper do
 		end
 		
 		it "should put current_user to nil" do
+			expect(@current_user).not_to be_nil
 			sign_out
-			expect(current_user).to be_nil
+			expect(@current_user).to be_nil
 		end
 	end
 	
