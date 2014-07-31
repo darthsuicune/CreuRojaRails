@@ -6,7 +6,11 @@ class LocationsController < ApplicationController
 	# GET /locations
 	# GET /locations.json
 	def index
-		@locations = Location.all
+		@locations = if params[:updated_at]
+			Location.all.where("updated_at > ?", params[:updated_at])
+		else
+			Location.all
+		end
 	end
 
 	# GET /locations/1
