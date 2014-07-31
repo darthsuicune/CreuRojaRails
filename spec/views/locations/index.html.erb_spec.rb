@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "locations/index" do
+	let(:user) { FactoryGirl.create(:user) }
 	before(:each) do
+		sign_in user
 		assign(:locations, [
 			FactoryGirl.create(:location),
 			FactoryGirl.create(:location, latitude: 2.5)

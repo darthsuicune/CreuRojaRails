@@ -30,11 +30,13 @@
 			<td><%= location.location_type %></td>
 			<td><%= location.active %></td>
 			<td><%= link_to t(:resource_show), location %></td>
-			<td><%= link_to t(:resource_edit), edit_location_path(location) %></td>
-			<% if location.active %>
-				<td><%= link_to t(:deactivate_location), location_path(location, :location => { :active => false }), method: :put, data: { confirm: t(:resource_destroy_confirm) } %></td>
-			<% else %>
-				<td><%= link_to t(:reactivate_location), location_path(location, :location => { :active => true }), method: :put %></td>
+			<% if current_user.allowed_to?(:manage_locations) %>
+				<td><%= link_to t(:resource_edit), edit_location_path(location) %></td>
+				<% if location.active %>
+					<td><%= link_to t(:deactivate_location), location_path(location, :location => { :active => false }), method: :put, data: { confirm: t(:resource_destroy_confirm) } %></td>
+				<% else %>
+					<td><%= link_to t(:reactivate_location), location_path(location, :location => { :active => true }), method: :put %></td>
+				<% end %>
 			<% end %>
 			</tr>
 		<% end %>

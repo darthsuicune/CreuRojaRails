@@ -28,8 +28,10 @@
 			<td><%= service.end_time %></td>
 			<td><%= service.code %></td>
 			<td><%= link_to t(:resource_show), service %></td>
-			<td><%= link_to t(:resource_edit), edit_service_path(service) %></td>
-			<td><%= link_to t(:resource_destroy), service, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+			<% if current_user.allowed_to?(:manage_services) %>
+				<td><%= link_to t(:resource_edit), edit_service_path(service) %></td>
+				<td><%= link_to t(:resource_destroy), service, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+			<% end %>
 			</tr>
 		<% end %>
 	</tbody>
