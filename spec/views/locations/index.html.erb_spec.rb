@@ -18,6 +18,8 @@ describe "locations/index" do
 		expect(rendered).to match "Address"
 		expect(rendered).to match "Phone"
 		expect(rendered).to match "1.5"
+		expect(rendered).to match "2.5"
 		expect(rendered).to match "Location type"
 	end
 end
+
