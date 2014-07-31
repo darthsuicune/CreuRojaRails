@@ -31,9 +31,21 @@ class SessionsController < ApplicationController
 	
 	private
 		def email
-			params[:session][:email].downcase if params[:session] || params[:email] if params || nil
+			if params[:session]
+				params[:session][:email].downcase
+			elsif params
+				params[:email]
+			else 
+				nil
+			end
 		end
 		def password
-			params[:session][:password].downcase if params[:session] || params[:password] if params || nil
+			if params[:session]
+				params[:session][:password]
+			elsif params
+				params[:password]
+			else 
+				nil
+			end
 		end
 end
