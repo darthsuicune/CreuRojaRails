@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
 	def create
 		user = User.find_by_email(email)
 		if user && user.authenticate(password)
+			sign_in user
 			respond_to do |format|
-				sign_in user
 				format.html { redirect_back_or user }
-				format.json { render :json => @session }
+				format.json { render :json => { token: @session } }
 			end
 		else
 			respond_to do |format|
