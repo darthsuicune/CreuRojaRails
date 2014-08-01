@@ -6,7 +6,19 @@ class UsersController < ApplicationController
 	# GET /users
 	# GET /users.json
 	def index
-		@users = User.all.where("role != \"admin\"")
+		@users = if "admin" == current_user.role
+			@users = User.all
+		else
+			@users = []
+			current_user.assemblies.each do |assembly|
+				assembly.users.where("role != \"admin\"").each do |user|
+					@users << user
+				end
+			end
+		end
+		
+		@users
+		
 	end
 
 	# GET /users/1
