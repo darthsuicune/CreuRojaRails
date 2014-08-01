@@ -90,6 +90,19 @@ class User < ActiveRecord::Base
 		session.save
 	end
 	
+	def translated_role
+		case role
+		when "volunteer"
+			I18n.t(:role_volunteer)
+		when "technician"
+			I18n.t(:role_technician)
+		when "admin"
+			I18n.t(:role_admin)
+		else
+			"dafuq"
+		end
+	end
+	
 	private
 		def defaults
 			self.language ||= "ca"

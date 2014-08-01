@@ -6,7 +6,6 @@
 	<thead>
 		<tr>
 			<th><%= t(:form_user_name) %></th>
-			<th><%= t(:form_user_surname) %></th>
 			<th><%= t(:form_user_role) %></th>
 			<th><%= t(:form_user_active) %></th>
 			<th></th>
@@ -18,9 +17,8 @@
 	<tbody>
 		<% @users.each do |user| %>
 			<tr>
-			<td><%= user.name %> <%= user.surname %></td>
-			<td><%= user.email %></td>
-			<td><%= user.role %></td>
+			<td><%= "#{user.name} #{user.surname}" %></td>
+			<td><%= user.translated_role %></td>
 			<td><%= user.active %></td>
 			<td><%= link_to t(:resource_show), user %></td>
 			<td><%= link_to t(:resource_edit), edit_user_path(user) if current_user?(user) || current_user.allowed_to?(:edit_user) %></td>
