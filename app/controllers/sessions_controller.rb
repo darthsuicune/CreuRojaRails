@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
 	def create
 		user = User.find_by_email(email)
 		if user && user.authenticate(password)
+			sign_in user
 			respond_to do |format|
-				sign_in user
 				format.html { redirect_back_or user }
-				format.json { render :json => @session }
+				format.json { render :json => { token: @session } }
 			end
 		else
 			respond_to do |format|
@@ -31,9 +31,21 @@ class SessionsController < ApplicationController
 	
 	private
 		def email
-			params[:session][:email].downcase if params[:session] || params[:email] if params || nil
+			if params[:session]
+				params[:session][:email].downcase
+			elsif params
+				params[:email]
+			else 
+				nil
+			end
 		end
 		def password
-			params[:session][:password].downcase if params[:session] || params[:password] if params || nil
+			if params[:session]
+				params[:session][:password]
+			elsif params
+				params[:password]
+			else 
+				nil
+			end
 		end
 end
