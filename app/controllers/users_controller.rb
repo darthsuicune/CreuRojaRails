@@ -44,6 +44,9 @@ class UsersController < ApplicationController
 	def update
 		respond_to do |format|
 			if @user.update(user_params)
+				if params[:user][:assemblies][:location_id]
+					LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
+				end
 				format.html { redirect_to @user, notice: I18n.t(:user_updated) }
 				format.json { head :no_content }
 			else

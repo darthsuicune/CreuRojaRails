@@ -6,8 +6,7 @@
 	<thead>
 		<tr>
 			<th><%= t(:form_user_name) %></th>
-			<th><%= t(:form_user_email) %></th>
-			<th><%= t(:form_user_language) %></th>
+			<th><%= t(:form_user_surname) %></th>
 			<th><%= t(:form_user_role) %></th>
 			<th><%= t(:form_user_active) %></th>
 			<th></th>
@@ -21,7 +20,6 @@
 			<tr>
 			<td><%= user.name %> <%= user.surname %></td>
 			<td><%= user.email %></td>
-			<td><%= user.language %></td>
 			<td><%= user.role %></td>
 			<td><%= user.active %></td>
 			<td><%= link_to t(:resource_show), user %></td>
