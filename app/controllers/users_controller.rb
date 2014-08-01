@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		if "admin" == current_user.role
 			@users = User.all
 		else
-			current_user.assemblies.each do |assembly|
+			current_user.assemblies(include: :users).each do |assembly|
 				@users.concat assembly.users.where("role != \"admin\"").to_a
 			end
 		end
