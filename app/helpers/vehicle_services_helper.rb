@@ -13,7 +13,7 @@ module VehicleServicesHelper
 						is_available = false
 					end
 				end
-				tag = vehicle.indicative << ", " << vehicle.license
+				tag = "#{vehicle.indicative}, #{vehicle.license}"
 				availables << [tag, vehicle.id] if is_available
 			end
 		end

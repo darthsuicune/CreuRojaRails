@@ -14,7 +14,7 @@ class Vehicle < ActiveRecord::Base
 	validates :operative, presence: true
 	
 	def to_s
-		indicative << ", " << license
+		"#{indicative}, #{license}"
 	end
 
 	protected
