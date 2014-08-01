@@ -51,10 +51,32 @@ describe UsersController do
 	end
 
 	describe "GET index" do
-		it "assigns all users as @users" do
-			get :index, {}, valid_session
-			expect(assigns(:users)).to eq([user])
+		let(:tech) { FactoryGirl.create(:user, role: "technician") }
+		let(:location) { FactoryGirl.create(:location) }
+		let(:user1) { FactoryGirl.create(:user) }
+		let(:user2) { FactoryGirl.create(:user) }
+		before {
+			LocationUser.create(location_id: location.id, user_id: user.id)
+			LocationUser.create(location_id: location.id, user_id: user1.id)
+		}
+		describe "for admins" do
+			it "assigns all users as @users for an admin" do
+				get :index
+				expect(assigns(:users)).to match_array([user, tech, user1, user2])
+			end
 		end
+		
+		describe "for other users" do
+			before {
+				user.role = "technician"
+				user.save
+			}
+			it "only assigns the users from the same assembly" do
+				get :index
+				expect(assigns(:users)).to match_array([user,user1])
+			end
+		end
+		
 	end
 
 	describe "GET show" do
