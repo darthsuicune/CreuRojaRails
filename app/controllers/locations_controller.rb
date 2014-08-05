@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
 	# GET /locations
 	# GET /locations.json
 	def index
+		#This next piece has a retard as its ideological author. Don't blame my hands for it.
 		respond_to do |format|
 			format.html { 
 				if current_user.allowed_to?(:manage_locations)
