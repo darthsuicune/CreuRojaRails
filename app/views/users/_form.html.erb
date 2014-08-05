@@ -14,7 +14,7 @@
 		<% available_languages = [[t(:lang_catalan), 'ca'], [t(:lang_spanish), 'es'], [t(:lang_english), 'en']] %>
 
 		<% available_roles = [[t(:role_volunteer).humanize, "volunteer"]] %>
-		<% if current_user.allowed_to?(:manage_technician_users) %>
+		<% if current_user.allowed_to?(:manage_users) %>
 			<% available_roles << [t(:role_technician).humanize,"technician"] %>
 		<% end %>
 		<% if current_user.allowed_to?(:manage_admin_users) %>

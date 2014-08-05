@@ -46,6 +46,7 @@ class LocationsController < ApplicationController
 	# PATCH/PUT /locations/1
 	# PATCH/PUT /locations/1.json
 	def update
+		#Change ',' characters for '.' so they work
 		params[:location][:latitude].sub! ",", "." if params[:location][:latitude]
 		params[:location][:longitude].sub! ",", "." if params[:location][:longitude]
 		respond_to do |format|
