@@ -25,10 +25,9 @@ en:
    about: "About"
    login: "Log in"
    logout: "Log out"
-   map: "Map"
    menu_resources: "Resources"
    
-   home: "Home"
+   map: "Map"
    user_list_title: "Users"
    location_list_title: "Locations"
    vehicle_list_title: "Vehicles"
@@ -111,6 +110,58 @@ en:
    form_add_vehicle_to_service_acu: "ACU"
    form_add_vehicle_to_service_per: "PER"
    form_add_vehicle_to_service_submit: "Add"
+   
+   date:
+    abbr_day_names:
+    - "dom"
+    - "lun"
+    - "mar"
+    - "mié"
+    - "jue"
+    - "vie"
+    - "sáb"
+    abbr_month_names:
+    - "ene"
+    - "feb"
+    - "mar"
+    - "abr"
+    - "may"
+    - "jun"
+    - "jul"
+    - "ago"
+    - "sep"
+    - "oct"
+    - "nov"
+    - "dic"
+    day_names:
+    - "domingo"
+    - "lunes"
+    - "martes"
+    - "miércoles"
+    - "jueves"
+    - "viernes"
+    - "sábado"
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    - "enero"
+    - "febrero"
+    - "marzo"
+    - "abril"
+    - "mayo"
+    - "junio"
+    - "julio"
+    - "agosto"
+    - "septiembre"
+    - "octubre"
+    - "noviembre"
+    - "diciembre"
+    order:
+    - :day
+    - :month
+    - :year
    
    field_not_available: "Not available"
    
