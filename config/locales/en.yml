@@ -188,7 +188,7 @@ en:
    resource_edit: "Edit"
    resource_destroy: "Remove"
    resource_destroy_confirm: "Are you sure?"
-   resource_back: "Cancel"
+   resource_back: "Return to list"
    
    user_created: "User was successfully created."
    user_updated: "User was successfully updated."

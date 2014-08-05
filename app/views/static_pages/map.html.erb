@@ -16,16 +16,7 @@ function initialize() {
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	var markers = <%= raw @hash.to_json %>;
 	for(i = 0, l = markers.length; i < l; i++) {
-		var content = "<strong>" + markers[i].name + "</strong><br>";
-		if(markers[i].description != null){
-			content = content + markers[i].description + "<br>";
-		}
-		if(markers[i].address != null) {
-			content = content + markers[i].address + "<br>";
-		}
-		if(markers[i].phone != null) {
-			content = content + markers[i].phone + "<br>";
-		}
+		var content = getMarkerContent(markers[i]);
 		var infoWindow = new google.maps.InfoWindow()
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(markers[i].latitude, markers[i].longitude),
@@ -41,6 +32,20 @@ function initialize() {
 		}
 		)(marker, content);
 	}
+}
+
+function getMarkerContent(marker) {
+	var content = "<strong>" + marker.name + "</strong><br>";	
+	if(marker.description != null){
+		content = content + marker.description + "<br>";
+	}
+	if(marker.address != null) {
+		content = content + marker.address + "<br>";
+	}
+	if(marker.phone != null) {
+		content = content + marker.phone + "<br>";
+	}
+	return content;
 }
 //JQuery magic, substitutes "window.onload = loadScript" in the GMaps guide by doing it properly
 $(document).ready(loadScript);
