@@ -6,10 +6,21 @@ class LocationsController < ApplicationController
 	# GET /locations
 	# GET /locations.json
 	def index
-		@locations = if params[:updated_at]
-			Location.all.where("updated_at > ?", params[:updated_at])
-		else
-			Location.all
+		respond_to do |format|
+			format.html { 
+				if current_user.allowed_to?(:manage_locations)
+					@locations = Location.all 
+				else
+					redirect_to root_url
+				end
+			}
+			format.json {
+				@locations = if params[:updated_at]
+					Location.all.where("updated_at > ?", params[:updated_at])
+				else
+					Location.all.where(:active => true)
+				end
+			}
 		end
 	end
 
