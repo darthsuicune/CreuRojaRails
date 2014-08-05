@@ -136,9 +136,9 @@ describe LocationsController do
 		end
 
 		describe "PUT update" do
+			let(:location) { FactoryGirl.create(:location) }
 			describe "with valid params" do
 				it "updates the requested location" do
-					location = Location.create! valid_attributes
 					# Assuming there are no other locations in the database, this
 					# specifies that the Location created on the previous line
 					# receives the :update_attributes message with whatever params are
@@ -148,13 +148,11 @@ describe LocationsController do
 				end
 
 				it "assigns the requested location as @location" do
-					location = Location.create! valid_attributes
 					put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
 					expect(assigns(:location)).to eq(location)
 				end
 
 				it "redirects to the location" do
-					location = Location.create! valid_attributes
 					put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
 					expect(response).to redirect_to(locations_path)
 				end
@@ -162,7 +160,6 @@ describe LocationsController do
 
 			describe "with invalid params" do
 				it "assigns the location as @location" do
-					location = Location.create! valid_attributes
 					# Trigger the behavior that occurs when invalid params are submitted
 					allow_any_instance_of(Location).to receive(:save).and_return(false)
 					put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
@@ -170,11 +167,27 @@ describe LocationsController do
 				end
 
 				it "re-renders the 'edit' template" do
-					location = Location.create! valid_attributes
 					# Trigger the behavior that occurs when invalid params are submitted
 					allow_any_instance_of(Location).to receive(:save).and_return(false)
 					put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
 					expect(response).to render_template("edit")
+				end
+			end
+			describe "with ,s instead of .s for decimal points" do
+				before {
+					location.latitude = 41.12345
+					location.save
+					@initial_value = 41.12345
+				}
+				it "updates the information" do
+					put :update, {:id => location.to_param, :location => { :latitude => "41,654321" }}, valid_session
+					new_location = Location.find(location.id)
+					expect(new_location.latitude).not_to eq(@initial_value)
+				end
+				it "accepts commas" do
+					put :update, {:id => location.to_param, :location => { :latitude => "41,654321" }}, valid_session
+					new_location = Location.find(location.id)
+					expect(new_location.latitude).to eq(41.654321)
 				end
 			end
 		end
