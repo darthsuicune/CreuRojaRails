@@ -207,9 +207,11 @@ en:
    lang_spanish: "Spanish"
    lang_english: "English"
    
+   location_adaptadas: "Adapted"
    location_asamblea: "Assembly"
    location_bravo: "Bravo"
    location_cuap: "CUAP"
+   location_gasolinera: "Gas station"
    location_hospital: "Hospital"
    location_maritimo: "Maritime Preventive Service"
    location_nostrum: "Nostrum"
