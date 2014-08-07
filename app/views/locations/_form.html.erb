@@ -11,16 +11,17 @@
 		</div>
 	<% end %>
 	
-	<% available_types = [[t(:location_adaptadas), 'adaptadas']
-								[t(:location_asamblea), 'asamblea'], 
-								[t(:location_bravo), 'bravo'], 
-								[t(:location_cuap), 'cuap'], 
-								[t(:location_gasolinera), 'gasolinera'], 
-								[t(:location_hospital), 'hospital'], 
-								[t(:location_maritimo), 'maritimo'], 
-								[t(:location_nostrum), 'nostrum'], 
-								[t(:location_salvamento), 'salvamento'], 
-								[t(:location_terrestre), 'terrestre']] %>
+	<% available_types = [] %>
+	<% available_types << [t(:location_adaptadas), 'adaptadas'] %>
+	<% available_types << [t(:location_asamblea), 'asamblea'] %>
+	<% available_types << [t(:location_bravo), 'bravo'] %>
+	<% available_types << [t(:location_cuap), 'cuap'] %>
+	<% available_types << [t(:location_gasolinera), 'gasolinera'] %>
+	<% available_types << [t(:location_hospital), 'hospital'] %>
+	<% available_types << [t(:location_maritimo), 'maritimo'] %>
+	<% available_types << [t(:location_nostrum), 'nostrum'] %>
+	<% available_types << [t(:location_salvamento), 'salvamento'] %>
+	<% available_types << [t(:location_terrestre), 'terrestre'] %>
 
 	<div class="field">
 		<%= f.label :name, t(:form_location_name) %><br>
