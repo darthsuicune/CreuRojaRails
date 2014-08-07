@@ -51,8 +51,8 @@ class UsersController < ApplicationController
 	def update
 		respond_to do |format|
 			if @user.update(user_params)
-				add_to_assembly
-				verify_active
+				add_to_assembly @user
+				verify_active @user
 				format.html { redirect_to @user, notice: I18n.t(:user_updated) }
 				format.json { head :no_content }
 			else
@@ -92,13 +92,13 @@ class UsersController < ApplicationController
 		end
 	end
 	
-	def add_to_assembly
-		if params[:user][:assemblies] && LocationUser.all.where(user: @user.id, location_id: params[:user][:assemblies][:location_id]).empty?
-			LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
+	def add_to_assembly(user)
+		if params[:user][:assemblies] && LocationUser.all.where(user: user.id, location_id: params[:user][:assemblies][:location_id]).empty?
+			LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: user.id)
 		end
 	end
 	
-	def verify_active
-		#Session.destroy!.where(user_id: self.id) unless self.active
+	def verify_active(user)
+		Session.destroy_all(user_id: user.id) unless user.active
 	end
 end

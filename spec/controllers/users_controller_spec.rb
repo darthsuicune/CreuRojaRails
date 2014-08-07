@@ -160,17 +160,25 @@ describe UsersController do
 				# receives the :update_attributes message with whatever params are
 				# submitted in the request.
 				expect_any_instance_of(User).to receive(:update).with({ "name" => "MyString" })
-				put :update, {:id => user.to_param, :user => { "name" => "MyString" }}, valid_session
+				put :update, {:id => user.to_param, :user => { "name" => "MyString" }}
 			end
 
 			it "assigns the requested user as @user" do
-				put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+				put :update, {:id => user.to_param, :user => valid_attributes}
 				expect(assigns(:user)).to eq(user)
 			end
 
 			it "redirects to the user" do
-				put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+				put :update, {:id => user.to_param, :user => valid_attributes}
 				expect(response).to redirect_to(user)
+			end
+			
+			describe "deactivating the user" do
+				it "destroys its sessions" do
+					expect { 
+						put :update, {id: user.to_param, :user => { active: false } }
+					}.to change(Session, :count).by(-1)
+				end
 			end
 		end
 
