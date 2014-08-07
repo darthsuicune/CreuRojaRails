@@ -51,9 +51,8 @@ class UsersController < ApplicationController
 	def update
 		respond_to do |format|
 			if @user.update(user_params)
-				if params[:user][:assemblies][:location_id] && LocationUser.all.where(user: @user.id, location_id: params[:user][:assemblies][:location_id]).empty?
-					LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
-				end
+				add_to_assembly
+				verify_active
 				format.html { redirect_to @user, notice: I18n.t(:user_updated) }
 				format.json { head :no_content }
 			else
@@ -91,5 +90,15 @@ class UsersController < ApplicationController
 		unless (current_user.allowed_to?(:manage_users) || (current_user == @user && current_user.allowed_to?(:see_own_profile)))
 			redirect_to root_url 
 		end
+	end
+	
+	def add_to_assembly
+		if params[:user][:assemblies][:location_id] && LocationUser.all.where(user: @user.id, location_id: params[:user][:assemblies][:location_id]).empty?
+			LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
+		end
+	end
+	
+	def verify_active
+		#Session.destroy!.where(user_id: self.id) unless self.active
 	end
 end
