@@ -177,7 +177,7 @@ describe UsersController do
 		describe "with invalid params" do
 			before do
 				allow_any_instance_of(User).to receive(:save).and_return(false)
-				put :update, {:id => user.to_param, :user => { "name" => "invalid value" }}, valid_session
+				put :update, {:id => user.to_param, :user => { :name => "invalid value"*60 }}, valid_session
 			end
 			it "assigns the user as @user" do
 				# Trigger the behavior that occurs when invalid params are submitted

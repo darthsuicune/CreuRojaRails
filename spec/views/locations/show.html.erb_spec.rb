@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "locations/show" do
+	let(:user) { FactoryGirl.create(:admin) }
 	before(:each) do
+		sign_in user
 		@location = FactoryGirl.create(:location)
 	end
 
@@ -15,6 +17,6 @@ describe "locations/show" do
 		expect(rendered).to match(/1.5/)
 		expect(rendered).to match(/1.5/)
 		expect(rendered).to match(/Location type/)
-		expect(rendered).to match(/false/)
+		expect(rendered).to match(/true/)
 	end
 end

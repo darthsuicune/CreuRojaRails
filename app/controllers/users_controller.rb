@@ -93,7 +93,7 @@ class UsersController < ApplicationController
 	end
 	
 	def add_to_assembly
-		if params[:user][:assemblies][:location_id] && LocationUser.all.where(user: @user.id, location_id: params[:user][:assemblies][:location_id]).empty?
+		if params[:user][:assemblies] && LocationUser.all.where(user: @user.id, location_id: params[:user][:assemblies][:location_id]).empty?
 			LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
 		end
 	end

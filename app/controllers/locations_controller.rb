@@ -6,10 +6,22 @@ class LocationsController < ApplicationController
 	# GET /locations
 	# GET /locations.json
 	def index
-		@locations = if params[:updated_at]
-			Location.all.where("updated_at > ?", params[:updated_at])
-		else
-			Location.all
+		#This next piece has a retard as its ideological author. Don't blame my hands for it.
+		respond_to do |format|
+			format.html { 
+				if current_user.allowed_to?(:manage_locations)
+					@locations = Location.all 
+				else
+					redirect_to root_url
+				end
+			}
+			format.json {
+				@locations = if params[:updated_at]
+					Location.all.where("updated_at > ?", params[:updated_at])
+				else
+					Location.all.where(:active => true)
+				end
+			}
 		end
 	end
 
@@ -46,6 +58,9 @@ class LocationsController < ApplicationController
 	# PATCH/PUT /locations/1
 	# PATCH/PUT /locations/1.json
 	def update
+		#Change ',' characters for '.' so they work
+		params[:location][:latitude].sub! ",", "." if params[:location][:latitude]
+		params[:location][:longitude].sub! ",", "." if params[:location][:longitude]
 		respond_to do |format|
 			if @location.update(location_params)
 				format.html { redirect_to locations_path, notice: I18n.t(:location_updated) }

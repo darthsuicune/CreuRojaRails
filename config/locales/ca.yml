@@ -20,149 +20,210 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ca:
-   base_title: "Creu Roja"
+   base_title: "Creu Roja Catalunya"
    contact: "Contacte"
    about: "Sobre nosaltres"
    login: "Iniciar sessió"
-   logout: "Finalitzar sessió"
-   map: "Mapa"
+   logout: "Tancar sessió"
+   menu_resources: "Administració"
    
-   home: "Inici"
+   map: "Mapa"
    user_list_title: "Usuaris"
-   location_list_title: "Localitzacions"
+   location_list_title: "Locatitzacions"
    vehicle_list_title: "Vehicles"
    service_list_title: "Serveis"
-   date:
-    abbr_day_names:
-    - Dg
-    - Dl
-    - Dm
-    - Dc
-    - Dj
-    - Dv
-    - Ds
-    abbr_month_names:
-    -
-    - Gen
-    - Feb
-    - Mar
-    - Abr
-    - Mai
-    - Jun
-    - Jul
-    - Ago
-    - Set
-    - Oct
-    - Nov
-    - Des
-    day_names:
-    - Diumenge
-    - Dilluns
-    - Dimarts
-    - Dimecres
-    - Dijous
-    - Divendres
-    - Dissabte
-    formats:
-      default: ! '%d-%m-%Y'
-      long: ! '%d de %B de %Y'
-      short: ! '%d de %b'
-    month_names:
-    -
-    - Gener
-    - Febrer
-    - Març
-    - Abril
-    - Maig
-    - Juny
-    - Juliol
-    - Agost
-    - Setembre
-    - Octubre
-    - Novembre
-    - Desembre
-    order:
-    - :day
-    - :month
-    - :year
 
-   form_errors_found: "van impedir el registre"
-
-   form_user_show_title: "User profile"
+   form_errors_found: "impedeix processar el formulari"
+   
+   form_user_show_title: "Usuari"
    form_user_new_title: "Nou usuari"
    form_user_edit_title: "Editar usuari"
    form_user_name: "Nom"
-   form_user_surname: "Cognom"
+   form_user_surname: "Cognoms"
    form_user_email: "Correu electrònic"
    form_user_password: "Contrasenya"
    form_user_password_confirmation: "Confirmar contrasenya"
    form_user_language: "Idioma"
    form_user_role: "Rol"
+   form_user_phone: "Telèfon"
+   form_user_active: "Actiu"
    form_user_submit: "Enviar"
-
-   form_location_show_title: "View location"
-   form_location_edit_title: "Edit location"
-   form_location_new: "New location"
-   form_location_name: "Name"
-   form_location_description: "Description"
-   form_location_address: "Address"
-   form_location_phone: "Phone"
-   form_location_latitude: "Latitude"
-   form_location_longitude: "Longitude"
-   form_location_type: "Location type"
-   form_location_active: "Active"
-   form_location_submit: "Create location"
+   form_user_assemblies: "Assemblees"
+   reactivate_user: "Activar"
+   deactivate_user: "Desactivar"
    
-   form_vehicle_show_title: "View vehicle"
-   form_vehicle_edit_title: "Edit vehicle"
-   form_vehicle_new: "New vehicle"
-   form_vehicle_brand: "Brand"
+   form_location_show_title: "Localització"
+   form_location_edit_title: "Edita localització"
+   form_location_new: "Nova localització"
+   form_location_name: "Nom"
+   form_location_description: "Descripció"
+   form_location_address: "Direcció"
+   form_location_phone: "Telèfon"
+   form_location_latitude: "Latitud"
+   form_location_longitude: "Longitud"
+   form_location_type: "Tipus"
+   form_location_active: "Actiu"
+   form_location_expiredate: "Data d'expiració"
+   form_location_submit: "Enviar"
+   reactivate_location: "Activar"
+   deactivate_location: "Desactivar"
+   
+   form_vehicle_show_title: "Vehicle"
+   form_vehicle_edit_title: "Edita vehicle"
+   form_vehicle_new: "Nou vehicle"
+   form_vehicle_brand: "Marca"
    form_vehicle_model: "Model"
-   form_vehicle_license: "License"
-   form_vehicle_indicative: "Indicative"
-   form_vehicle_type: "Type"
+   form_vehicle_license: "Matrícula o llicència"
+   form_vehicle_indicative: "Indicatiu"
+   form_vehicle_type: "Tipus"
    form_vehicle_places: "Places"
    form_vehicle_notes: "Notes"
-   form_vehicle_operative: "Operative"
-   form_vehicle_submit: "Create vehicle"
+   form_vehicle_operative: "Operatiu"
+   form_vehicle_submit: "Enviar"
    
-   form_service_edit_title: "Edit location"
-   form_service_new: "New service"
-   form_service_name: "Name"
-   form_service_description: "Description"
-   form_service_assembly_id: "Assembly"
-   form_service_base_time: "Base time"
-   form_service_start_time: "Start time"
-   form_service_end_time: "End time"
-   form_service_code: "Code"
-   form_service_submit: "Create service"
+   form_service_show_title: "Servei"
+   form_service_edit_title: "Edita servei"
+   form_service_new: "Nou servei"
+   form_service_name: "Nom"
+   form_service_description: "Descripció"
+   form_service_assembly: "Assemblea"
+   form_service_assembly_id: "Assembly id"
+   form_service_base_time: "Hora en base o CCA"
+   form_service_start_time: "Hora d'inici"
+   form_service_end_time: "Hora de finalització"
+   form_service_code: "Codi"
+   form_service_submit: "Enviar"
+   
+   form_service_assigned_vehicles: "Vehicles assignats"
+   form_service_assign_vehicle: "Assignar vehicles"
+   
+   vehicle_assigned_to_service: "El vehicle ha estat assignat"
+   
+   form_add_vehicle_to_service_vehicle_id: "Vehicle"
+   form_add_vehicle_to_service_doc: "Metge"
+   form_add_vehicle_to_service_due: "Infermer"
+   form_add_vehicle_to_service_tes: "Tècnic"
+   form_add_vehicle_to_service_ci: "Cap d'instal·lació"
+   form_add_vehicle_to_service_asi: "Socorrista"
+   form_add_vehicle_to_service_btp: "Conductor BTP"
+   form_add_vehicle_to_service_b1: "Conductor B1"
+   form_add_vehicle_to_service_acu: "Aquàtic"
+   form_add_vehicle_to_service_per: "Patró d'embarcacions"
+   form_add_vehicle_to_service_submit: "Afegir"
+   
+   date:
+    abbr_day_names:
+    - "dom"
+    - "lun"
+    - "mar"
+    - "mié"
+    - "jue"
+    - "vie"
+    - "sáb"
+    abbr_month_names:
+    - "ene"
+    - "feb"
+    - "mar"
+    - "abr"
+    - "may"
+    - "jun"
+    - "jul"
+    - "ago"
+    - "sep"
+    - "oct"
+    - "nov"
+    - "dic"
+    day_names:
+    - "domingo"
+    - "lunes"
+    - "martes"
+    - "miércoles"
+    - "jueves"
+    - "viernes"
+    - "sábado"
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    - "january"
+    - "february"
+    - "march"
+    - "april"
+    - "may"
+    - "june"
+    - "july"
+    - "august"
+    - "september"
+    - "october"
+    - "november"
+    - "december"
+    order:
+    - :day
+    - :month
+    - :year
+   
+   field_not_available: "No disponible"
+   
+   issue_status_new: "Nou"
+   issue_status_in_work: "En progrés"
+   issue_status_in_testing: "En proves"
+   issue_status_in_production: "En produccció"
+   issue_status_solved: "Solucionat"
+   
+   issue_severity_normal: "Normal"
+   issue_severity_critical: "Crític"
+   issue_severity_not_important: "Lleu"
    
    login_button: "Iniciar sessió"
+   recover_password: "Recuperar contrasenya"
+   password_recovery_submit: "Enviar"
+   password_recovery_email_sent: "T'hem enviat un correu electrònic amb les instruccions per recuperar la teva contrasenya"
+   password_recovery_invalid_user: "Correu electrònic incorrecte"
+   form_password_recovery_confirm: "Confirmar"
    
-   resource_show: "Show"
+   user_mailer.password_reset.subject: "Recuperació de contrasenya de Creu Roja Catalunya"
+   
+   resource_show: "Mostrar"
    resource_edit: "Editar"
    resource_destroy: "Eliminar"
-   resource_destroy_confirm: "Are you sure?"
-   resource_back: "Cancelar"
+   resource_destroy_confirm: "Estàs segur?"
+   resource_back: "Tornar al llistat"
    
-   user_created: "User was successfully created."
-   user_updated: "User was successfully updated."
-   location_created: "Location was successfully created."
-   location_updated: "Location was successfully updated."
-   service_created: "Service was successfully created."
-   service_updated: "Service was successfully updated."
-   vehicle_created: "Vehicle was successfully created."
-   vehicle_updated: "Vehicle was successfully updated."
+   user_created: "El usuari s'ha creat."
+   user_updated: "El usuari s'ha actualitzat."
+   location_created: "La localització s'ha creat."
+   location_updated: "La localització s'ha actualitzat."
+   service_created: "El servei s'ha creat."
+   service_updated: "El servei s'ha actualitzat."
+   vehicle_created: "El vehicle s'ha creat."
+   vehicle_updated: "El vehicle s'ha actualitzat."
    
    role_volunteer: "Voluntari"
    role_technician: "Tècnic"
-   role_admin: "Admin"
+   role_admin: "Administrador"
    
    lang_catalan: "Català"
    lang_spanish: "Espanyol"
    lang_english: "Anglès"
    
-   error_invalid_login: "Invalid email/password combination"
-   error_please_login: "Si us plau, inicia sessió."
+   location_adaptadas: "Platja adaptada"
+   location_asamblea: "Assemblea"
+   location_bravo: "Bravo"
+   location_cuap: "CUAP"
+   location_gasolinera: "Benzinera"
+   location_hospital: "Hospital"
+   location_maritimo: "Servei preventiu marítim"
+   location_nostrum: "Clau 2"
+   location_salvamento: "Base de salvament"
+   location_terrestre: "Servei preventiu terrestre"
    
-   show_beta: "This application is under development and may contain errors."
+   vehicle_alfabravo: "Ambulància de suport vital bàsic (alfa bravo)"
+   vehicle_alfamike: "Ambulància de suport vital avançat (alfa mike)"
+   vehicle_tango: "Vehicle de transport (tango)"
+   vehicle_mike: "Embarcació nàutica (mike)"
+   vehicle_romeo: "Vehicle de rescat (romeo)"
+   
+   error_invalid_login: "Correu electrònic o contrasenya incorrecta"
+
+   show_beta: "Aquesta aplicació està en desenvolupament i pot contenir errors."
