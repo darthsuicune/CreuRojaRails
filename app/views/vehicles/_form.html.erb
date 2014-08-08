@@ -11,7 +11,11 @@
     </div>
   <% end %>
   
-  <% available_vehicle = [[t(:vehicle_alfabravo), 'alfa bravo'], [t(:vehicle_alfamike), 'alfa mike'], [t(:vehicle_tango), 'tango'], [t(:vehicle_mike), 'mike'], [t(:vehicle_romeo), 'romeo']] %>
+  <% available_vehicle = [[t(:vehicle_type_alfa_bravo), 'alfa bravo'],
+			 [t(:vehicle_type_alfa_mike), 'alfa mike'],
+			 [t(:vehicle_type_mike), 'mike'],
+			 [t(:vehicle_type_romeo), 'romeo'],
+			 [t(:vehicle_type_tango), 'tango']] %>
 
   <div class="field">
     <%= f.label :brand, t(:form_vehicle_brand) %><br>

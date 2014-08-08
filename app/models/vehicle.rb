@@ -16,6 +16,23 @@ class Vehicle < ActiveRecord::Base
 	def to_s
 		"#{indicative}, #{license}"
 	end
+	
+	def translated_vehicle_type
+		case vehicle_type
+		when "alfa bravo"
+			I18n.t(:vehicle_type_alfa_bravo)
+		when "alfa mike"
+			I18n.t(:vehicle_type_alfa_mike)
+		when "mike"
+			I18n.t(:vehicle_type_mike)
+		when "romeo"
+			I18n.t(:vehicle_type_romeo)
+		when "tango"
+			I18n.t(:vehicle_type_tango)
+		else
+			"dafuq"
+		end
+	end
 
 	protected
 	def defaults

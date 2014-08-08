@@ -218,11 +218,11 @@ es:
    location_salvamento: "Base de salvamento"
    location_terrestre: "Servicio preventivo terrestre"
    
-   vehicle_alfabravo: "Ambulancia de soporte vital básico (alfa bravo)"
-   vehicle_alfamike: "Ambulancia de soporte vital avanzado (alfa mike)"
-   vehicle_tango: "Vehículo de transporte (tango)"
-   vehicle_mike: "Embarcación náutica (mike)"
-   vehicle_romeo: "Vehículo de rescate (romeo)"
+   vehicle_type_alfa_bravo: "Ambulancia de soporte vital básico"
+   vehicle_type_alfa_mike: "Ambulancia de soporte vital avanzado"
+   vehicle_type_mike: "Embarcación náutica"
+   vehicle_type_romeo: "Vehículo de rescate"
+   vehicle_type_tango: "Vehículo de transporte"
    
    error_invalid_login: "Correo electrónico o contraseña incorrecta"
 

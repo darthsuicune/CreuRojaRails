@@ -218,11 +218,11 @@ en:
    location_salvamento: "Salvage"
    location_terrestre: "Terrestrial Preventive Service"
    
-   vehicle_alfabravo: "Basic Life Support Ambulance (alfa)"
-   vehicle_alfamike: "Advanced Life Support Ambulance (alfa)"
-   vehicle_tango: "Transport Vehicle (tango)"
-   vehicle_mike: "Nautical Vessel (mike)"
-   vehicle_romeo: "Rescue Vehicle (romeo)"
+   vehicle_type_alfa_bravo: "Basic Life Support Ambulance"
+   vehicle_type_alfa_mike: "Advanced Life Support Ambulance"
+   vehicle_type_mike: "Nautical Vessel"
+   vehicle_type_romeo: "Rescue Vehicle"
+   vehicle_type_tango: "Transport Vehicle"
    
    error_invalid_login: "Invalid email/password combination"
 

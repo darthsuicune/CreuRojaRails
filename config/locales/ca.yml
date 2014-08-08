@@ -218,11 +218,11 @@ ca:
    location_salvamento: "Base de salvament"
    location_terrestre: "Servei preventiu terrestre"
    
-   vehicle_alfabravo: "Ambulància de suport vital bàsic (alfa bravo)"
-   vehicle_alfamike: "Ambulància de suport vital avançat (alfa mike)"
-   vehicle_tango: "Vehicle de transport (tango)"
-   vehicle_mike: "Embarcació nàutica (mike)"
-   vehicle_romeo: "Vehicle de rescat (romeo)"
+   vehicle_type_alfa_bravo: "Ambulància de suport vital bàsic"
+   vehicle_type_alfa_mike: "Ambulància de suport vital avançat"
+   vehicle_type_mike: "Embarcació nàutica"
+   vehicle_type_romeo: "Vehicle de rescat"
+   vehicle_type_tango: "Vehicle de transport"
    
    error_invalid_login: "Correu electrònic o contrasenya incorrecta"
 
