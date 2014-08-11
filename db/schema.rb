@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718084249) do
+ActiveRecord::Schema.define(version: 20140811085310) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140718084249) do
     t.boolean  "active",        default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "expiredate",    default: 0
+    t.integer  "expiredate"
   end
 
   add_index "locations", ["latitude", "longitude"], name: "index_locations_on_latitude_and_longitude", unique: true, using: :btree
@@ -108,10 +108,13 @@ ActiveRecord::Schema.define(version: 20140718084249) do
     t.datetime "updated_at"
     t.boolean  "active",          default: true
     t.string   "phone"
+    t.string   "notes"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["resettoken"], name: "index_users_on_resettoken", unique: true, using: :btree
+  add_index "users", ["surname"], name: "index_users_on_surname", using: :btree
 
   create_table "vehicle_services", force: true do |t|
     t.integer  "vehicle_id"

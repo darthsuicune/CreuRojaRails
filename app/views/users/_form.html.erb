@@ -45,7 +45,7 @@
 		<% end %>
 		<div class="field">
 			<%= f.label :phone, t(:form_user_phone) %><br>
-			<%= f.text_field :phone%>
+			<%= f.text_field :phone %>
 		</div>
 		<div class="field">
 			<%= f.label :password, t(:form_user_password) %><br>
@@ -55,7 +55,12 @@
 			<%= f.label :password_confirmation, t(:form_user_password_confirmation)  %><br>
 			<%= f.password_field :password_confirmation %>
 		</div>
-		
+		<% if current_user.allowed_to?(:manage_users) %>
+			<div class="field">
+				<%= f.label :notes, t(:form_user_notes) %><br>
+				<%= f.text_area :notes %>
+			</div>
+		<% end %>
 		<!-- Add assemblies section -->
 		<% if current_user.allowed_to?(:add_to_own_assembly) || current_user.allowed_to?(:add_to_any_assembly) %>
 			<% assemblies = [] %>
