@@ -105,7 +105,14 @@ class UsersController < ApplicationController
 	end
 	def parse_user_types
 		params[:user][:user_types_attributes].each do |key, value|
-			
+			if value[:user_type] == 0
+				UserType.destroy(user_id: @user.id, user_type: UserType.available_types[key.to_i][0])
+			else
+				if value[:user_type] == UserType.available_types[key.to_i][0] && UserType.where(user_id: @user.id, user_type: value[:user_type]).empty?
+					@user.user_types.create(user_type: value[:user_type])
+				end
+			end
 		end
+		UserType.where(user_type: 0).destroy_all
 	end
 end
