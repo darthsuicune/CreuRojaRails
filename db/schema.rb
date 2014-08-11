@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811090515) do
+ActiveRecord::Schema.define(version: 20140811101508) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140811090515) do
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived"
   end
 
   add_index "services", ["assembly_id"], name: "index_services_on_assembly_id", using: :btree

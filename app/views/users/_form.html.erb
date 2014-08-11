@@ -60,6 +60,15 @@
 				<%= f.label :notes, t(:form_user_notes) %><br>
 				<%= f.text_area :notes %>
 			</div>
+			<div class="field">
+				<%= f.label :user_types, t(:form_user_types) %><br>
+				<% UserType.available_types.each do |usertype| %>
+					<%= f.fields_for :user_types, @user.user_types.new do |type_form| %>
+						<%= type_form.label usertype %>
+						<%= type_form.check_box :user_type %>
+					<% end %>
+				<% end %>
+			</div>
 		<% end %>
 		<!-- Add assemblies section -->
 		<% if current_user.allowed_to?(:add_to_own_assembly) || current_user.allowed_to?(:add_to_any_assembly) %>

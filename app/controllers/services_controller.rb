@@ -72,7 +72,7 @@ class ServicesController < ApplicationController
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def service_params
-			params.require(:service).permit(:name, :description, :assembly_id, :base_time, :start_time, :end_time, :code)
+			params.require(:service).permit(:name, :description, :archived, :assembly_id, :base_time, :start_time, :end_time, :code)
 		end
 		
 		def is_valid_user

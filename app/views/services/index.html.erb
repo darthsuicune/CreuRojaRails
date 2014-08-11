@@ -19,7 +19,7 @@
 
 	<tbody>
 		<% @services.each do |service| %>
-			<tr>
+			<tr<%= raw " class=\"archived_service\"" if service.archived %>>
 			<td><%= service.name %></td>
 			<td><%= service.description %></td>
 			<td><%= service.assembly.name %></td>
@@ -30,7 +30,9 @@
 			<td><%= link_to t(:resource_show), service %></td>
 			<% if current_user.allowed_to?(:manage_services) %>
 				<td><%= link_to t(:resource_edit), edit_service_path(service) %></td>
-				<td><%= link_to t(:resource_destroy), service, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
+				<% if Time.now > service.end_time && !service.archived %>
+					<td><%= link_to t(:archive_service), service_path(service, :service => { :archived => true }), method: :put, data: { confirm: t(:resource_destroy_confirm) } %></td>
+				<% end %>
 			<% end %>
 			</tr>
 		<% end %>
