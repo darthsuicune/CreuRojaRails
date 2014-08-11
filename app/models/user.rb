@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	default_scope { order(surname: :asc) }
 	has_secure_password
 
 	has_many :sessions, dependent: :destroy
