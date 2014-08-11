@@ -13,7 +13,6 @@ class Vehicle < ActiveRecord::Base
 	validates :license, presence: true
 	validates :vehicle_type, presence: true
 	validates :places, presence: true
-	validates :operative, presence: true
 	
 	def to_s
 		"#{indicative}, #{license}"
