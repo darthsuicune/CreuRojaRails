@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 	has_many :location_users, dependent: :destroy
 	has_many :assemblies, through: :location_users, source: :location
 	
+	accepts_nested_attributes_for :user_types, allow_destroy: true
+	
 	before_save { email.downcase!
 	              role.downcase unless role.nil? }
 	

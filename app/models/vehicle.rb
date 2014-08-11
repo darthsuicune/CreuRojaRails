@@ -1,4 +1,6 @@
 class Vehicle < ActiveRecord::Base
+	default_scope { order(indicative: :asc) }
+	
 	has_many :vehicle_services
 	has_many :services, through: :vehicle_services
 	has_many :vehicle_assemblies
@@ -11,7 +13,6 @@ class Vehicle < ActiveRecord::Base
 	validates :license, presence: true
 	validates :vehicle_type, presence: true
 	validates :places, presence: true
-	validates :operative, presence: true
 	
 	def to_s
 		"#{indicative}, #{license}"

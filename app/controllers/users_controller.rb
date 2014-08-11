@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		respond_to do |format|
 			if @user.save
-				LocationUser.create!(location_id: params[:user][:assemblies][:location_id], user_id: @user.id)
+				add_to_assembly @user
 				format.html { redirect_to @user, notice: I18n.t(:user_created) }
 				format.json { render action: 'show', status: :created, location: @user }
 			else
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def user_params
-		params.require(:user).permit(:name, :surname, :email, :notes, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, :phone)
+		params.require(:user).permit(:name, :surname, :email, :notes, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, :phone, user_types_attributes: [:user_type])
 	end
 	
 	def is_valid_user

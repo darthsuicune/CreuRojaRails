@@ -1,4 +1,6 @@
 class Service < ActiveRecord::Base
+	default_scope { order(created_at: :desc) }
+	
 	belongs_to :assembly, class_name: "Location", foreign_key: :assembly_id
 	has_many :vehicle_services
 	has_many :vehicles, through: :vehicle_services
