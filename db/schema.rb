@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811101508) do
+ActiveRecord::Schema.define(version: 20140811141534) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -88,9 +88,9 @@ ActiveRecord::Schema.define(version: 20140811101508) do
 
   add_index "sessions", ["token"], name: "index_sessions_on_token", unique: true, using: :btree
 
-  create_table "user_types", id: false, force: true do |t|
-    t.integer  "user_id"
-    t.string   "user_type"
+  create_table "user_types", force: true do |t|
+    t.integer  "user_id",    default: 0,  null: false
+    t.string   "user_type",  default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

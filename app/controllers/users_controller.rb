@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		respond_to do |format|
+			parse_user_types
 			if @user.save
 				add_to_assembly @user
 				format.html { redirect_to @user, notice: I18n.t(:user_created) }
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
 	# PATCH/PUT /users/1.json
 	def update
 		respond_to do |format|
+			parse_user_types
 			if @user.update(user_params)
 				add_to_assembly @user
 				verify_active @user
@@ -80,14 +82,14 @@ class UsersController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def user_params
-		params.require(:user).permit(:name, :surname, :email, :notes, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, :phone, user_types_attributes: [:user_type])
+		params.require(:user).permit(:name, :surname, :email, :notes, :password, :password_confirmation, :resettoken, :resettime, :language, :role, :active, :phone)
 	end
 	
 	def is_valid_user
 		unless current_user
 			redirect_to root_url 
 		end
-		unless (current_user.allowed_to?(:manage_users) || (current_user == @user && current_user.allowed_to?(:see_own_profile)))
+		unless (current_user.allowed_to?(:manage_users) || (current_user? @user && current_user.allowed_to?(:see_own_profile)))
 			redirect_to root_url 
 		end
 	end
@@ -100,5 +102,10 @@ class UsersController < ApplicationController
 	
 	def verify_active(user)
 		Session.destroy_all(user_id: user.id) unless user.active
+	end
+	def parse_user_types
+		params[:user][:user_types_attributes].each do |key, value|
+			
+		end
 	end
 end

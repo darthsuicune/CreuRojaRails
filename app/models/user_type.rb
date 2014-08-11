@@ -5,6 +5,6 @@ class UserType < ActiveRecord::Base
 	validates :user_type, presence: true
 	
 	def self.available_types
-		["Type1", "Type2"]
+		[["type1", I18n.t(:type1)], ["type2", I18n.t(:type2)]]
 	end
 end

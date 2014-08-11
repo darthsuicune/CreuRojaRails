@@ -39,6 +39,21 @@ describe UsersController do
 										"password" => "MyPass", 
 										"password_confirmation" => "MyPass", 
 										"assemblies" => { "location_id" => 1 } } }
+	
+	let(:user_types) { { "name" => "MyString", 
+										"surname" => "MyString2",
+										"email" => "email1@something.com", 
+										"phone" => "13470198723",
+										"resettoken" => "123öjipouhn09819832r190832",
+										"resettime" => Time.now,
+										"language" => "ca",
+										"role" => "volunteer",
+										"active" => true,
+										"password" => "MyPass", 
+										"password_confirmation" => "MyPass", 
+										"assemblies" => { "location_id" => 1 },
+										"user_types_attributes" => { "0" => { "user_types" => "type1" } } } 
+							}
 
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in

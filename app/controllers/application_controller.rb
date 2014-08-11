@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
 	private
 		def log
-			if (action_name == :create || action_name == :update || action_name == :destroy)
+			if (action_name == "create" || action_name == "update" || action_name == "destroy")
 				log = Log.new
 				if current_user
 					log.user_id = current_user.id
