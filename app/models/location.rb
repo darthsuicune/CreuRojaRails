@@ -1,4 +1,5 @@
 class Location < ActiveRecord::Base
+	default_scope { order(location_type: :desc) }
 	has_many :services
 	has_many :location_users
 	has_many :users, through: :location_users
