@@ -1,4 +1,6 @@
 class Vehicle < ActiveRecord::Base
+	default_scope { order(indicative: :asc) }
+	
 	has_many :vehicle_services
 	has_many :services, through: :vehicle_services
 	has_many :vehicle_assemblies
