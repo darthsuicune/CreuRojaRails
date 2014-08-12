@@ -21,5 +21,7 @@
 	<%= @user.role %>
 </p>
 
+<%= render 'show_services' unless @user.services.empty? %>
+
 <%= link_to t(:resource_edit), edit_user_path(@user) if current_user?(@user) || current_user.allowed_to?(:manage_users) %> |
 <%= link_to t(:resource_back), users_path %>

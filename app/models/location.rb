@@ -3,6 +3,8 @@ class Location < ActiveRecord::Base
 	has_many :services
 	has_many :location_users
 	has_many :users, through: :location_users
+	has_many :location_services
+	has_many :services, through: :location_services
 	
 	before_validation :defaults
 	

@@ -16,6 +16,6 @@ class Service < ActiveRecord::Base
 	validates :end_time, presence: true
 	
 	def first_location_id
-		locations.first.location_id
+		locations.first.id
 	end
 end

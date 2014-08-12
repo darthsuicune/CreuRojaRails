@@ -9,6 +9,6 @@ class ServiceUser < ActiveRecord::Base
 	
 	private
 	def defaults
-		location_id ||= service.first_location_id
+		self.location_id ||= service.first_location_id
 	end
 end
