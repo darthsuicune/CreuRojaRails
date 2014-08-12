@@ -2,13 +2,13 @@
 
 FactoryGirl.define do
 	factory :location do
-		name "MyString"
-		description "MyString"
-		address "MyString"
-		phone "MyString"
+		sequence(:name) { |n| "Name #{n}" }
+		sequence(:description) { |n| "Description #{n}" }
+		sequence(:address) { |n| "Address #{n}" }
+		sequence(:phone) { |n| "Phone #{n}" }
 		latitude 1.5
 		longitude 1.5
-		location_type "MyString"
+		location_type "MyType"
 		active true
 	
 		factory :assembly do

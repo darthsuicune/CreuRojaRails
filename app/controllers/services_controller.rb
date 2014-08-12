@@ -76,7 +76,7 @@ class ServicesController < ApplicationController
 		end
 		
 		def services
-			(@vehicle) ? @vehicle.services : ((@user) ? @user.services : nil )
+			(@vehicle) ? @vehicle.services : ((@user) ? @user.services : Service.all )
 		end
 		
 		# Use callbacks to share common setup or constraints between actions.
