@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 	has_many :user_types, dependent: :destroy
 	has_many :location_users, dependent: :destroy
 	has_many :assemblies, through: :location_users, source: :location
+	has_many :service_users
+	has_many :services, through: :service_users
 	
 	accepts_nested_attributes_for :user_types, allow_destroy: true
 	
@@ -27,7 +29,7 @@ class User < ActiveRecord::Base
 	after_validation { self.errors.messages.delete(:password_digest) }
 	
 	def get_locations
-		Location.all.where(:active => "1").select([:latitude,:longitude,:location_type,:name,:description,:phone,:address])
+		Location.where(active: "1").select([:latitude,:longitude,:location_type,:name,:description,:phone,:address])
 	end
 
 	def allowed_to?(action)
@@ -95,14 +97,12 @@ class User < ActiveRecord::Base
 	
 	def translated_role
 		case role
-		when "volunteer"
-			I18n.t(:role_volunteer)
-		when "technician"
-			I18n.t(:role_technician)
 		when "admin"
 			I18n.t(:role_admin)
-		else
-			"dafuq"
+		when "technician"
+			I18n.t(:role_technician)
+		else #when "volunteer"
+			I18n.t(:role_volunteer)
 		end
 	end
 	

@@ -32,7 +32,7 @@
 	<%= link_to t(:resource_back), services_path %>
 </div>
 <div id="assigned_vehicles">
-	<strong> <%= t(:form_service_assigned_vehicles) %>: </strong>
+	<strong> <%= link_to t(:form_service_assigned_vehicles), service_vehicles_path(@service) %>: </strong>
 	<table>
 		<thead>
 			<tr>

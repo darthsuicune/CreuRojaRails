@@ -14,7 +14,7 @@ describe "vehicles/show" do
 		expect(rendered).to match(/Model/)
 		expect(rendered).to match(/License/)
 		expect(rendered).to match(/Indicative/)
-		expect(rendered).to match(/Type/)
+		expect(rendered).to match(/MyString/)
 		expect(rendered).to match(/1/)
 		expect(rendered).to match(/Notes/)
 	end

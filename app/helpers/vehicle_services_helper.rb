@@ -3,7 +3,7 @@ module VehicleServicesHelper
 	#Assignment: Services for which the vehicle is already assigned
 	def get_available_vehicles(service)
 		availables = []
-		Vehicle.all.each do |vehicle|
+		Vehicle.where(operative: true).each do |vehicle|
 			#If the service already has the vehicle, ignore
 			unless service.vehicles.include?(vehicle)
 				is_available = true

@@ -12,7 +12,7 @@ describe "vehicles/index" do
 		expect(rendered).to match "Brand"
 		expect(rendered).to match "Model"
 		expect(rendered).to match "License"
-		expect(rendered).to match "Type"
+		expect(rendered).to match "MyString"
 		expect(rendered).to match "Notes"
 	end
 end

@@ -22,10 +22,16 @@ CreuRoja::Application.routes.draw do
 	get '/email_sent' => 'static_pages#email_sent'
 
 	#Resource routes (maps HTTP verbs to controller actions automatically):
-	resources :users
+	resources :users do
+		resources :services, only: [:index]
+	end
 	resources :sessions, only: [:new, :create, :destroy]
-	resources :services
-	resources :vehicles
+	resources :services do
+		resources :vehicles, only: [:index]
+	end
+	resources :vehicles do
+		resources :services, only: [:index]
+	end
 	resources :locations
 	resources :vehicle_services, only: [:create, :update, :destroy]
 	resources :location_users, only: [:create, :update, :destroy]

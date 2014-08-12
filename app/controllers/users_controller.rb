@@ -103,7 +103,9 @@ class UsersController < ApplicationController
 	def verify_active(user)
 		Session.destroy_all(user_id: user.id) unless user.active
 	end
+	
 	def parse_user_types
+		#I'm ashamed of this code. I really am. But can't do it with strong params yet. I'll work on that.
 		params[:user][:user_types_attributes].each do |key, value|
 			if value[:user_type] == "0"
 				UserType.where(user_id: @user.id, user_type: UserType.available_types[key.to_i][0]).destroy_all

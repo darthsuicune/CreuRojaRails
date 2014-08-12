@@ -59,8 +59,8 @@ class LocationsController < ApplicationController
 	# PATCH/PUT /locations/1.json
 	def update
 		#Change ',' characters for '.' so they work
-		params[:location][:latitude].sub! ",", "." if params[:location][:latitude]
-		params[:location][:longitude].sub! ",", "." if params[:location][:longitude]
+		replace_commas params[:location][:latitude]
+		replace_commas params[:location][:longitude]
 		respond_to do |format|
 			if @location.update(location_params)
 				format.html { redirect_to locations_path, notice: I18n.t(:location_updated) }
@@ -83,6 +83,9 @@ class LocationsController < ApplicationController
 	end
 
 	private
+		def replace_commas(parameter)
+			parameter.sub! ",", "." if parameter
+		end
 		# Use callbacks to share common setup or constraints between actions.
 		def set_location
 			@location = Location.find(params[:id]) || not_found

@@ -1,12 +1,14 @@
 class ServicesController < ApplicationController
 	before_filter :signed_in_user
+	before_action :set_vehicle, only: [:index]
+	before_action :set_user, only: [:index]
 	before_action :set_service, only: [:show, :edit, :update, :destroy]
 	before_filter :is_valid_user
 
 	# GET /services
 	# GET /services.json
 	def index
-		@services = Service.all
+		@services = services
 	end
 
 	# GET /services/1
@@ -65,6 +67,18 @@ class ServicesController < ApplicationController
 	end
 
 	private
+		def set_vehicle
+			@vehicle = (params[:vehicle_id]) ? Vehicle.find(params[:vehicle_id]) : nil
+		end
+		
+		def set_user
+			@user = (params[:user_id]) ? User.find(params[:user_id]) : nil
+		end
+		
+		def services
+			(@vehicle) ? @vehicle.services : ((@user) ? @user.services : nil )
+		end
+		
 		# Use callbacks to share common setup or constraints between actions.
 		def set_service
 			@service = Service.find(params[:id]) || not_found
