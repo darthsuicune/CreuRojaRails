@@ -23,15 +23,13 @@ CreuRoja::Application.routes.draw do
 
 	#Resource routes (maps HTTP verbs to controller actions automatically):
 	resources :users do
-		resources :services, only: [:index]
+		resources :services
 	end
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :services do
-		resources :vehicles, only: [:index]
+		resources :vehicles
 	end
-	resources :vehicles do
-		resources :services, only: [:index]
-	end
+	resources :vehicles
 	resources :locations
 	resources :vehicle_services, only: [:create, :update, :destroy]
 	resources :location_users, only: [:create, :update, :destroy]
