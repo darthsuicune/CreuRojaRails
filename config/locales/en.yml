@@ -179,7 +179,7 @@ en:
    recover_password: "Recover password"
    password_recovery_submit: "Submit"
    password_recovery_email_sent: "We've sent you an e-mail with instructions to recover your password"
-   password_recovery_invalid_user: "Invalid e-mail"
+   error_invalid_email: "Invalid e-mail"
    form_password_recovery_confirm: "Confirm"
    
    user_mailer.password_reset.subject: "Password recovery for the Red Cross service"
@@ -225,5 +225,9 @@ en:
    vehicle_type_tango: "Transport Vehicle"
    
    error_invalid_login: "Invalid email/password combination"
+   set_your_new_password: "Enter your new password, we recommend that is not the same as your email or social networks"
+   password_and_confirmation_must_be_longer: "Password too short, must be 6 characters minimum."
+   password_and_confirmation_must_match: "Passwords do not match"
+   password_recovery_error: "Failed to change password"
 
    show_beta: "This application is under development and may contain errors."
