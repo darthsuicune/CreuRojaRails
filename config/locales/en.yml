@@ -27,6 +27,11 @@ en:
    logout: "Log out"
    menu_resources: "Administration"
    
+   vehicle: "Vehicle"
+   service: "Service"
+   location: "Location"
+   user: "User"
+   
    map: "Map"
    user_list_title: "Users"
    location_list_title: "Locations"

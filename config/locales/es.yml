@@ -27,6 +27,11 @@ es:
    logout: "Cerrar sesión"
    menu_resources: "Administración"
    
+   vehicle: "Vehículo"
+   service: "Servicio"
+   location: "Localización"
+   user: "Usuario"
+   
    map: "Mapa"
    user_list_title: "Usuarios"
    location_list_title: "Localizaciones"
