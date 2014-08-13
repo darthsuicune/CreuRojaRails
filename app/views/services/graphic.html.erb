@@ -1,0 +1,41 @@
+<% provide(:title, t(:form_service_show_title)) %>
+
+<h1><%= t(:service_list_title) %></h1>
+
+<% day_services = @services.where(base_time: DateTime.now.beginning_of_day..DateTime.now.end_of_day) %>
+<% day_services = @services %>
+<% not_occupied = "<td style=\"background-color: white; padding: 3px;\"></td>" %>
+<% base = "<td style=\"background-color: green; padding: 3px;\"></td>" %>
+<% started = "<td style=\"background-color: red; padding: 3px;\"></td>" %>
+<div id="services_graphic">
+	<table>
+		<thead>
+			<tr style="outline:1px solid black;">
+				<th><%= t(:form_service_name) %></th>
+				<th><%= t(:form_service_code) %></th>
+				<th><%= t(:form_vehicle_indicative) %></th>
+				<% (6..24).each do |hour| %>
+					<th colspan="4"><%= hour %></th>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody style="border:1px solid black;">
+			<% day_services.each do |service| %>
+			<tr style="outline:1px solid black;">
+				<td><%= link_to service.name, service %></td>
+				<td><%= link_to service.code, service %></td>
+				<td>
+				<% service.vehicles.each do |vehicle| %>
+					<%= link_to vehicle, vehicle %><br>
+				<% end %>
+				</td>
+				<% (6..24).each do |hour| %>
+					<% (0..3).each do |quarter| %>
+						<%= raw started %>
+					<% end %>
+				<% end %>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

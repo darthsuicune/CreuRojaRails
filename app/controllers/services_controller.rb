@@ -10,6 +10,11 @@ class ServicesController < ApplicationController
 	def index
 		@services = services
 	end
+	
+	# GET /services/graphic
+	def graphic
+		@services = services
+	end
 
 	# GET /services/1
 	# GET /services/1.json

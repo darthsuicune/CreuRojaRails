@@ -19,7 +19,7 @@ class Service < ActiveRecord::Base
 		locations.first.id
 	end
 	
-	def is_expired
+	def expired?
 		Time.now > end_time 
 	end
 end

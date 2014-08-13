@@ -28,10 +28,11 @@
 	<strong><%= t(:form_service_archived) %>:</strong>
 	<%= @service.archived %>
 	<br>
+	<%= link_to t(:form_service_graphic), services_graphic_path %> |
 	<%= link_to t(:resource_edit), edit_service_path(@service) if current_user.allowed_to?(:manage_services) %> |
 	<%= link_to t(:resource_back), services_path %>
 </div>
-<% unless @service.is_expired || @service.archived %>
+<% unless @service.expired? || @service.archived %>
 <div class="assignments">
 	<%= render 'assigned_locations' %>
 	<%= render 'add_location' if current_user && current_user.allowed_to?(:assign_service_to_location) %>
