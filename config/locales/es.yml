@@ -181,9 +181,7 @@ es:
    password_recovery_email_sent: "Te hemos enviado un correo electrónico con las instrucciones para recuperar tu contraseña"
    error_invalid_email: "Correo electrónico incorrecto"
    form_password_recovery_confirm: "Confirmar"
-   
-   user_mailer.password_reset.subject: "Recuperación de contraseña de Cruz Roja Cataluña"
-   
+
    resource_show: "Mostrar"
    resource_edit: "Editar"
    resource_destroy: "Eliminar"
@@ -229,5 +227,7 @@ es:
    password_and_confirmation_must_be_longer: "Contraseña demasiado corta, debe tener 6 caracteres como mínimo."
    password_and_confirmation_must_match: "Las contraseñas no coinciden."
    password_recovery_error: "Error al cambiar contraseña"
+   password_recovery: "Recuperación de contraseña"
+   email_sent: "Correu per canviar contrasenya enviat"
 
    show_beta: "Esta aplicación está en desarrollo y puede contener errores."

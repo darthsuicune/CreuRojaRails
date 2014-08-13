@@ -182,8 +182,6 @@ en:
    error_invalid_email: "Invalid e-mail"
    form_password_recovery_confirm: "Confirm"
    
-   user_mailer.password_reset.subject: "Password recovery for the Red Cross service"
-   
    resource_show: "Show"
    resource_edit: "Edit"
    resource_destroy: "Remove"
@@ -229,5 +227,7 @@ en:
    password_and_confirmation_must_be_longer: "Password too short, must be 6 characters minimum."
    password_and_confirmation_must_match: "Passwords do not match"
    password_recovery_error: "Failed to change password"
+   password_recovery: "Password recovery"
+   email_sent: "Correu per canviar contrasenya enviat"
 
    show_beta: "This application is under development and may contain errors."

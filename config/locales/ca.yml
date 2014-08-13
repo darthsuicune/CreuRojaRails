@@ -182,8 +182,6 @@ ca:
    error_invalid_email: "Correu electrònic incorrecte"
    form_password_recovery_confirm: "Confirmar"
    
-   user_mailer.password_reset.subject: "Recuperació de contrasenya de Creu Roja Catalunya"
-   
    resource_show: "Mostrar"
    resource_edit: "Editar"
    resource_destroy: "Eliminar"
@@ -225,9 +223,11 @@ ca:
    vehicle_type_tango: "Vehicle de transport"
    
    error_invalid_login: "Correu electrònic o contrasenya incorrecta"
-   set_your_new_password: "Introdueix la teva nova contrasenya, recomanem que no sigui la mateixa que la del teu correu electrònic o xarxes socials"
+   set_your_new_password: "Introdueix la nova contrasenya, recomanem que no sigui la mateixa que la del teu correu electrònic o xarxes socials"
    password_and_confirmation_must_be_longer: "Contrasenya massa curta, ha de tenir 6 caràcters com a mínim."
    password_and_confirmation_must_match: "Les contrasenyes no coincideixen"
    password_recovery_error: "Error en canviar contrasenya"
+   password_recovery: "Recuperació de contrasenya"
+   email_sent: "Correu per canviar contrasenya enviat"
 
    show_beta: "Aquesta aplicació està en desenvolupament i pot contenir errors."
