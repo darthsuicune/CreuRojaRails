@@ -1,9 +1,9 @@
 class Vehicle < ActiveRecord::Base
 	default_scope { order(indicative: :asc) }
 	
-	has_many :vehicle_services
+	has_many :vehicle_services, dependent: :destroy
 	has_many :services, through: :vehicle_services
-	has_many :vehicle_assemblies
+	has_many :vehicle_assemblies, dependent: :destroy
 	has_many :assemblies, through: :vehicle_assemblies
 
 	after_validation :defaults, on: [:create]

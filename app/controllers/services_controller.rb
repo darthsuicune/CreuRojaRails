@@ -15,6 +15,8 @@ class ServicesController < ApplicationController
 	# GET /services/1.json
 	def show
 		@vehicle_service = VehicleService.new
+		@location_service = LocationService.new
+		@service_user = ServiceUser.new
 	end
 
 	# GET /services/new

@@ -3,13 +3,12 @@ class VehicleServicesController < ApplicationController
 	before_filter :is_valid_user, only: [:new, :create, :edit, :update, :destroy]
 	
 	def create
-		@vehicle_service = VehicleService.new(vehicle_service_params)
-		if @vehicle_service.save
-			redirect_to @vehicle_service.service, notice: I18n.t(:vehicle_assigned_to_service)
+		vehicle_service = VehicleService.new(vehicle_service_params)
+		if vehicle_service.save
+			redirect_to vehicle_service.service, notice: I18n.t(:vehicle_assigned_to_service)
 		else
-			redirect_to @vehicle_service.service
+			redirect_to vehicle_service.service
 		end
-		
 	end
 	
 	def update

@@ -1,10 +1,11 @@
 class Location < ActiveRecord::Base
 	default_scope { order(location_type: :desc) }
 	has_many :services
-	has_many :location_users
+	has_many :location_users, dependent: :destroy
 	has_many :users, through: :location_users
-	has_many :location_services
+	has_many :location_services, dependent: :destroy
 	has_many :services, through: :location_services
+	has_many :service_users, dependent: :destroy
 	
 	before_validation :defaults
 	

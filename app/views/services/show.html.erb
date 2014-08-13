@@ -31,38 +31,17 @@
 	<%= link_to t(:resource_edit), edit_service_path(@service) if current_user.allowed_to?(:manage_services) %> |
 	<%= link_to t(:resource_back), services_path %>
 </div>
-<div id="assigned_vehicles">
-	<strong> <%= link_to t(:form_service_assigned_vehicles), service_vehicles_path(@service) %>: </strong>
-	<table>
-		<thead>
-			<tr>
-				<th><%=I18n.t(:form_vehicle_indicative)%></th>
-				<th><%=I18n.t(:form_vehicle_license)%></th>
-				<th><%=I18n.t(:form_vehicle_brand)%></th>
-				<th><%=I18n.t(:form_vehicle_model)%></th>
-				<th><%=I18n.t(:form_vehicle_type)%></th>
-				<th><%=I18n.t(:form_vehicle_places)%></th>
-			</tr>
-		</thead>
-		<tbody>
-		<% @service.vehicles.each do |vehicle| %>
-			<tr>
-				<td><%= vehicle.indicative %></td>
-				<td><%= vehicle.license %></td>
-				<td><%= vehicle.brand %></td>
-				<td><%= vehicle.model %></td>
-				<td><%= vehicle.vehicle_type %></td>
-				<td><%= vehicle.places %></td>
-				<td><%= link_to t(:resource_show), vehicle %></td>
-				<% if current_user.allowed_to?(:assign_vehicle_to_service) %>
-					<% vehicle_service = vehicle.vehicle_services.find_by_service_id(@service.id) %>
-					<td><%= link_to t(:resource_destroy), vehicle_service, method: :delete, data: { confirm: t(:resource_destroy_confirm) } %></td>
-				<% end %>
-			</tr>
-		<% end %>
-	</tbody>
-	</table>
+<% unless @service.is_expired || @service.archived %>
+<div class="assignments">
+	<%= render 'assigned_locations' %>
+	<%= render 'add_location' if current_user && current_user.allowed_to?(:assign_service_to_location) %>
+
+	<%= render 'assigned_vehicles' unless @service.vehicles.empty? %>
+	<%= render 'add_vehicle' if current_user && current_user.allowed_to?(:assign_vehicle_to_service) %>
+
+	<% unless @service.locations.empty?%>
+		<%= render 'assigned_users' unless @service.users.empty? %>
+		<%= render 'add_user' if current_user && current_user.allowed_to?(:assign_user_to_service) %>
+	<% end %>
 </div>
-<% if current_user && current_user.allowed_to?(:assign_vehicle_to_service) %>
-	<%= render 'add_vehicle' %>
 <% end %>

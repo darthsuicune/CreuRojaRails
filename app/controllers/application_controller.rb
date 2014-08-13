@@ -23,24 +23,12 @@ class ApplicationController < ActionController::Base
 	private
 		def log
 			if (action_name == "create" || action_name == "update" || action_name == "destroy")
-				log = Log.new
-				if current_user
-					log.user_id = current_user.id
-				else
-					log.user_id = 0
-				end
-				log.controller = controller_name
-				log.action = action_name
-				log.ip = request.remote_ip
-				log.save
+				user_id = (current_user) ? current_user.id : 0
+				log = Log.create(user_id, controller_name, action_name, request.remote_ip)
 			end
 		end
 		
 		def set_locale
-			if current_user
-				I18n.locale = params[:locale] || current_user.language
-			else
-				I18n.locale = params[:locale] || I18n.default_locale
-			end
+			I18n.locale = params[:locale] || (current_user) ? current_user.language : I18n.default_locale
 		end
 end

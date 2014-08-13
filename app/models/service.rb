@@ -2,11 +2,11 @@ class Service < ActiveRecord::Base
 	default_scope { order(base_time: :desc) }
 	
 	belongs_to :assembly, class_name: "Location", foreign_key: :assembly_id
-	has_many :vehicle_services
+	has_many :vehicle_services, dependent: :destroy
 	has_many :vehicles, through: :vehicle_services
-	has_many :service_users
+	has_many :service_users, dependent: :destroy
 	has_many :users, through: :service_users
-	has_many :location_services
+	has_many :location_services, dependent: :destroy
 	has_many :locations, through: :location_services
 	
 	validates :name, presence: true
@@ -17,5 +17,9 @@ class Service < ActiveRecord::Base
 	
 	def first_location_id
 		locations.first.id
+	end
+	
+	def is_expired
+		Time.now > end_time 
 	end
 end
