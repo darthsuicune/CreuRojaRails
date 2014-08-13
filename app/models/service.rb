@@ -24,11 +24,11 @@ class Service < ActiveRecord::Base
 	end
 	
 	def in_base_time?(time)
-		base_time < time && time < start_time
+		base_time <= time && time <= start_time
 	end
 	
 	def started?(time)
-		start_time < time && time < end_time
+		start_time <= time && time <= end_time
 	end
 	
 	def finished?(time)
