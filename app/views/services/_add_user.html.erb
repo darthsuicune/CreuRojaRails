@@ -1,4 +1,4 @@
-<div id="assign_user_to_service">
+<div id="assign_user_to_service" class="add_to_service_form">
 	<% available_users = get_available_users @service %>
 	<% unless available_users.empty? %>
 		<strong> <%= t(:form_service_assign_user) %>: </strong>
@@ -31,7 +31,8 @@
 		<%= f.label :user_id, t(:form_add_user_to_service_user_id) %>
 		<%= f.select(:user_id, available_users) %>
 
-		<div id="warning_only_location_or_vehicle"><%= t(:form_add_user_to_service_warning_only_location_or_vehicle) %><div><br>
+		<p id="warning_only_location_or_vehicle">
+		<%= t(:form_add_user_to_service_warning_only_location_or_vehicle) %></p><br>
 		
 		<%= f.label :location_id, t(:form_add_user_to_service_location_id) %>
 		<%= f.select(:location_id, available_locations) %>

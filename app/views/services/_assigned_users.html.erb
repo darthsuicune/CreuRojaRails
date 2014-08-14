@@ -15,11 +15,13 @@
 		<% @service.users.each do |user| %>
 		<% service_user = ServiceUser.where(service_id: @service.id, user_id: user.id).first %>
 		<% location = service_user.location %>
+		<% vehicle = service_user.vehicle %>
 			<tr>
 				<td><%= "#{user.name} #{user.surname}" %></td>
 				<td><%= user.email %></td>
 				<td><%= user.phone %></td>
-				<td><%= location.name %></td>
+				<%= raw "<td>#{location.name}</td>" if location %>
+				<%= raw "<td>#{vehicle.indicative}</td>" if vehicle %>
 				<td><%= service_user.user_position %></td>
 				<td><%= link_to t(:resource_show), user %></td>
 				<% if current_user.allowed_to?(:assign_user_to_service) %>
