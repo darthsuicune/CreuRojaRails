@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814103929) do
+ActiveRecord::Schema.define(version: 20140814125113) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140814103929) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_position"
+    t.integer  "vehicle_id"
   end
 
   add_index "service_users", ["location_id"], name: "index_service_users_on_location_id", using: :btree

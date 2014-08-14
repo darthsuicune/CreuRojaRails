@@ -30,7 +30,8 @@
 				<td>
 				<% service.vehicles.each do |vehicle| %>
 					<% driver = vehicle.driver(service) %>
-					<%= raw "#{link_to vehicle, vehicle} - #{link_to driver, driver}" %><br>
+					<%= raw "#{link_to vehicle, vehicle}" %>
+					<%= raw " - #{link_to driver, driver}" unless driver.nil? %><br>
 				<% end %>
 				</td>
 				<% (6..23).each do |hour| %>
