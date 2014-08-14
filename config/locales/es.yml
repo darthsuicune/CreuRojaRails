@@ -192,7 +192,7 @@ es:
    resource_destroy: "Eliminar"
    resource_destroy_confirm: "¿Estás seguro?"
    resource_back: "Volver al listado"
-   
+
    user_created: "El usuario ha sido creado."
    user_updated: "El usuario ha sido actualizado."
    location_created: "La localización ha sido creado."
@@ -201,15 +201,26 @@ es:
    service_updated: "El servicio ha sido actualizado."
    vehicle_created: "El vehículo ha sido creado."
    vehicle_updated: "El vehículo ha sido actualizado."
-   
+
    role_volunteer: "Voluntario"
    role_technician: "Técnico"
    role_admin: "Administrador"
-   
+
+   asi: "Socorrista"
+   acu: "Acuático"
+   tes: "Técnico"
+   due: "Enfermero"
+   doc: "Médico"
+   b1: "Conductor B1"
+   btp: "Conductor BTP"
+   d1: "Conductor D"
+   per: "Patrón de embarcación"
+   ci: "Jefe de instalación"
+
    lang_catalan: "Catalán"
    lang_spanish: "Español"
    lang_english: "Inglés"
-   
+
    location_adaptadas: "Playa adaptada"
    location_asamblea: "Asamblea"
    location_bravo: "Bravo"
@@ -220,13 +231,13 @@ es:
    location_nostrum: "Clave 2"
    location_salvamento: "Base de salvamento"
    location_terrestre: "Servicio preventivo terrestre"
-   
+
    vehicle_type_alfa_bravo: "Ambulancia de soporte vital básico"
    vehicle_type_alfa_mike: "Ambulancia de soporte vital avanzado"
    vehicle_type_mike: "Embarcación náutica"
    vehicle_type_romeo: "Vehículo de rescate"
    vehicle_type_tango: "Vehículo de transporte"
-   
+
    error_invalid_login: "Correo electrónico o contraseña incorrecta"
    set_your_new_password: "Introduce tu nueva contraseña, recomendamos que no sea la misma que la de tu correo electrónico o redes sociales"
    password_and_confirmation_must_be_longer: "Contraseña demasiado corta, debe tener 6 caracteres como mínimo."

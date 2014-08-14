@@ -26,6 +26,11 @@ ca:
    login: "Iniciar sessió"
    logout: "Tancar sessió"
    menu_resources: "Administració"
+
+   vehicle: "Vehículo"
+   service: "Servicio"
+   location: "Localización"
+   user: "Usuario"
    
    map: "Mapa"
    user_list_title: "Usuaris"
@@ -200,6 +205,17 @@ ca:
    role_volunteer: "Voluntari"
    role_technician: "Tècnic"
    role_admin: "Administrador"
+   
+   asi: "Socorrista"
+   acu: "Aquàtic"
+   tes: "Tècnic"
+   due: "Infermer"
+   doc: "Metge"
+   b1: "Conductor B1"
+   btp: "Conductor BTP"
+   d1: "Conductor D"
+   per: "Patró d'embarcació"
+   ci: "Cap d'instal·lació"
    
    lang_catalan: "Català"
    lang_spanish: "Espanyol"

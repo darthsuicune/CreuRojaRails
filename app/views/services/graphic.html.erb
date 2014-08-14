@@ -13,12 +13,12 @@
 			<tr style="outline:1px solid black;">
 				<th><%= t(:form_service_name) %></th>
 				<th><%= t(:form_service_code) %></th>
-				<th><%= "#{t(:vehicle)} - #{t(:form_vehicle_indicative)}" %></th>
+				<th><%= t(:vehicle) %></th>
 				<% (6..23).each do |hour| %>
-					<th colspan="4"><%= hour %></th>
+					<th align="left" colspan="4"><%= hour %></th>
 				<% end %>
 				<% (0..5).each do |hour| %>
-					<th colspan="4"><%= hour %></th>
+					<th align="left" colspan="4"><%= hour %></th>
 				<% end %>
 			</tr>
 		</thead>

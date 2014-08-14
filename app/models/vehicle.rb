@@ -15,7 +15,7 @@ class Vehicle < ActiveRecord::Base
 	validates :places, presence: true
 	
 	def to_s
-		"#{indicative}, #{license}"
+		"#{indicative}"
 	end
 	
 	def translated_vehicle_type
@@ -37,6 +37,6 @@ class Vehicle < ActiveRecord::Base
 
 	protected
 	def defaults
-		self.indicative ||= license
+		self.indicative
 	end
 end

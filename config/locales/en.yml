@@ -206,6 +206,17 @@ en:
    role_technician: "Technician"
    role_admin: "Admin"
    
+   asi: "Socorrista"
+   acu: "Acuático"
+   tes: "Técnico"
+   due: "Enfermero"
+   doc: "Médico"
+   b1: "Conductor B1"
+   btp: "Conductor BTP"
+   d1: "Conductor D"
+   per: "Patrón de embarcación"
+   ci: "Jefe de instalación"
+   
    lang_catalan: "Catalan"
    lang_spanish: "Spanish"
    lang_english: "English"

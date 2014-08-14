@@ -5,6 +5,15 @@ class UserType < ActiveRecord::Base
 	validates :user_type, presence: true
 	
 	def self.available_types
-		[["type1", I18n.t(:type1)], ["type2", I18n.t(:type2)]]
+		[["asi", I18n.t(:asi)],
+		 ["acu", I18n.t(:acu)],
+		 ["tes", I18n.t(:tes)],
+		 ["due", I18n.t(:due)],
+		 ["doc", I18n.t(:doc)],
+		 ["b1", I18n.t(:b1)],
+		 ["btp", I18n.t(:btp)],
+		 ["d1", I18n.t(:d1)],
+		 ["per", I18n.t(:per)],
+		 ["ci", I18n.t(:ci)]]
 	end
 end
