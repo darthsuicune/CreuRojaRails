@@ -2,12 +2,10 @@
 	<% available_locations = get_available_locations @service %>
 	<% unless available_locations.empty? %>
 		<strong> <%= t(:form_service_assign_location) %>: </strong>
-		
 		<%= form_for(@location_service) do |f| %>
 		<% if @location_service.errors.any? %>
 			<div id="error_explanation">
 				<h2><%= "#{pluralize(@location_service.errors.count, "error")} #{t(:form_errors_found)}:" %></h2>
-
 				<ul>
 				<% @location_service.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>

@@ -5,9 +5,9 @@ class LocationUserController < ApplicationController
 	def create
 		@location_user = LocationUser.new(location_user_params)
 		if @location_user.save
-			redirect_to @location_user.service, notice: I18n.t(:user_assigned_to_assembly)
+			redirect_to @location_user.user, notice: I18n.t(:user_assigned_to_assembly)
 		else
-			redirect_to @location_user.service
+			redirect_to @location_user.user
 		end
 	end
 	

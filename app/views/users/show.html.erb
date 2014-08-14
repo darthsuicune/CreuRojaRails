@@ -21,6 +21,8 @@
 	<%= @user.role %>
 </p>
 
+<%= render 'collaborations' unless @user.assemblies.count <= 1 %>
+<%= render 'add_collaboration' %>
 <%= render 'show_services' unless @user.services.empty? %>
 
 <%= link_to t(:resource_edit), edit_user_path(@user) if current_user?(@user) || current_user.allowed_to?(:manage_users) %> |

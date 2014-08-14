@@ -1,0 +1,23 @@
+<div id="user_collaborations">
+	<h3><%= t(:user_collaborations) %></h3>
+	<table>
+		<thead>
+			<tr>
+				<th><%= t(:form_location_name) %></th>
+				<th><%= t(:form_location_description) %></th>
+				<th><%= t(:form_location_address) %></th>
+				<th><%= t(:form_location_phone) %></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @user.assemblies.each do |assembly| %>
+				<tr>
+					<td><%= assembly.name %></td>
+					<td><%= assembly.description %></td>
+					<td><%= assembly.address %></td>
+					<td><%= assembly.phone %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

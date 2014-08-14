@@ -6,7 +6,6 @@
 		<% if @service_user.errors.any? %>
 			<div id="error_explanation">
 				<h2><%= "#{pluralize(@service_user.errors.count, "error")} #{t(:form_errors_found)}:" %></h2>
-
 				<ul>
 				<% @service_user.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>
@@ -27,12 +26,12 @@
 			<% available_vehicles << [vehicle.indicative, vehicle.id] %>
 		<% end %>
 		<%= f.hidden_field :service_id, :value => @service.id %>
-		
-		<%= f.label :user_id, t(:form_add_user_to_service_user_id) %>
-		<%= f.select(:user_id, available_users) %>
 
 		<p id="warning_only_location_or_vehicle">
 		<%= t(:form_add_user_to_service_warning_only_location_or_vehicle) %></p><br>
+		
+		<%= f.label :user_id, t(:form_add_user_to_service_user_id) %>
+		<%= f.select(:user_id, available_users) %>
 		
 		<%= f.label :location_id, t(:form_add_user_to_service_location_id) %>
 		<%= f.select(:location_id, available_locations) %>

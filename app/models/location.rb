@@ -15,6 +15,10 @@ class Location < ActiveRecord::Base
 	validates :longitude, presence: true
 	validates :location_type, presence: true
 	
+	def self.assemblies
+		Location.where(location_type: "asamblea")
+	end
+	
 	private
 	def defaults
 	end
