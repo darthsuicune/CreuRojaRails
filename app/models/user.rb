@@ -106,6 +106,10 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	def self.positions
+		[[I18n.t(:position_b1), "b1"], [I18n.t(:position_per), "per"]]
+	end
+	
 	private
 		def defaults
 			self.language ||= "ca"

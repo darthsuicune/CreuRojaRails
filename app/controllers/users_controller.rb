@@ -86,10 +86,7 @@ class UsersController < ApplicationController
 	end
 	
 	def is_valid_user
-		unless current_user
-			redirect_to root_url 
-		end
-		unless (current_user.allowed_to?(:manage_users) || (current_user? @user && current_user.allowed_to?(:see_own_profile)))
+		if (!current_user.allowed_to?(:manage_users) || !(current_user? @user && current_user.allowed_to?(:see_own_profile)))
 			redirect_to root_url 
 		end
 	end

@@ -7,17 +7,20 @@
 				<th><%= t(:form_user_email) %></th>
 				<th><%= t(:form_user_phone) %></th>
 				<th><%= t(:form_user_location) %></th>
+				<th><%= t(:form_user_position) %></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 		<% @service.users.each do |user| %>
-		<% location = ServiceUser.where(service_id: @service.id, user_id: user.id).first.location %>
+		<% service_user = ServiceUser.where(service_id: @service.id, user_id: user.id).first %>
+		<% location = service_user.location %>
 			<tr>
 				<td><%= "#{user.name} #{user.surname}" %></td>
 				<td><%= user.email %></td>
 				<td><%= user.phone %></td>
 				<td><%= location.name %></td>
+				<td><%= service_user.user_position %></td>
 				<td><%= link_to t(:resource_show), user %></td>
 				<% if current_user.allowed_to?(:assign_user_to_service) %>
 					<% user_service = user.service_users.find_by_service_id(@service.id) %>

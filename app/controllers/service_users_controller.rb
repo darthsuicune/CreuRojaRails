@@ -30,10 +30,6 @@ class ServiceUsersController < ApplicationController
 	end
 	
 	def is_valid_user
-		unless current_user && current_user.allowed_to?(:assign_user_to_service)
-			redirect_to root_url 
-		else
-			redirect_to root_url unless current_user?(User.find(params[:service_user][:user_id]))
-		end
+		redirect_to root_url unless current_user.allowed_to?(:assign_user_to_service) || current_user?(User.find(params[:service_user][:user_id]))
 	end
 end
