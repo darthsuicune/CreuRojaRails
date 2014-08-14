@@ -44,6 +44,10 @@ describe "Users" do
 				end
 				describe "same profile" do
 					before { get user_path( { :id => @user.id } ) }
+					it "should not redirect to root" do
+						expect(response.status).not_to eq(302)
+						expect(response.status).to eq(200)
+					end
 					it { should have_content(@user.name) }
 					it { should have_content(@user.surname) }
 					it { should have_content(@user.email) }
