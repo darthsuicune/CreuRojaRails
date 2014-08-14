@@ -8,6 +8,7 @@ class ServiceUser < ActiveRecord::Base
 	
 	validates :service_id, presence: true
 	validates :user_id, presence: true
+	validates :user_position, presence: true
 	
 	private
 	def defaults
