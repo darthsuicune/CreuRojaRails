@@ -6,4 +6,6 @@ class UserVehicle < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :vehicle_id, presence: true
 	validates :service_id, presence: true
+	validates :user_position, presence: true
+	
 end

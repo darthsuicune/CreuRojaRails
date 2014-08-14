@@ -5,6 +5,7 @@ class Vehicle < ActiveRecord::Base
 	has_many :services, through: :vehicle_services
 	has_many :vehicle_assemblies, dependent: :destroy
 	has_many :assemblies, through: :vehicle_assemblies
+	has_many :user_vehicles
 
 	validates :indicative, presence: true
 	validates :brand, presence: true
@@ -35,7 +36,7 @@ class Vehicle < ActiveRecord::Base
 	end
 	
 	def driver(service)
-		
+		self.user_vehicles.where(user_position: ["b1","btp","per"], service_id: service.id).first
 	end
 
 	protected

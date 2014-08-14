@@ -29,7 +29,8 @@
 				<td><%= link_to service.code, service %></td>
 				<td>
 				<% service.vehicles.each do |vehicle| %>
-					<%= link_to vehicle, vehicle %><br>
+					<% driver = vehicle.driver(service) %>
+					<%= raw "#{link_to vehicle, vehicle} - #{link_to driver, driver}" %><br>
 				<% end %>
 				</td>
 				<% (6..23).each do |hour| %>

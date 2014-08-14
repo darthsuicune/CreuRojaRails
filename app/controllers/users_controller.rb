@@ -35,8 +35,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		respond_to do |format|
-			parse_user_types
 			if @user.save
+				parse_user_types
 				add_to_assembly @user
 				format.html { redirect_to users_path, notice: I18n.t(:user_created) }
 				format.json { render action: 'show', status: :created, location: @user }
