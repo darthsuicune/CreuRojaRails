@@ -50,15 +50,15 @@ describe LocationsController do
 			it { should redirect_to(signin_url) }
 		end
 		describe "create" do
-			before { post :create, {:location => valid_attributes}, valid_session }
+			before { post :create, {location: valid_attributes}, valid_session }
 			it { should redirect_to(signin_url) }
 		end
 		describe "update" do
-			before { put :update, {:id => 0, :location => { "name" => "MyString" }}, valid_session }
+			before { put :update, {id: 0, location: { "name" => "MyString" }}, valid_session }
 			it { should redirect_to(signin_url) }
 		end
 		describe "destroy" do
-			before { delete :destroy, {:id => 0}, valid_session }
+			before { delete :destroy, {id: 0}, valid_session }
 			it { should redirect_to(signin_url) }
 		end
 	end
@@ -197,12 +197,12 @@ describe LocationsController do
 			
 			it "destroys the requested location" do
 				expect {
-					delete :destroy, {:id => @location.to_param}, valid_session
+					delete :destroy, {id: @location.to_param}, valid_session
 				}.to change(Location, :count).by(-1)
 			end
 
 			it "redirects to the locations list" do
-				delete :destroy, {:id => @location.to_param}, valid_session
+				delete :destroy, {id: @location.to_param}, valid_session
 				expect(response).to redirect_to(locations_url)
 			end
 		end

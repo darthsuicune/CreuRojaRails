@@ -4,9 +4,9 @@
 
 <% day_services = @services.where(base_time: DateTime.now.beginning_of_day..DateTime.now.end_of_day) %>
 <% day_services = @services %>
-<% not_occupied = "<td style=\"background-color: white; border:1px solid black; padding: 3px;\"></td>" %>
-<% base = "<td style=\"background-color: green; border:1px solid black; padding: 3px;\"></td>" %>
-<% started = "<td style=\"background-color: red; border:1px solid black; padding: 3px;\"></td>" %>
+<% not_occupied = "<td style=\"background-color: white; border:thin solid black; padding: 3px;\"></td>" %>
+<% base = "<td style=\"background-color: green; border:thin solid black; padding: 3px;\"></td>" %>
+<% started = "<td style=\"background-color: red; border:thin solid black; padding: 3px;\"></td>" %>
 <div id="services_graphic">
 	<table cellpadding="10" cellspacing="0">
 		<thead>
@@ -15,14 +15,14 @@
 				<th><%= t(:form_service_code) %></th>
 				<th><%= t(:vehicle) %></th>
 				<% (6..23).each do |hour| %>
-					<th align="left" colspan="4"><%= hour %></th>
+					<th align="left" colspan="4" style="border:1px solid black;"><%= hour %></th>
 				<% end %>
 				<% (0..5).each do |hour| %>
-					<th align="left" colspan="4"><%= hour %></th>
+					<th align="left" colspan="4" style="border:1px solid black;"><%= hour %></th>
 				<% end %>
 			</tr>
 		</thead>
-		<tbody style="border:1px solid black;">
+		<tbody>
 			<% day_services.each do |service| %>
 			<tr style="outline:1px solid black;" >
 				<td><%= link_to service.name, service %></td>
@@ -61,3 +61,5 @@
 		</tbody>
 	</table>
 </div>
+
+<%= link_to t(:form_service_new), new_service_path %>

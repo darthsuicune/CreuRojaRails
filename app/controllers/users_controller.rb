@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 			parse_user_types
 			if @user.save
 				add_to_assembly @user
-				format.html { redirect_to @user, notice: I18n.t(:user_created) }
+				format.html { redirect_to users_path, notice: I18n.t(:user_created) }
 				format.json { render action: 'show', status: :created, location: @user }
 			else
 				format.html { render action: 'new' }

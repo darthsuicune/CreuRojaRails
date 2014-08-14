@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812145743) do
+ActiveRecord::Schema.define(version: 20140814103929) do
 
   create_table "issues", force: true do |t|
     t.string   "status"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140812145743) do
     t.boolean  "active",        default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "expiredate",    default: 0
+    t.integer  "expiredate"
   end
 
   add_index "locations", ["address"], name: "index_locations_on_address", using: :btree
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20140812145743) do
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "archived",    default: false
+    t.boolean  "archived"
   end
 
   add_index "services", ["assembly_id"], name: "index_services_on_assembly_id", using: :btree
@@ -121,13 +121,24 @@ ActiveRecord::Schema.define(version: 20140812145743) do
   add_index "sessions", ["token"], name: "index_sessions_on_token", unique: true, using: :btree
 
   create_table "user_types", force: true do |t|
-    t.integer  "user_id"
-    t.string   "user_type"
+    t.integer  "user_id",    default: 0,  null: false
+    t.string   "user_type",  default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "user_types", ["user_id", "user_type"], name: "index_user_types_on_user_id_and_user_type", unique: true, using: :btree
+
+  create_table "user_vehicles", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "service_id"
+    t.integer  "vehicle_id"
+    t.string   "user_position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_vehicles", ["user_id", "service_id"], name: "index_user_vehicles_on_user_id_and_service_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -149,6 +160,13 @@ ActiveRecord::Schema.define(version: 20140812145743) do
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
   add_index "users", ["resettoken"], name: "index_users_on_resettoken", unique: true, using: :btree
   add_index "users", ["surname"], name: "index_users_on_surname", using: :btree
+
+  create_table "vehicle_assemblies", force: true do |t|
+    t.integer  "vehicle_id"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "vehicle_services", force: true do |t|
     t.integer  "vehicle_id"

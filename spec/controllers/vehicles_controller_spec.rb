@@ -24,7 +24,8 @@ describe VehiclesController do
   # Vehicle. As you add validations to Vehicle, be sure to
   # adjust the attributes here as well.
 	let(:valid_attributes) { { "brand" => "MyString", "model" => "Model", "license" => "License",
-										"vehicle_type" => "type", "places" => 5, "operative" => true } }
+										"vehicle_type" => "type", "places" => 5, "operative" => true,
+	                           "indicative" => "Indicative"} }
 
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in
@@ -69,16 +70,16 @@ describe VehiclesController do
 		before { sign_in user }
 
 		describe "GET index" do
+			let(:vehicle) { FactoryGirl.create(:vehicle) }
 			it "assigns all vehicles as @vehicles" do
-				vehicle = Vehicle.create! valid_attributes
 				get :index, {}, valid_session
 				expect(assigns(:vehicles)).to eq([vehicle])
 			end
 		end
 
 		describe "GET show" do
+			let(:vehicle) { FactoryGirl.create(:vehicle) }
 			it "assigns the requested vehicle as @vehicle" do
-				vehicle = Vehicle.create! valid_attributes
 				get :show, {:id => vehicle.to_param}, valid_session
 				expect(assigns(:vehicle)).to eq(vehicle)
 			end
@@ -92,8 +93,8 @@ describe VehiclesController do
 		end
 
 		describe "GET edit" do
+			let(:vehicle) { FactoryGirl.create(:vehicle) }
 			it "assigns the requested vehicle as @vehicle" do
-				vehicle = Vehicle.create! valid_attributes
 				get :edit, {:id => vehicle.to_param}, valid_session
 				expect(assigns(:vehicle)).to eq(vehicle)
 			end
@@ -137,9 +138,9 @@ describe VehiclesController do
 		end
 
 		describe "PUT update" do
+			let(:vehicle) { FactoryGirl.create(:vehicle) }
 			describe "with valid params" do
 				it "updates the requested vehicle" do
-					vehicle = Vehicle.create! valid_attributes
 					# Assuming there are no other vehicles in the database, this
 					# specifies that the Vehicle created on the previous line
 					# receives the :update_attributes message with whatever params are
@@ -149,13 +150,11 @@ describe VehiclesController do
 				end
 
 				it "assigns the requested vehicle as @vehicle" do
-					vehicle = Vehicle.create! valid_attributes
 					put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
 					expect(assigns(:vehicle)).to eq(vehicle)
 				end
 
 				it "redirects to the vehicle" do
-					vehicle = Vehicle.create! valid_attributes
 					put :update, {:id => vehicle.to_param, :vehicle => valid_attributes}, valid_session
 					expect(response).to redirect_to(vehicle)
 				end
@@ -163,7 +162,6 @@ describe VehiclesController do
 
 			describe "with invalid params" do
 				it "assigns the vehicle as @vehicle" do
-					vehicle = Vehicle.create! valid_attributes
 					# Trigger the behavior that occurs when invalid params are submitted
 					expect_any_instance_of(Vehicle).to receive(:save).and_return(false)
 					put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
@@ -171,7 +169,6 @@ describe VehiclesController do
 				end
 
 				it "re-renders the 'edit' template" do
-					vehicle = Vehicle.create! valid_attributes
 					# Trigger the behavior that occurs when invalid params are submitted
 					expect_any_instance_of(Vehicle).to receive(:save).and_return(false)
 					put :update, {:id => vehicle.to_param, :vehicle => { "brand" => "invalid value" }}, valid_session
@@ -181,19 +178,18 @@ describe VehiclesController do
 		end
 
 		describe "DELETE destroy" do
+			before { @vehicle = FactoryGirl.create(:vehicle) }
+			
 			it "destroys the requested vehicle" do
-				vehicle = Vehicle.create! valid_attributes
 				expect {
-				delete :destroy, {:id => vehicle.to_param}, valid_session
+					delete :destroy, {id: @vehicle.to_param}, valid_session
 				}.to change(Vehicle, :count).by(-1)
 			end
 
 			it "redirects to the vehicles list" do
-				vehicle = Vehicle.create! valid_attributes
-				delete :destroy, {:id => vehicle.to_param}, valid_session
+				delete :destroy, {id: @vehicle.to_param}, valid_session
 				expect(response).to redirect_to(vehicles_url)
 			end
 		end
 	end
-
 end

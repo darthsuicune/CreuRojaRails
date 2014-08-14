@@ -6,8 +6,7 @@ class Vehicle < ActiveRecord::Base
 	has_many :vehicle_assemblies, dependent: :destroy
 	has_many :assemblies, through: :vehicle_assemblies
 
-	after_validation :defaults, on: [:create]
-
+	validates :indicative, presence: true
 	validates :brand, presence: true
 	validates :model, presence: true
 	validates :license, presence: true
@@ -34,9 +33,12 @@ class Vehicle < ActiveRecord::Base
 			"dafuq"
 		end
 	end
+	
+	def driver(service)
+		
+	end
 
 	protected
 	def defaults
-		self.indicative
 	end
 end
