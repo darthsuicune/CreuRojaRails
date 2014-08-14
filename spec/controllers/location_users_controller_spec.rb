@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe LocationUserController do
+describe LocationUsersController do
 	let(:user) { FactoryGirl.create(:user) }
 	let(:location) { FactoryGirl.create(:location, location_type => "assembly") }
 	let(:location_user) { FactoryGirl.create(:location_user, user_id => user.id, location_id => location.id) }

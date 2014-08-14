@@ -1,4 +1,4 @@
-class LocationUserController < ApplicationController
+class LocationUsersController < ApplicationController
 	before_filter :signed_in_user
 	before_filter :is_valid_user
 		

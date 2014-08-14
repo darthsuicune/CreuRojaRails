@@ -10,5 +10,5 @@ require 'rails_helper'
 #     end
 #   end
 # end
-describe LocationUserHelper do
+describe LocationUsersHelper do
 end
