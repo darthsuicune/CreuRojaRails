@@ -75,7 +75,7 @@
 		<% if current_user.allowed_to?(:add_to_own_assembly) || current_user.allowed_to?(:add_to_any_assembly) %>
 			<% assemblies = [] %>
 			<% if current_user.allowed_to?(:add_to_any_assembly) %>
-				<% assemblies = Location.where(location_type: "asamblea").collect { |assembly| [assembly.name, assembly.id] } %>
+				<% assemblies = Location.assemblies.collect { |assembly| [assembly.name, assembly.id] } %>
 			<% else %>
 				<% assemblies = current_user.assemblies.collect { |assembly| [assembly.name, assembly.id] } %>
 			<% end %>

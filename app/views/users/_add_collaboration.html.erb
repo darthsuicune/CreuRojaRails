@@ -2,7 +2,7 @@
 	<h3><%= t(:form_user_add_collaboration) %></h3>
 	<% assemblies = [] %>
 	<% Location.assemblies.each do |assembly| %>
-		<% assemblies << [assembly.name, assembly.id] %>
+		<% assemblies << [assembly.name, assembly.id] unless @user.assemblies.include?(assembly) %>
 	<% end %>
 	<%= form_for(LocationUser.new) do |f| %>
 		<%= f.label :location_id, t(:form_user_assemblies) %>
