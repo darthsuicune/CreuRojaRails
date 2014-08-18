@@ -6,8 +6,9 @@ class Log < ActiveRecord::Base
 	validates :ip, presence: true
 	validates :controller, presence: true
 	
-	def self.create(user_id, controller_name, action_name, ip)
+	def self.log(user_id, controller_name, action_name, ip)
 		log = Log.new
+		log.user_id = user_id
 		log.controller = controller_name
 		log.action = action_name
 		log.ip = ip
