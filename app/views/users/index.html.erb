@@ -2,6 +2,10 @@
 
 <h1><%= t(:user_list_title) %></h1>
 
+<%= link_to t(:form_user_new_title), new_user_path %>
+
+<br><br>
+
 <table>
 	<thead>
 		<tr>
@@ -35,7 +39,3 @@
 		<% end %>
 	</tbody>
 </table>
-
-<br>
-
-<%= link_to t(:form_user_new_title), new_user_path %>

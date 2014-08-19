@@ -1,5 +1,11 @@
 <% provide(:title, t(:service_list_title)) %>
 <h1><%= t(:service_list_title) %></h1>
+
+<%= link_to t(:form_service_graphic), services_graphic_path %> |
+<%= link_to t(:form_service_new), new_service_path %>
+
+<br><br> 
+
 <div id="services_index">
 	<table>
 		<thead>
@@ -39,7 +45,3 @@
 		</tbody>
 	</table>
 </div>
-<br>
-
-<%= link_to t(:form_service_graphic), services_graphic_path %> |
-<%= link_to t(:form_service_new), new_service_path %>

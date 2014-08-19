@@ -1,6 +1,10 @@
 <% provide(:title, t(:location_list_title)) %>
 <h1><%= t(:location_list_title) %></h1>
 
+<%= link_to t(:form_location_new), new_location_path %>
+
+<br><br>
+
 <table>
 	<thead>
 		<tr>
@@ -38,7 +42,3 @@
 		<% end %>
 	</tbody>
 </table>
-
-<br>
-
-<%= link_to t(:form_location_new), new_location_path %>

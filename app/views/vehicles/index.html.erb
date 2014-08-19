@@ -1,6 +1,10 @@
 <% provide(:title, t(:vehicle_list_title)) %>
 <h1><%= t(:vehicle_list_title) %></h1>
 
+<%= link_to t(:form_vehicle_new), new_vehicle_path %>
+
+<br><br>
+
 <table>
 	<thead>
 		<tr>
@@ -42,7 +46,3 @@
 		<% end %>
 	</tbody>
 </table>
-
-<br>
-
-<%= link_to t(:form_vehicle_new), new_vehicle_path %>

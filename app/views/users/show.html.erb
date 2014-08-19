@@ -21,7 +21,7 @@
 	<%= @user.role %>
 </p>
 
-<%= render 'collaborations' unless @user.assemblies.count <= 1 %>
+<%= render 'collaborations' unless @user.assemblies.count <= 0 %>
 <%= render 'add_collaboration' if current_user.allowed_to?(:add_to_own_assembly)%>
 <%= render 'show_services' unless @user.services.empty? %>
 
