@@ -6,11 +6,11 @@
 </div>
 
 <div id="map-legend">
-	<% Location.location_types.each do |type| %>
-		<ul>
+	<ul>
+		<% Location.location_types.each do |type| %>
 			<%= raw "<li><img src=\"assets/#{type.location_type}.png\" />#{type.location_type.humanize}</li>" %>
-		</ul>
-	<% end %>
+		<% end %>
+	</ul>
 </div>
 
 <script type="text/javascript">
