@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	default_scope { order(name: :asc) }
+	default_scope { order(name: :asc, surname: :asc) }
 	has_secure_password
 
 	has_many :sessions, dependent: :destroy
