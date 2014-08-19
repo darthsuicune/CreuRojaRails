@@ -3,7 +3,7 @@ CreuRoja::Application.routes.draw do
 	# See how all your routes lay out with "rake routes".
 
 	# You can have the root of your site routed with "root"
-	root 'static_pages#map'
+	root 'locations#map'
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -16,10 +16,11 @@ CreuRoja::Application.routes.draw do
 	get '/login' => 'sessions#new'
 	get '/signout' => 'sessions#destroy'
 	get '/logout' => 'sessions#destroy'
-	get '/map' => 'static_pages#map'
+	get '/map' => 'locations#map'
 	post '/users/:id' => 'users#update'
 	get '/email_sent' => 'static_pages#email_sent'
 	get '/services/graphic' => 'services#graphic'
+	get '/locations/map' => 'locations#map'
 
 	#Resource routes (maps HTTP verbs to controller actions automatically):
 	resources :users do

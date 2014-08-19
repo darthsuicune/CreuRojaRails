@@ -16,7 +16,15 @@ class Location < ActiveRecord::Base
 	validates :location_type, presence: true
 	
 	def self.assemblies
-		Location.where(location_type: "asamblea")
+		Location.active_locations.where(location_type: "asamblea")
+	end
+	
+	def self.active_locations
+		Location.where(active: "1")
+	end
+	
+	def self.location_types
+		Location.active_locations.select(:location_type).distinct
 	end
 	
 	private

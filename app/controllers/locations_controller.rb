@@ -29,6 +29,10 @@ class LocationsController < ApplicationController
 	# GET /locations/1.json
 	def show
 	end
+	
+	def map
+		@hash = current_user.get_locations
+	end
 
 	# GET /locations/new
 	def new

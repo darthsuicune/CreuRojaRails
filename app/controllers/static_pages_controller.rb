@@ -1,10 +1,6 @@
 class StaticPagesController < ApplicationController
 	before_action :signed_in_user, only: [:map]
 	before_filter :is_valid_user, only: [:map]
-	
-	def map
-		@hash = current_user.get_locations
-	end
 
 	def contact
 	end

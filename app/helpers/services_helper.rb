@@ -24,7 +24,7 @@ module ServicesHelper
 	
 	def get_available_locations(service)
 		locations = []
-		Location.where(active: true).each do |location|
+		Location.active_locations.each do |location|
 			locations << [location.name, location.id] unless service.locations.include?(location)
 		end
 		locations
