@@ -46,8 +46,9 @@ class LocationsController < ApplicationController
 	# POST /locations
 	# POST /locations.json
 	def create
+		#Change ',' characters for '.' so they work
+		replace_commas 
 		@location = Location.new(location_params)
-
 		respond_to do |format|
 			if @location.save
 				format.html { redirect_to @location, notice: I18n.t(:location_created) }
@@ -63,8 +64,7 @@ class LocationsController < ApplicationController
 	# PATCH/PUT /locations/1.json
 	def update
 		#Change ',' characters for '.' so they work
-		replace_commas params[:location][:latitude]
-		replace_commas params[:location][:longitude]
+		replace_commas 
 		respond_to do |format|
 			if @location.update(location_params)
 				format.html { redirect_to locations_path, notice: I18n.t(:location_updated) }
@@ -87,8 +87,9 @@ class LocationsController < ApplicationController
 	end
 
 	private
-		def replace_commas(parameter)
-			parameter.sub! ",", "." if parameter
+		def replace_commas
+			params[:location][:latitude].sub! ",", "." if params[:location][:latitude]
+			params[:location][:longitude].sub! ",", "." if params[:location][:longitude]
 		end
 		# Use callbacks to share common setup or constraints between actions.
 		def set_location
