@@ -20,7 +20,7 @@ class Location < ActiveRecord::Base
 	end
 	
 	def self.active_locations
-		Location.where(active: "1")
+		Location.where(active: true)
 	end
 	
 	def self.location_types

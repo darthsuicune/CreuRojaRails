@@ -64,135 +64,143 @@ describe LocationsController do
 	end
 	
 	describe "signed in" do
-		let(:user) { FactoryGirl.create(:admin) }
-		before { sign_in user }
+		describe "as admin" do
+			let(:user) { FactoryGirl.create(:admin) }
+			before { sign_in user }
 
-		describe "GET index" do
-			it "assigns all locations as @locations" do
-				location = Location.create! valid_attributes
-				get :index, {}, valid_session
-				expect(assigns(:locations)).to eq([location])
-			end
-		end
-
-		describe "GET show" do
-			it "assigns the requested location as @location" do
-				location = Location.create! valid_attributes
-				get :show, {:id => location.to_param}, valid_session
-				expect(assigns(:location)).to eq(location)
-			end
-		end
-
-		describe "GET new" do
-			it "assigns a new location as @location" do
-				get :new, {}, valid_session
-				expect(assigns(:location)).to be_a_new(Location)
-			end
-		end
-
-		describe "GET edit" do
-			it "assigns the requested location as @location" do
-				location = Location.create! valid_attributes
-				get :edit, {:id => location.to_param}, valid_session
-				expect(assigns(:location)).to eq(location)
-			end
-		end
-
-		describe "POST create" do
-			describe "with valid params" do
-				it "creates a new Location" do
-					expect {
-						post :create, {:location => valid_attributes}, valid_session
-					}.to change(Location, :count).by(1)
-				end
-
-				it "assigns a newly created location as @location" do
-					post :create, {:location => valid_attributes}, valid_session
-					expect(assigns(:location)).to be_a(Location)
-					expect(assigns(:location)).to be_persisted
-				end
-
-				it "redirects to the created location" do
-					post :create, {:location => valid_attributes}, valid_session
-					expect(response).to redirect_to(Location.last)
+			describe "GET index" do
+				it "assigns all locations as @locations" do
+					location = Location.create! valid_attributes
+					get :index, {}, valid_session
+					expect(assigns(:locations)).to match_array([location])
 				end
 			end
 
-			describe "with invalid params" do
-				it "assigns a newly created but unsaved location as @location" do
-					# Trigger the behavior that occurs when invalid params are submitted
-					allow_any_instance_of(Location).to receive(:save).and_return(false)
-					post :create, {:location => { "name" => "invalid value" }}, valid_session
+			describe "GET show" do
+				it "assigns the requested location as @location" do
+					location = Location.create! valid_attributes
+					get :show, {:id => location.to_param}, valid_session
+					expect(assigns(:location)).to eq(location)
+				end
+			end
+
+			describe "GET new" do
+				it "assigns a new location as @location" do
+					get :new, {}, valid_session
 					expect(assigns(:location)).to be_a_new(Location)
 				end
-
-				it "re-renders the 'new' template" do
-					# Trigger the behavior that occurs when invalid params are submitted
-					allow_any_instance_of(Location).to receive(:save).and_return(false)
-					post :create, {:location => { "name" => "invalid value" }}, valid_session
-					expect(response).to render_template("new")
-				end
 			end
-		end
 
-		describe "PUT update" do
-			let(:location) { FactoryGirl.create(:location) }
-			describe "with valid params" do
-				it "updates the requested location" do
-					# Assuming there are no other locations in the database, this
-					# specifies that the Location created on the previous line
-					# receives the :update_attributes message with whatever params are
-					# submitted in the request.
-					expect_any_instance_of(Location).to receive(:update).with({ "name" => "MyString" })
-					put :update, {:id => location.to_param, :location => { "name" => "MyString" }}, valid_session
-				end
-
+			describe "GET edit" do
 				it "assigns the requested location as @location" do
-					put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+					location = Location.create! valid_attributes
+					get :edit, {:id => location.to_param}, valid_session
 					expect(assigns(:location)).to eq(location)
 				end
+			end
 
-				it "redirects to the location" do
-					put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
-					expect(response).to redirect_to(locations_path)
+			describe "GET map" do
+				it "shows the map" do
+					get :map
+					expect(response.status).to eq(200)
 				end
 			end
 
-			describe "with invalid params" do
-				it "assigns the location as @location" do
-					# Trigger the behavior that occurs when invalid params are submitted
-					allow_any_instance_of(Location).to receive(:save).and_return(false)
-					put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
-					expect(assigns(:location)).to eq(location)
+			describe "POST create" do
+				describe "with valid params" do
+					it "creates a new Location" do
+						expect {
+							post :create, {:location => valid_attributes}, valid_session
+						}.to change(Location, :count).by(1)
+					end
+
+					it "assigns a newly created location as @location" do
+						post :create, {:location => valid_attributes}, valid_session
+						expect(assigns(:location)).to be_a(Location)
+						expect(assigns(:location)).to be_persisted
+					end
+
+					it "redirects to the created location" do
+						post :create, {:location => valid_attributes}, valid_session
+						expect(response).to redirect_to(Location.last)
+					end
 				end
 
-				it "re-renders the 'edit' template" do
-					# Trigger the behavior that occurs when invalid params are submitted
-					allow_any_instance_of(Location).to receive(:save).and_return(false)
-					put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
-					expect(response).to render_template("edit")
-				end
-			end
-			describe "with ,s instead of .s for decimal points" do
-				before {
-					location.latitude = 41.12345
-					location.save
-					@initial_value = 41.12345
-				}
-				it "updates the information" do
-					put :update, {:id => location.to_param, :location => { :latitude => "41,654321" }}, valid_session
-					new_location = Location.find(location.id)
-					expect(new_location.latitude).not_to eq(@initial_value)
-				end
-				it "accepts commas" do
-					put :update, {:id => location.to_param, :location => { :latitude => "41,654321" }}, valid_session
-					new_location = Location.find(location.id)
-					expect(new_location.latitude).to eq(41.654321)
-				end
-			end
-		end
+				describe "with invalid params" do
+					it "assigns a newly created but unsaved location as @location" do
+						# Trigger the behavior that occurs when invalid params are submitted
+						allow_any_instance_of(Location).to receive(:save).and_return(false)
+						post :create, {:location => { "name" => "invalid value" }}, valid_session
+						expect(assigns(:location)).to be_a_new(Location)
+					end
 
-		describe "DELETE destroy" do
+					it "re-renders the 'new' template" do
+						# Trigger the behavior that occurs when invalid params are submitted
+						allow_any_instance_of(Location).to receive(:save).and_return(false)
+						post :create, {:location => { "name" => "invalid value" }}, valid_session
+						expect(response).to render_template("new")
+					end
+				end
+			end
+
+			describe "PUT update" do
+				let(:location) { FactoryGirl.create(:location) }
+				describe "with valid params" do
+					it "updates the requested location" do
+						# Assuming there are no other locations in the database, this
+						# specifies that the Location created on the previous line
+						# receives the :update_attributes message with whatever params are
+						# submitted in the request.
+						expect_any_instance_of(Location).to receive(:update).with({ "name" => "MyString" })
+						put :update, {:id => location.to_param, :location => { "name" => "MyString" }}, valid_session
+					end
+
+					it "assigns the requested location as @location" do
+						put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+						expect(assigns(:location)).to eq(location)
+					end
+
+					it "redirects to the location" do
+						put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+						expect(response).to redirect_to(locations_path)
+					end
+				end
+
+				describe "with invalid params" do
+					it "assigns the location as @location" do
+						# Trigger the behavior that occurs when invalid params are submitted
+						allow_any_instance_of(Location).to receive(:save).and_return(false)
+						put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
+						expect(assigns(:location)).to eq(location)
+					end
+
+					it "re-renders the 'edit' template" do
+						# Trigger the behavior that occurs when invalid params are submitted
+						allow_any_instance_of(Location).to receive(:save).and_return(false)
+						put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
+						expect(response).to render_template("edit")
+					end
+				end
+				describe "with ,s instead of .s for decimal points" do
+					before {
+						location.latitude = 41.12345
+						location.save
+						@initial_value = 41.12345
+					}
+					it "updates the information" do
+						put :update, {:id => location.to_param, :location => { :latitude => "41,654321" }}, valid_session
+						new_location = Location.find(location.id)
+						expect(new_location.latitude).not_to eq(@initial_value)
+					end
+					it "accepts commas" do
+						put :update, {:id => location.to_param, :location => { :latitude => "41,654321" }}, valid_session
+						new_location = Location.find(location.id)
+						expect(new_location.latitude).to eq(41.654321)
+					end
+				end
+			end
+
+			describe "DELETE destroy" do
 			before { @location = FactoryGirl.create(:location) }
 			
 			it "destroys the requested location" do
@@ -204,6 +212,41 @@ describe LocationsController do
 			it "redirects to the locations list" do
 				delete :destroy, {id: @location.to_param}, valid_session
 				expect(response).to redirect_to(locations_url)
+			end
+		end
+		end
+		describe "as normal user" do
+			let(:location) { FactoryGirl.create(:location) }
+			let(:user) { FactoryGirl.create(:user) }
+			before { sign_in user }
+			
+			describe "GET index" do
+				it "assigns all locations as @locations" do
+					get :index, {}, valid_session
+					expect(response.status).to eq(302)
+				end
+			end
+			describe "GET map" do
+				let(:location1) { FactoryGirl.create(:location) }
+				it "shows the map" do
+					get :map
+					expect(response.status).to eq(200)
+				end
+				
+				it "assigns all locations as @locations" do
+					get :map, {}, valid_session
+					expect(assigns(:locations)).to eq([location, location1])
+				end
+			end
+			describe "GET show" do
+				it "does not assign the location" do
+					get :show, {id: location.id}, valid_session
+					expect(assigns(:location)).not_to eq(location)
+				end
+				it "redirects to map" do
+					get :show, {id: location.id}, valid_session
+					expect(response).to redirect_to(root_url)
+				end
 			end
 		end
 	end

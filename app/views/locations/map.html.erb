@@ -22,7 +22,7 @@ function initialize() {
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 	};
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	var markers = <%= raw @hash.to_json %>;
+	var markers = <%= raw @locations.to_json %>;
 	for(i = 0, l = markers.length; i < l; i++) {
 		var content = getMarkerContent(markers[i]);
 		var infoWindow = new google.maps.InfoWindow()

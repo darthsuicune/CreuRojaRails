@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 	before_filter :signed_in_user
-	before_action :set_location, only: [:show, :edit, :update, :destroy]
 	before_filter :is_valid_user, except: [:index, :map]
+	before_action :set_location, only: [:show, :edit, :update, :destroy]
 
 	# GET /locations
 	# GET /locations.json
@@ -31,7 +31,7 @@ class LocationsController < ApplicationController
 	end
 	
 	def map
-		@hash = current_user.get_locations
+		@locations = current_user.get_locations
 	end
 
 	# GET /locations/new
