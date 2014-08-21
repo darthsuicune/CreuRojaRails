@@ -141,6 +141,23 @@ describe LocationsController do
 						expect(response).to render_template("new")
 					end
 				end
+				describe "with ,s instead of .s for decimal points" do
+					let(:comma_attrs) { { "name" => "MyString", "address" => "Address", "latitude" => "43,21",
+											"longitude" => "12,34", "location_type" => "type" } }
+					before { @initial_value = "1,5" }
+					it "creates a correct location" do
+						post :create, {location: comma_attrs }, valid_session
+						expect(assigns(:location)).to be_a(Location)
+					end
+					it "accepts commas" do
+						post :create, {location: comma_attrs }, valid_session
+						expect(response.status).to redirect_to(Location.last)
+					end
+					it "creates it with valid values" do
+						post :create, {location: comma_attrs }, valid_session
+						expect(Location.last.latitude).to eq(43.21)
+					end
+				end
 			end
 
 			describe "PUT update" do
