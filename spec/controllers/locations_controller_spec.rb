@@ -232,6 +232,7 @@ describe LocationsController do
 			end
 		end
 		end
+		
 		describe "as normal user" do
 			let(:location) { FactoryGirl.create(:location) }
 			let(:user) { FactoryGirl.create(:user) }

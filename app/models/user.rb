@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   
 	after_validation { self.errors.messages.delete(:password_digest) }
 	
-	def get_locations
+	def get_visible_locations
 		Location.active_locations
 	end
 
