@@ -3,7 +3,6 @@
 <h1><%= t(:service_list_title) %></h1>
 
 <% day_services = @services.where(base_time: DateTime.now.beginning_of_day..DateTime.now.end_of_day) %>
-<% day_services = @services %>
 <% not_occupied = "<td style=\"background-color: white; border:thin solid black; padding: 3px;\"></td>" %>
 <% base = "<td style=\"background-color: green; border:thin solid black; padding: 3px;\"></td>" %>
 <% started = "<td style=\"background-color: red; border:thin solid black; padding: 3px;\"></td>" %>
