@@ -53,10 +53,12 @@
 				<% end %>
 				<td>
 				<% service.vehicles.each do |vehicle| %>
-					<% driver = vehicle.driver(service) %>
-					<% driver_name = "#{driver.name} #{driver.surname}" unless driver.nil? %>
 					<%= raw "#{link_to vehicle, vehicle}" %>
-					<%= raw " - #{link_to driver_name, user_path(driver.user_id)}" unless driver.nil? %><br>
+					<% driver = vehicle.driver(service) %>
+					<% unless driver.nil? %>
+						<% driver_name = "#{driver.name} #{driver.surname}" %>
+						<%= raw " - #{link_to driver_name, user_path(driver.user_id)}" %><br>
+					<% end %>
 				<% end %>
 				</td>
 			</tr>
