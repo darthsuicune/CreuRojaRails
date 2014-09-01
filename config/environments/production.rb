@@ -5,6 +5,8 @@ CreuRoja::Application.configure do
 	config.assets.digest = true
 	config.assets.compile = true
 	
+	config.eager_load = true
+	
 	#Make rails serve the static assets as well
 	config.serve_static_assets = true
 	
