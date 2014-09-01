@@ -47,7 +47,8 @@
 				<% end %>
 				<% (0..5).each do |hour| %>
 					<% (0..3).each do |quarter| %>
-						<% time = service.base_time.change(hour: hour, min: quarter * 15, day: service.base_time.day + 1) %>
+						<% time = service.base_time.change(hour: hour, min: quarter * 15) %>
+						<% time = service.base_time.tomorrow %>
 						<% if service.in_base_time? time %>
 							<%= raw base %>
 						<% elsif service.started? time %>
