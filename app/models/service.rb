@@ -24,7 +24,7 @@ class Service < ActiveRecord::Base
 	end
 	
 	def in_base_time?(time)
-		base_time < time && time <= start_time
+		base_time <= time && time <= start_time
 	end
 	
 	def started?(time)
