@@ -28,10 +28,10 @@ class Service < ActiveRecord::Base
 	end
 	
 	def started?(time)
-		start_time <= time && time <= end_time
+		start_time <= time && time < end_time
 	end
 	
 	def finished?(time)
-		time > end_time
+		time >= end_time
 	end
 end
