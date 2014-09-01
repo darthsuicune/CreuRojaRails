@@ -10,6 +10,14 @@ class ServiceUser < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :user_position, presence: true
 	
+	def name
+		self.user.name
+	end
+	
+	def surname
+		self.user.surname
+	end
+	
 	private
 	def defaults
 		self.location_id ||= service.first_location_id

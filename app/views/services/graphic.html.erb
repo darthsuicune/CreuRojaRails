@@ -12,13 +12,13 @@
 			<tr style="outline:1px solid black;">
 				<th><%= t(:form_service_name) %></th>
 				<th><%= t(:form_service_code) %></th>
-				<th><%= t(:vehicle) %></th>
 				<% (6..23).each do |hour| %>
 					<th align="left" colspan="4" style="border:1px solid black;"><%= hour %></th>
 				<% end %>
 				<% (0..5).each do |hour| %>
 					<th align="left" colspan="4" style="border:1px solid black;"><%= hour %></th>
 				<% end %>
+				<th><%= t(:vehicle) %></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,13 +26,6 @@
 			<tr style="outline:1px solid black;" >
 				<td><%= link_to service.name, service %></td>
 				<td><%= link_to service.code, service %></td>
-				<td>
-				<% service.vehicles.each do |vehicle| %>
-					<% driver = vehicle.driver(service) %>
-					<%= raw "#{link_to vehicle, vehicle}" %>
-					<%= raw " - #{link_to driver, driver}" unless driver.nil? %><br>
-				<% end %>
-				</td>
 				<% (6..23).each do |hour| %>
 					<% (0..3).each do |quarter| %>
 						<% time = service.base_time.change(hour: hour, min: quarter * 15) %>
@@ -58,6 +51,14 @@
 						<% end %>
 					<% end %>
 				<% end %>
+				<td>
+				<% service.vehicles.each do |vehicle| %>
+					<% driver = vehicle.driver(service) %>
+					<% driver_name = "#{driver.name} #{driver.surname}" unless driver.nil? %>
+					<%= raw "#{link_to vehicle, vehicle}" %>
+					<%= raw " - #{link_to driver_name, user_path(driver.user_id)}" unless driver.nil? %><br>
+				<% end %>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>
