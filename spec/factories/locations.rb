@@ -2,11 +2,12 @@
 
 FactoryGirl.define do
 	factory :location do
+		sequence(:id) { |n| n }
 		sequence(:name) { |n| "Name #{n}" }
 		sequence(:description) { |n| "Description #{n}" }
 		sequence(:address) { |n| "Address #{n}" }
 		sequence(:phone) { |n| "Phone #{n}" }
-		latitude 1.5
+		sequence(:latitude) { |n| 1.5 + n }
 		longitude 1.5
 		location_type "MyType"
 		active true

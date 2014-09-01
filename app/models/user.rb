@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
   
 	after_validation { self.errors.messages.delete(:password_digest) }
 	
-	def get_locations
-		Location.active_locations.select([:latitude,:longitude,:location_type,:name,:description,:phone,:address])
+	def get_visible_locations
+		Location.active_locations
 	end
 
 	def allowed_to?(action)
