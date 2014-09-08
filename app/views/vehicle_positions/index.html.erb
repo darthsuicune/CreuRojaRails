@@ -1,16 +1,6 @@
 <% provide :title, t(:map) %>
 
-<h1><%= t(:map) %></h1>
-
 <div id="map">
-</div>
-
-<div id="map-legend">
-	<ul>
-		<% Location.location_types.each do |type| %>
-			<%= raw "<li><img src=\"assets/#{type.location_type}.png\" />#{type.location_type.humanize}</li>" %>
-		<% end %>
-	</ul>
 </div>
 
 <script type="text/javascript">
@@ -47,18 +37,8 @@ function getMarkers() {
 }
 
 function getMarkerContent(marker) {
-	var content = "<strong>" + marker.name + "</strong><br>";	
-	if(marker.description != null){
-		content = content + marker.description + "<br>";
-	}
-	if(marker.address != null) {
-		content = content + marker.address + "<br>";
-	}
-	if(marker.phone != null) {
-		content = content + marker.phone + "<br>";
-	}
-	return content;
+	var content = "<strong>" + marker.indicative + "</strong><br>";	
 }
-//JQuery magic, substitutes "window.onload = loadScript" in the GMaps guide by doing it properly
+
 $(document).ready(loadScript);
 </script>
